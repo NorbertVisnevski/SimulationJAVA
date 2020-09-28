@@ -20,8 +20,13 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+
+//For rendering window
+//TODO fix this mess
 public class Application extends javafx.application.Application {
     private static boolean fullscreen = false;
+
+    private static boolean updateRender = true;
 
 
     private static int tilesPerRow = 4;
@@ -54,6 +59,7 @@ public class Application extends javafx.application.Application {
         Button nexttrnbtn = new Button("next turn");
         nexttrnbtn.setOnAction(e -> {
             MasterData.animalManager.update();
+            updateRender = true;
         });
         hbox.getChildren().add(nexttrnbtn);
 
@@ -81,7 +87,7 @@ public class Application extends javafx.application.Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-
+                if(updateRender){
                     tileMap.getChildren().clear();
                     List<Tile> tilemap = MasterData.map.getTileMap();
                     for (Tile tile : tilemap) {
@@ -105,7 +111,8 @@ public class Application extends javafx.application.Application {
                             t = new GAnimal(xCoord, yCoord, "Fox");
 
                         tileMap.getChildren().add(t);
-
+                        updateRender =false;
+                    }
                 }
             }
         }.start();
@@ -160,8 +167,8 @@ public class Application extends javafx.application.Application {
 
     private class GAnimal extends Rectangle {
         GAnimal(double x, double y, String type) {
-            setX(x + 24);
-            setY(y + 8);
+            setX(x + MasterData.random.nextInt(48));
+            setY(y + MasterData.random.nextInt(16));
             setHeight(8);
             setWidth(8);
             switch (type) {

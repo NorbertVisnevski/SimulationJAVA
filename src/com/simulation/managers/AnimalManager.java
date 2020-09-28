@@ -22,7 +22,7 @@ public class AnimalManager {
         this.map = map;
     }
 
-    private final Set<Animal> animalCollection = new TreeSet<>(new Comparator<Animal>() {
+    private final Set<Animal> animalCollection = new TreeSet<>(new Comparator<>() {
         @Override
         public int compare(Animal o1, Animal o2) {
             if(o1 == o2)
@@ -38,7 +38,7 @@ public class AnimalManager {
 
     public List<Animal> getAnimalList()
     {
-        return new ArrayList(animalCollection);
+        return new ArrayList<>(animalCollection);
     }
 
     public List<Animal> getAnimalsInRange(Point origin, double radius)
@@ -59,10 +59,12 @@ public class AnimalManager {
 
         //TODO fix this!
         try {
-            for (Animal animal : animalCollection) {
+            for (Iterator<Animal> it = animalCollection.iterator(); it.hasNext();) {
+                Animal animal = it.next();
                 //kill if animal is hungry to death
                 if (animal.getHunger() > 100.0) {
-                    animalCollection.remove(animal);
+                    //animalCollection.remove(animal);
+                    it.remove();
                     continue;
                 }
 
@@ -108,10 +110,10 @@ public class AnimalManager {
                     List<Animal> animalsAtLocation = getAnimalsInRange(point, 0.5);
                     Animal possibleMate = null;
 
-                    if (animal.getSex() == "male") {
-                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex() == "female").filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
-                    } else if (animal.getSex() == "female") {
-                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex() == "male").filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
+                    if (animal.getSex().equals("male")) {
+                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex().equals("female")).filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
+                    } else if (animal.getSex().equals("female")) {
+                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex().equals("male")).filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
                     }
 
 
@@ -122,6 +124,6 @@ public class AnimalManager {
             }
         }
         catch(Exception e)
-        {}
+        {System.out.println(e.getCause());}
     }
 }

@@ -1,5 +1,6 @@
 package com.simulation.animals;
 
+import com.simulation.MasterData;
 import com.simulation.managers.AnimalManager;
 import com.simulation.map.Map;
 import com.simulation.map.NutritiousTile;
@@ -28,8 +29,7 @@ public abstract class Herbivore extends Animal {
 
         if(list.size()==0)
         {
-            Random rand = new Random();
-            possibleMoves.add(tileOptions.get(rand.nextInt()%tileOptions.size()).getPosition());
+            possibleMoves.add(tileOptions.get(MasterData.random.nextInt()%tileOptions.size()).getPosition());
             return;
         }
         NutritiousTile currentTile = list.stream().filter(tile->tile.getPosition().equals(getLocation())).findFirst().get();
@@ -61,7 +61,7 @@ public abstract class Herbivore extends Animal {
         if(carnivores.size()==0)
         {
             Random rand = new Random();
-            possibleMoves.add(tileOptions.get(rand.nextInt()%tileOptions.size()).getPosition());
+            possibleMoves.add(tileOptions.get(rand.nextInt(tileOptions.size())).getPosition());
             return;
         }
 

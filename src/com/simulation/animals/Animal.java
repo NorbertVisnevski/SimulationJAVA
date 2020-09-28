@@ -1,5 +1,6 @@
 package com.simulation.animals;
 
+import com.simulation.MasterData;
 import com.simulation.managers.AnimalManager;
 import com.simulation.map.Map;
 import com.simulation.map.Tile;
@@ -38,10 +39,10 @@ public abstract class Animal {
     }
 
     public void setHunger(double hunger) {
-        if(hunger>0)
+        if(hunger>1.0)
             this.hunger = hunger;
         else
-            this.hunger = 0.0;
+            this.hunger = 1.0;
     }
 
     public double getReproductionDrive() {
@@ -49,7 +50,10 @@ public abstract class Animal {
     }
 
     public void setReproductionDrive(double reproductionDrive) {
-        this.reproductionDrive = reproductionDrive;
+        if(reproductionDrive>1.0)
+            this.reproductionDrive = reproductionDrive;
+        else
+            this.reproductionDrive = 1.0;
     }
 
     public double getSurvivalDrive() {
@@ -57,7 +61,10 @@ public abstract class Animal {
     }
 
     public void setSurvivalDrive(double survivalDrive) {
-        this.survivalDrive = survivalDrive;
+        if(survivalDrive>1.0)
+            this.survivalDrive = survivalDrive;
+        else
+            this.survivalDrive = 1.0;
     }
 
     public void setSex(String sex) {
@@ -73,7 +80,10 @@ public abstract class Animal {
     }
 
     public void setSpeed(double speed) {
-        this.speed = speed;
+        if(speed>1.0)
+            this.speed = speed;
+        else
+            this.speed = 1.0;
     }
 
     public double getSensesRange() {
@@ -81,7 +91,10 @@ public abstract class Animal {
     }
 
     public void setSensesRange(double sensesRange) {
-        this.sensesRange = sensesRange;
+        if(sensesRange>1.0)
+            this.sensesRange = sensesRange;
+        else
+            this.sensesRange = 1.0;
     }
 
     public double getMutationRate() {
@@ -89,7 +102,10 @@ public abstract class Animal {
     }
 
     public void setMutationRate(double mutationRate) {
-        this.mutationRate = mutationRate;
+        if(mutationRate>1.0)
+            this.mutationRate = mutationRate;
+        else
+            this.mutationRate = 1.0;
     }
 
     public Point getLocation() {
@@ -159,8 +175,7 @@ public abstract class Animal {
 
         if(possibleMates.size()==0)
         {
-            Random rand = new Random();
-            possibleMoves.add(tileOptions.get(rand.nextInt(tileOptions.size())).getPosition());
+            possibleMoves.add(tileOptions.get(MasterData.random.nextInt(tileOptions.size())).getPosition());
             return;
         }
 

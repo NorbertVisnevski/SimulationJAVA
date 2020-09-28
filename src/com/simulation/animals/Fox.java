@@ -1,5 +1,6 @@
 package com.simulation.animals;
 
+import com.simulation.MasterData;
 import com.simulation.managers.AnimalManager;
 import com.simulation.map.Map;
 import com.simulation.managers.ReproductionHelper;
@@ -29,8 +30,7 @@ public class Fox extends Carnivore {
 
         if(carnivores.size()==0)
         {
-            Random rand = new Random();
-            possibleMoves.add(tileOptions.get(rand.nextInt(tileOptions.size())).getPosition());
+            possibleMoves.add(tileOptions.get(MasterData.random.nextInt(tileOptions.size())).getPosition());
             return;
         }
 

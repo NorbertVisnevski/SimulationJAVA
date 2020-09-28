@@ -24,7 +24,7 @@ public class Main {
         {
             for (int j=0; j< 20; ++j)
             {
-                t = new NutritiousTile(new Point(i,j), Tile.TerrainTypes.PLANES, false, 1.0, 50.0);
+                t = new NutritiousTile(new Point(i,j), Tile.TerrainTypes.PLANES, false, 1.0, 10.0);
                 tiles.add(t);
             }
         }
@@ -34,16 +34,19 @@ public class Main {
         MasterData.animalManager.setMap(MasterData.map);
 
         Animal a;
-        a = new Wolf(MasterData.map,MasterData.animalManager);
+        a = new Rabbit(MasterData.map,MasterData.animalManager);
         a.setLocation(new Point(20,9));
         MasterData.animalManager.add(a);
-        a = new Wolf(MasterData.map,MasterData.animalManager);
-        a.setLocation(new Point(9,9));
+        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a.setLocation(new Point(11,9));
+        a.setSpeed(20);
+        a.setSensesRange(20);
+        a.setReproductionDrive(20);
         MasterData.animalManager.add(a);
-        a = new Wolf(MasterData.map,MasterData.animalManager);
+        a = new Rabbit(MasterData.map,MasterData.animalManager);
         a.setLocation(new Point(18,9));
         MasterData.animalManager.add(a);
-        a = new Fox(MasterData.map,MasterData.animalManager);
+        a = new Rabbit(MasterData.map,MasterData.animalManager);
         a.setLocation(new Point(0,0));
         MasterData.animalManager.add(a);
         a = new Rabbit(MasterData.map,MasterData.animalManager);
