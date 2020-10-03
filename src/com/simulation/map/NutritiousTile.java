@@ -1,7 +1,6 @@
 package com.simulation.map;
 
-import com.simulation.animals.Herbivore;
-import com.simulation.map.Tile;
+import com.simulation.animals.AnimalHerbivore;
 
 import java.awt.*;
 
@@ -40,7 +39,7 @@ public class NutritiousTile extends Tile {
         setNutritionContent(getNutritionContent()+amount);
     }
 
-    public void herbivoreInteraction(Herbivore animal)
+    public void herbivoreInteraction(AnimalHerbivore animal)
     {
         if(getNutritionContent()<animal.getHunger())
         {

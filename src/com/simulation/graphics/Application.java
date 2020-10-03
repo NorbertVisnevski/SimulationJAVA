@@ -3,9 +3,9 @@ package com.simulation.graphics;
 import com.simulation.MasterData;
 import com.simulation.map.Tile;
 import com.simulation.animals.Animal;
-import com.simulation.animals.Fox;
-import com.simulation.animals.Rabbit;
-import com.simulation.animals.Wolf;
+import com.simulation.animals.AnimalFox;
+import com.simulation.animals.AnimalRabbit;
+import com.simulation.animals.AnimalWolf;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,10 +28,12 @@ public class Application extends javafx.application.Application {
 
     private static boolean updateRender = true;
 
-
+    private Pane tileMap;
     private static int tilesPerRow = 4;
     private static int rows = 3;
 
+    int xStartOffset = 30; // offsets the entire field to the right
+    int yStartOffset = 60; // offsets the entire fiels downwards
 
     private final static int WINDOW_WIDTH = 2300;
     private final static int WINDOW_HEIGHT = 1100;
@@ -41,10 +43,39 @@ public class Application extends javafx.application.Application {
     private final static double TILE_HEIGHT = 2 * r;
     private final static double TILE_WIDTH = 2 * n;
 
+    private void updateSimulationState() {
+        tileMap.getChildren().clear();
+        List<Tile> tilemap = MasterData.map.getTileMap();
+        for (Tile tile : tilemap) {
+            double xCoord = tile.getPosition().x * TILE_WIDTH + (tile.getPosition().y % 2) * n + xStartOffset;
+            double yCoord = tile.getPosition().y * TILE_HEIGHT * 0.75 + yStartOffset;
+            Polygon t = new GTile(xCoord, yCoord, tile.getTerrainType());
+            tileMap.getChildren().add(t);
+        }
+
+        List<Animal> animalmap = MasterData.animalManager.getAnimalList();
+        for (Animal animal : animalmap) {
+            double xCoord = animal.getLocation().x * TILE_WIDTH + (animal.getLocation().y % 2) * n + xStartOffset;
+            double yCoord = animal.getLocation().y * TILE_HEIGHT * 0.75 + yStartOffset;
+            Rectangle t = null;
+
+            if (animal instanceof AnimalRabbit)
+                t = new GAnimal(xCoord, yCoord, "Rabbit",animal);
+            else if (animal instanceof AnimalWolf)
+                t = new GAnimal(xCoord, yCoord, "Wolf",animal);
+            else if (animal instanceof AnimalFox)
+                t = new GAnimal(xCoord, yCoord, "Fox",animal);
+
+            tileMap.getChildren().add(t);
+        }
+        updateRender=true;
+    }
+
+
     public void start(Stage primaryStage) throws Exception {
         AnchorPane mainPane = new AnchorPane();
         mainPane.setStyle("-fx-background-color: #000000;");
-        Pane tileMap = new Pane();
+        tileMap = new Pane();
         mainPane.getChildren().add(tileMap);
 
         HBox hbox = new HBox();
@@ -58,8 +89,14 @@ public class Application extends javafx.application.Application {
 
         Button nexttrnbtn = new Button("next turn");
         nexttrnbtn.setOnAction(e -> {
-            MasterData.animalManager.update();
-            updateRender = true;
+            if(updateRender)
+            {
+                updateRender = false;
+                MasterData.animalManager.update();
+                updateSimulationState();
+
+            }
+
         });
         hbox.getChildren().add(nexttrnbtn);
 
@@ -76,46 +113,46 @@ public class Application extends javafx.application.Application {
         primaryStage.setScene(content);
         primaryStage.setFullScreenExitHint("");
 
-        int xStartOffset = 30; // offsets the entire field to the right
-        int yStartOffset = 60; // offsets the entire fiels downwards
 
+
+        updateSimulationState();
 
         primaryStage.setFullScreen(false);
         primaryStage.setTitle("We live in a simulation");
         primaryStage.show();
 
-        new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                if(updateRender){
-                    tileMap.getChildren().clear();
-                    List<Tile> tilemap = MasterData.map.getTileMap();
-                    for (Tile tile : tilemap) {
-                        double xCoord = tile.getPosition().x * TILE_WIDTH + (tile.getPosition().y % 2) * n + xStartOffset;
-                        double yCoord = tile.getPosition().y * TILE_HEIGHT * 0.75 + yStartOffset;
-                        Polygon t = new GTile(xCoord, yCoord, tile.getTerrainType());
-                        tileMap.getChildren().add(t);
-                    }
-
-                    List<Animal> animalmap = MasterData.animalManager.getAnimalList();
-                    for (Animal animal : animalmap) {
-                        double xCoord = animal.getLocation().x * TILE_WIDTH + (animal.getLocation().y % 2) * n + xStartOffset;
-                        double yCoord = animal.getLocation().y * TILE_HEIGHT * 0.75 + yStartOffset;
-                        Rectangle t = null;
-
-                        if (animal instanceof Rabbit)
-                            t = new GAnimal(xCoord, yCoord, "Rabbit");
-                        else if (animal instanceof Wolf)
-                            t = new GAnimal(xCoord, yCoord, "Wolf");
-                        else if (animal instanceof Fox)
-                            t = new GAnimal(xCoord, yCoord, "Fox");
-
-                        tileMap.getChildren().add(t);
-                        updateRender =false;
-                    }
-                }
-            }
-        }.start();
+//        new AnimationTimer() {
+//            @Override
+//            public void handle(long currentNanoTime) {
+//                if(updateRender){
+//                    tileMap.getChildren().clear();
+//                    List<Tile> tilemap = MasterData.map.getTileMap();
+//                    for (Tile tile : tilemap) {
+//                        double xCoord = tile.getPosition().x * TILE_WIDTH + (tile.getPosition().y % 2) * n + xStartOffset;
+//                        double yCoord = tile.getPosition().y * TILE_HEIGHT * 0.75 + yStartOffset;
+//                        Polygon t = new GTile(xCoord, yCoord, tile.getTerrainType());
+//                        tileMap.getChildren().add(t);
+//                    }
+//
+//                    List<Animal> animalmap = MasterData.animalManager.getAnimalList();
+//                    for (Animal animal : animalmap) {
+//                        double xCoord = animal.getLocation().x * TILE_WIDTH + (animal.getLocation().y % 2) * n + xStartOffset;
+//                        double yCoord = animal.getLocation().y * TILE_HEIGHT * 0.75 + yStartOffset;
+//                        Rectangle t = null;
+//
+//                        if (animal instanceof AnimalRabbit)
+//                            t = new GAnimal(xCoord, yCoord, "Rabbit");
+//                        else if (animal instanceof AnimalWolf)
+//                            t = new GAnimal(xCoord, yCoord, "Wolf");
+//                        else if (animal instanceof AnimalFox)
+//                            t = new GAnimal(xCoord, yCoord, "Fox");
+//
+//                        tileMap.getChildren().add(t);
+//                        updateRender =false;
+//                    }
+//                }
+//            }
+//        }.start();
 
     }
 
@@ -166,7 +203,7 @@ public class Application extends javafx.application.Application {
     }
 
     private class GAnimal extends Rectangle {
-        GAnimal(double x, double y, String type) {
+        GAnimal(double x, double y, String type, Animal animal) {
             setX(x + MasterData.random.nextInt(48));
             setY(y + MasterData.random.nextInt(16));
             setHeight(8);
@@ -181,8 +218,8 @@ public class Application extends javafx.application.Application {
                 case "Fox":
                     setFill(Color.ORANGE);
                     break;
-
             }
+            setOnMouseClicked(e->System.out.println(animal.toString()));
         }
     }
 }

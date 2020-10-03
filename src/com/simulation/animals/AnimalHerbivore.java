@@ -10,14 +10,14 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Herbivore extends Animal {
+public abstract class AnimalHerbivore extends Animal {
 
-    public Herbivore(Map map, AnimalManager animalManager) {
-        super(map, animalManager);
+    public AnimalHerbivore() {
+        super();
     }
 
-    public Herbivore(Map map, AnimalManager animalManager, double hunger, double reproductionDrive, double survivalDrive, String sex, double speed, double sensesRange, double mutationRate, Point location) {
-        super(map, animalManager, hunger, reproductionDrive, survivalDrive, sex, speed, sensesRange, mutationRate, location);
+    public AnimalHerbivore(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
+        super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
 
     @Override
@@ -54,9 +54,9 @@ public abstract class Herbivore extends Animal {
     @Override
     protected void survive(List<Point> possibleMoves)
     {
-        List<Animal> carnivores = animalManager.getAnimalsInRange(getLocation(), getSensesRange());
+        List<Animal> carnivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
 
-        carnivores = carnivores.stream().filter(animal->animal instanceof Carnivore).collect(Collectors.toList());
+        carnivores = carnivores.stream().filter(animal->animal instanceof AnimalCarnivore).collect(Collectors.toList());
 
         if(carnivores.size()==0)
         {

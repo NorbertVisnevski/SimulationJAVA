@@ -1,9 +1,9 @@
 package com.simulation;
 
 import com.simulation.animals.Animal;
-import com.simulation.animals.Fox;
-import com.simulation.animals.Rabbit;
-import com.simulation.animals.Wolf;
+import com.simulation.animals.AnimalFox;
+import com.simulation.animals.AnimalRabbit;
+import com.simulation.animals.AnimalWolf;
 import com.simulation.graphics.Application;
 import com.simulation.managers.AnimalManager;
 import com.simulation.map.Map;
@@ -34,31 +34,26 @@ public class Main {
         MasterData.animalManager.setMap(MasterData.map);
 
         Animal a;
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalRabbit();
         a.setLocation(new Point(20,9));
         MasterData.animalManager.add(a);
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalRabbit();
         a.setLocation(new Point(11,9));
-        a.setSpeed(20);
         a.setSensesRange(20);
         a.setReproductionDrive(20);
         MasterData.animalManager.add(a);
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalWolf();
         a.setLocation(new Point(18,9));
         MasterData.animalManager.add(a);
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalFox();
         a.setLocation(new Point(0,0));
         MasterData.animalManager.add(a);
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalRabbit();
         a.setLocation(new Point(22,9));
-        a.setSpeed(20);
-        a.setSex("female");
         MasterData.animalManager.add(a);
-        a = new Rabbit(MasterData.map,MasterData.animalManager);
+        a = new AnimalRabbit();
         a.setLocation(new Point(11,9));
-        a.setSpeed(20);
         a.setSensesRange(10);
-        a.setSex("female");
         MasterData.animalManager.add(a);
 
         javafx.application.Application.launch(Application.class,args);

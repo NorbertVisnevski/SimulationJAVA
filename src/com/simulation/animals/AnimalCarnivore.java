@@ -6,26 +6,25 @@ import com.simulation.map.Map;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.List;
 
-public abstract class Carnivore extends Animal {
+public abstract class AnimalCarnivore extends Animal {
 
-    public Carnivore(Map map, AnimalManager animalManager) {
-        super(map, animalManager);
+    public AnimalCarnivore() {
+        super();
     }
 
-    public Carnivore(Map map, AnimalManager animalManager, double hunger, double reproductionDrive, double survivalDrive, String sex, double speed, double sensesRange, double mutationRate, Point location) {
-        super(map, animalManager, hunger, reproductionDrive, survivalDrive, sex, speed, sensesRange, mutationRate, location);
+    public AnimalCarnivore(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
+        super( hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
 
     @Override
     protected void findFood(List<Point> possibleMoves)
     {
-        java.util.List<Animal> herbivores = animalManager.getAnimalsInRange(getLocation(), getSensesRange());
+        java.util.List<Animal> herbivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
 
-        herbivores = herbivores.stream().filter(animal->animal instanceof Herbivore).collect(Collectors.toList());
+        herbivores = herbivores.stream().filter(animal->animal instanceof AnimalHerbivore).collect(Collectors.toList());
 
 
         if(herbivores.size()==0)

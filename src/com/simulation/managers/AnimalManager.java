@@ -4,6 +4,7 @@ import com.simulation.animals.*;
 import com.simulation.map.Map;
 import com.simulation.map.NutritiousTile;
 import com.simulation.map.Tile;
+import javafx.collections.transformation.SortedList;
 
 import java.awt.*;
 import java.util.*;
@@ -22,7 +23,10 @@ public class AnimalManager {
         this.map = map;
     }
 
-    private final Set<Animal> animalCollection = new TreeSet<>(new Comparator<>() {
+    private List<Animal> animalCollection = new ArrayList<>();
+
+
+    private static Comparator<Animal> listSorter = new Comparator<>() {
         @Override
         public int compare(Animal o1, Animal o2) {
             if(o1 == o2)
@@ -34,7 +38,7 @@ public class AnimalManager {
                 res = 1;
             return res;
         }
-    });
+    };
 
     public List<Animal> getAnimalList()
     {
@@ -45,26 +49,40 @@ public class AnimalManager {
     {
         return new ArrayList<>(animalCollection.stream().
                 filter(animal->Math.floor(origin.distance(animal.getLocation()))<=radius).
+                filter(animal->!animal.isDead()).
+                collect(Collectors.toList()));
+    }
+
+    public List<Animal> getAnimalsAt(Point origin)
+    {
+        return new ArrayList<>(animalCollection.stream().
+                filter(animal->animal.getLocation().equals(origin)).
+                filter(animal->!animal.isDead()).
                 collect(Collectors.toList()));
     }
 
     public void add(Animal animal){
         animalCollection.add(animal);
+        animalCollection.sort(listSorter);
     }
     public void add(Collection<Animal> animals){
         animalCollection.addAll(animals);
+        animalCollection.sort(listSorter);
     }
 
     public void update() {
 
+        List<Animal> newAnimals = new ArrayList<>();
+        List<Animal> deadAnimals = new ArrayList<>();
         //TODO fix this!
         try {
-            for (Iterator<Animal> it = animalCollection.iterator(); it.hasNext();) {
-                Animal animal = it.next();
+            for (Animal animal : animalCollection) {
                 //kill if animal is hungry to death
                 if (animal.getHunger() > 100.0) {
                     //animalCollection.remove(animal);
-                    it.remove();
+                    animal.setDead();
+                    deadAnimals.add(animal);
+                    System.out.println(animal);
                     continue;
                 }
 
@@ -73,11 +91,11 @@ public class AnimalManager {
                 {
                     point = map.getTileNeighbours(animal.getLocation(),true).get(0).getPosition();
                 }
-                if (animal instanceof Herbivore) {
+                if (animal instanceof AnimalHerbivore) {
                     if (point.equals(animal.getLocation())) {
                         Tile tile = map.getTileAt(point);
                         if (tile instanceof NutritiousTile) {
-                            ((NutritiousTile) tile).herbivoreInteraction((Herbivore) animal);
+                            ((NutritiousTile) tile).herbivoreInteraction((AnimalHerbivore) animal);
                         }
                     }
                 }
@@ -89,41 +107,38 @@ public class AnimalManager {
                 animal.setLocation(point);
                 animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());
 
-                if (animal instanceof Carnivore) {
-                    List<Animal> animalsAtLocation = getAnimalsInRange(point, 0.5);
+
+
+                if (animal instanceof AnimalCarnivore) {
+                    List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     Animal food = null;
-                    if (animal instanceof Wolf)
-                        food = animalsAtLocation.stream().filter(anim -> anim instanceof Rabbit || anim instanceof Fox).findFirst().orElse(null);
-                    if (animal instanceof Fox)
-                        food = animalsAtLocation.stream().filter(anim -> anim instanceof Rabbit).findFirst().orElse(null);
+                    if (animal instanceof AnimalWolf)
+                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox).findFirst().orElse(null);
+                    if (animal instanceof AnimalFox)
+                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit).findFirst().orElse(null);
 
                     if (food != null) {
                         animal.setHunger(0.0);
-                        animalCollection.remove(food);
+                        food.setDead();
+                        deadAnimals.add(food);
                     }
-
                 }
 
                 //reproduce
                 if(animal.getHunger()<50.0) {
 
-                    List<Animal> animalsAtLocation = getAnimalsInRange(point, 0.5);
-                    Animal possibleMate = null;
-
-                    if (animal.getSex().equals("male")) {
-                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex().equals("female")).filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
-                    } else if (animal.getSex().equals("female")) {
-                        possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim -> anim.getSex().equals("male")).filter(anim->anim.getHunger()<50.0).findFirst().orElse(null);
-                    }
-
+                    List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
+                    Animal possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim->anim.getHunger()<50.0).filter(anim->anim!=animal).findFirst().orElse(null);
 
                     if (possibleMate != null) {
-                        this.add(animal.mateWith(possibleMate));
+                        newAnimals.add(animal.mateWith(possibleMate));
                     }
                 }
             }
+            animalCollection.removeAll(deadAnimals);
+            add(newAnimals);
         }
         catch(Exception e)
-        {System.out.println(e.getCause());}
+        {System.out.println(e);}
     }
 }

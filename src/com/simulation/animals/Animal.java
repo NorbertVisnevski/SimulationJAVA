@@ -2,6 +2,7 @@ package com.simulation.animals;
 
 import com.simulation.MasterData;
 import com.simulation.managers.AnimalManager;
+import com.simulation.managers.ReproductionHelper;
 import com.simulation.map.Map;
 import com.simulation.map.Tile;
 
@@ -12,13 +13,13 @@ import java.util.stream.Collectors;
 
 public abstract class Animal {
 
+    private boolean dead = false;
+
     private double hunger;
 
     private double reproductionDrive;
 
     private double survivalDrive;
-
-    private String sex;
 
     private double speed;
 
@@ -30,19 +31,25 @@ public abstract class Animal {
 
     protected List<Tile> tileOptions;
 
-    protected Map map;
 
-    protected AnimalManager animalManager;
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead() {
+        this.dead = true;
+    }
 
     public double getHunger() {
         return hunger;
     }
 
     public void setHunger(double hunger) {
-        if(hunger>1.0)
+        if(hunger>0.0)
             this.hunger = hunger;
         else
-            this.hunger = 1.0;
+            this.hunger = 0.0;
     }
 
     public double getReproductionDrive() {
@@ -65,14 +72,6 @@ public abstract class Animal {
             this.survivalDrive = survivalDrive;
         else
             this.survivalDrive = 1.0;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getSex() {
-        return sex;
     }
 
     public double getSpeed() {
@@ -121,26 +120,24 @@ public abstract class Animal {
         return speed/2.0;
     }
 
-    public Animal(Map map, AnimalManager animalManager) {
-        this(map,animalManager,1.0,1.0,1.0,"male",1.0,1.0,1.0,new Point());
+    public Animal() {
+        this(0.0,1.0,1.0,1.0,1.0,1.0,new Point());
     }
 
-    public Animal( Map map, AnimalManager animalManager, double hunger, double reproductionDrive, double survivalDrive, String sex, double speed, double sensesRange, double mutationRate, Point location) {
+    public Animal(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         this.hunger = hunger;
         this.reproductionDrive = reproductionDrive;
         this.survivalDrive = survivalDrive;
-        this.sex = sex;
         this.speed = speed;
         this.sensesRange = sensesRange;
         this.mutationRate = mutationRate;
         this.location = location;
-        this.map = map;
-        this.animalManager = animalManager;
+
     }
 
     public Point calculateMove()
     {
-        tileOptions = map.getTileNeighbours(getLocation(),true);
+        tileOptions = MasterData.map.getTileNeighbours(getLocation(),true);
         List<Point> possibleMoves = new ArrayList<>();
         findFood(possibleMoves);
         findMate(possibleMoves);
@@ -164,14 +161,9 @@ public abstract class Animal {
 
     protected void findMate(List<Point> possibleMoves)
     {
-        List<Animal> possibleMates = animalManager.getAnimalsInRange(getLocation(), getSensesRange());
+        List<Animal> possibleMates = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
 
-        possibleMates = possibleMates.stream().filter(animal->animal.getClass() == this.getClass()).collect(Collectors.toList());
-
-        if(getSex().equals("male"))
-            possibleMates = possibleMates.stream().filter(animal->animal.getSex().equals("female")).collect(Collectors.toList());
-        else if(getSex().equals("female"))
-            possibleMates = possibleMates.stream().filter(animal->animal.getSex().equals("male")).collect(Collectors.toList());
+        possibleMates = possibleMates.stream().filter(animal->animal.getClass() == this.getClass()).filter(animal->animal!=this).collect(Collectors.toList());
 
         if(possibleMates.size()==0)
         {
@@ -198,7 +190,15 @@ public abstract class Animal {
 
     protected abstract void survive(List<Point> possibleMoves);
 
-    public abstract Animal mateWith(Animal other);
+    public Animal mateWith(Animal other)
+    {
+        if(other.getClass() != this.getClass())
+        {
+            return null;
+        }
+        return ReproductionHelper.reproduce(this,other);
+    }
+
 
 
 
