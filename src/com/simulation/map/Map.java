@@ -1,80 +1,55 @@
 package com.simulation.map;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Map {
 
-    private List<Tile> tileMap;
+    private HashMap<Point,Tile> tileMap;
 
-    public Map(List<Tile> tileMap) {
-        this.tileMap = tileMap;
+    public Map() {
+        this.tileMap = new HashMap<>();
     }
 
     public List<Tile> getTileMap() {
-        return tileMap;
+        return new ArrayList<>(tileMap.values().stream().collect(Collectors.toList()));
     }
 
-    public Map getTileMapInArea(Point point, double radius, boolean walkable) {
-        List<Tile> radiusMap = new ArrayList<>(
-                getTileMap()
-                .stream()
-                .filter(tile->{
-                    if (Math.floor(tile.getPosition().distance(point)) <= radius) {
-                        if(walkable) {
-                            if(!tile.isImpassible()) {
-                                return true;
-                            }
-                            return false;
-                        }
-                            return true;
-                    }
-                    return false;
-                })
-                .collect(Collectors.toList()));
-        return new Map(radiusMap);
+    public void add(Tile tile)
+    {
+        tileMap.put(tile.getPosition(),tile);
     }
 
     public List<Tile> getTileNeighbours(Point position, boolean canWalkOn)
     {
-         List<Tile> list = new ArrayList<>(
-                getTileMap()
-                        .stream()
-                        .filter(tile-> {
-                                if(tile.getPosition().equals(position)) {
-                                    return true;
-                                }
-                                else if(tile.getPosition().y % 2 == 0) {//java 15 looks like has this reversed
-                                    return (tile.getPosition().x == (position.x) && tile.getPosition().y == (position.y - 1)) ||
-                                        (tile.getPosition().x == (position.x + 1) && tile.getPosition().y == (position.y - 1)) ||
-                                        (tile.getPosition().x == (position.x + 1) && tile.getPosition().y == (position.y)) ||
-                                        (tile.getPosition().x == (position.x + 1) && tile.getPosition().y == (position.y + 1)) ||
-                                        (tile.getPosition().x == (position.x) && tile.getPosition().y == (position.y + 1)) ||
-                                        (tile.getPosition().x == (position.x - 1) && tile.getPosition().y == (position.y));
-                                }
-                                else {
-                                    return(tile.getPosition().x == (position.x - 1) && tile.getPosition().y == (position.y - 1)) ||
-                                            (tile.getPosition().x == (position.x) && tile.getPosition().y == (position.y - 1)) ||
-                                            (tile.getPosition().x == (position.x + 1) && tile.getPosition().y == (position.y)) ||
-                                            (tile.getPosition().x == (position.x) && tile.getPosition().y == (position.y + 1)) ||
-                                            (tile.getPosition().x == (position.x - 1) && tile.getPosition().y == (position.y + 1)) ||
-                                            (tile.getPosition().x == (position.x - 1) && tile.getPosition().y == (position.y));
-                                }
-                        })
-                        .limit(7)
-                        .collect(Collectors.toList()));
+         List<Tile> list = new ArrayList<>();
+         list.add(getTileAt(new Point(position)));
+         if(position.y % 2 == 0)
+         {
+             list.add(getTileAt(new Point(position.x - 1, position.y - 1)));
+             list.add(getTileAt(new Point(position.x, position.y - 1)));
+             list.add(getTileAt(new Point(position.x + 1, position.y)));
+             list.add(getTileAt(new Point(position.x, position.y + 1)));
+             list.add(getTileAt(new Point(position.x - 1, position.y + 1)));
+             list.add(getTileAt(new Point(position.x - 1, position.y)));
+         }
+         else
+         {
+             list.add(getTileAt(new Point(position.x - 1, position.y)));
+             list.add(getTileAt(new Point(position.x, position.y - 1)));
+             list.add(getTileAt(new Point(position.x + 1, position.y - 1)));
+             list.add(getTileAt(new Point(position.x + 1, position.y)));
+             list.add(getTileAt(new Point(position.x + 1, position.y + 1)));
+             list.add(getTileAt(new Point(position.x, position.y+1)));
+         }
+         list = list.stream().filter(tile->tile!=null).collect(Collectors.toList());
          if(canWalkOn)
          {
-             list.stream().filter(tile->!tile.isImpassible()).collect(Collectors.toList());
+             list = list.stream().filter(tile->!tile.isImpassible()).collect(Collectors.toList());
          }
          return list;
-    }
-
-    public void setTileMap(List<Tile> tileMap) {
-        this.tileMap = tileMap;
     }
 
     public static Point findClosest(List<Tile> tileMap, Point point)
@@ -128,6 +103,6 @@ public class Map {
 
     public Tile getTileAt(Point coordinates)
     {
-        return tileMap.stream().filter(tile->tile.getPosition().equals(coordinates)).findFirst().get();
+        return tileMap.get(coordinates);
     }
 }

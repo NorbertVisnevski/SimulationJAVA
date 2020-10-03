@@ -71,7 +71,6 @@ public class AnimalManager {
     }
 
     public void update() {
-
         List<Animal> newAnimals = new ArrayList<>();
         List<Animal> deadAnimals = new ArrayList<>();
         //TODO fix this!
@@ -82,7 +81,6 @@ public class AnimalManager {
                     //animalCollection.remove(animal);
                     animal.setDead();
                     deadAnimals.add(animal);
-                    System.out.println(animal);
                     continue;
                 }
 

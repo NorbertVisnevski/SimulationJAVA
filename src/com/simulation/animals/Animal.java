@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 public abstract class Animal {
 
+    private static long animalCount = 0;
+
     private boolean dead = false;
 
     private double hunger;
@@ -31,14 +33,18 @@ public abstract class Animal {
 
     protected List<Tile> tileOptions;
 
-
+    public static long getCount()
+    {
+        return animalCount;
+    }
 
     public boolean isDead() {
         return dead;
     }
 
-    public void setDead() {
+    public void setDead(){
         this.dead = true;
+        --animalCount;
     }
 
     public double getHunger() {
@@ -132,7 +138,7 @@ public abstract class Animal {
         this.sensesRange = sensesRange;
         this.mutationRate = mutationRate;
         this.location = location;
-
+        ++animalCount;
     }
 
     public Point calculateMove()

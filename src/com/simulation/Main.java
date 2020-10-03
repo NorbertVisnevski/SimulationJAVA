@@ -18,18 +18,17 @@ public class Main {
 
     public static void main(String[] args) {
         // simulation init
-        List<Tile> tiles = new ArrayList<>();
+        MasterData.map = new Map();
         Tile t;
         for(int i = 0; i< 40; ++i)
         {
             for (int j=0; j< 20; ++j)
             {
                 t = new NutritiousTile(new Point(i,j), Tile.TerrainTypes.PLANES, false, 1.0, 10.0);
-                tiles.add(t);
+                MasterData.map.add(t);
             }
         }
 
-        MasterData.map = new Map(tiles);
         MasterData.animalManager = new AnimalManager();
         MasterData.animalManager.setMap(MasterData.map);
 

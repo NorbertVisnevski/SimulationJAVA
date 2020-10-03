@@ -12,12 +12,28 @@ import java.util.stream.Collectors;
 
 public class AnimalFox extends AnimalCarnivore {
 
+    private static long foxCount = 0;
+
     public AnimalFox() {
         super();
+        ++foxCount;
     }
 
     public AnimalFox(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
+        ++foxCount;
+    }
+
+    public static long getCount()
+    {
+        return foxCount;
+    }
+
+    @Override
+    public void setDead()
+    {
+        super.setDead();
+        --foxCount;
     }
 
     @Override

@@ -12,12 +12,28 @@ import java.util.stream.Collectors;
 
 public abstract class AnimalHerbivore extends Animal {
 
+    private static long herbivoreCount = 0;
+
     public AnimalHerbivore() {
         super();
+        ++herbivoreCount;
     }
 
     public AnimalHerbivore(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
+        ++herbivoreCount;
+    }
+
+    public static long getCount()
+    {
+        return herbivoreCount;
+    }
+
+    @Override
+    public void setDead()
+    {
+        super.setDead();
+        --herbivoreCount;
     }
 
     @Override

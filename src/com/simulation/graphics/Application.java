@@ -7,6 +7,8 @@ import com.simulation.animals.AnimalFox;
 import com.simulation.animals.AnimalRabbit;
 import com.simulation.animals.AnimalWolf;
 import javafx.animation.AnimationTimer;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -73,7 +75,9 @@ public class Application extends javafx.application.Application {
 
 
     public void start(Stage primaryStage) throws Exception {
-        AnchorPane mainPane = new AnchorPane();
+
+        Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
+        /*AnchorPane mainPane = new AnchorPane();
         mainPane.setStyle("-fx-background-color: #000000;");
         tileMap = new Pane();
         mainPane.getChildren().add(tileMap);
@@ -118,7 +122,8 @@ public class Application extends javafx.application.Application {
         updateSimulationState();
 
         primaryStage.setFullScreen(false);
-        primaryStage.setTitle("We live in a simulation");
+        primaryStage.setTitle("We live in a simulation");*/
+        primaryStage.setScene(new Scene(root,500,500));
         primaryStage.show();
 
 //        new AnimationTimer() {
@@ -219,7 +224,13 @@ public class Application extends javafx.application.Application {
                     setFill(Color.ORANGE);
                     break;
             }
-            setOnMouseClicked(e->System.out.println(animal.toString()));
+            setOnMouseClicked(e->
+            {Button btn = new Button();
+            btn.setLayoutX(x);
+            btn.setLayoutY(y);
+            btn.setText(animal.toString());
+                tileMap.getChildren().add(btn);
+            });
         }
     }
 }
