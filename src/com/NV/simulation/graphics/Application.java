@@ -20,7 +20,7 @@ public class Application extends javafx.application.Application {
     private final static int WINDOW_HEIGHT = 1100;
 
 
-    public void updateSimulationState() {
+    public static void updateSimulationState() {
         MasterData.tileMap.getChildren().clear();
         List<Tile> tilemap = MasterData.map.getTileMap();
         for (Tile tile : tilemap) {
@@ -49,11 +49,7 @@ public class Application extends javafx.application.Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                if(MasterData.mainUIController.updateRender){
-                    updateSimulationState();
-                    MasterData.tileMap.setMinSize(1000,1000);
-                    MasterData.mainUIController.updateRender = false;
-                }
+
             }
         }.start();
 

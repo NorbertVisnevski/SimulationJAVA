@@ -78,10 +78,8 @@ public class AnimalManager {
             for (Animal animal : animalCollection) {
                 //kill if animal is hungry to death
                 if (animal.getHunger() > 100.0) {
-                    //animalCollection.remove(animal);
                     animal.setDead();
                     deadAnimals.add(animal);
-                    System.out.println(animal);
                     continue;
                 }
 
