@@ -40,7 +40,7 @@ public class MainController {
                     updateRender=true;});
         secondStage.initStyle(StageStyle.UTILITY);
         secondStage.initOwner(tilemap.getScene().getWindow());
-        secondStage.setScene(new Scene(new HBox(7, new Label("Second window"),btn)));
+        secondStage.setScene(new Scene(new HBox(10, new Label("Second window"),btn),100,200));
         secondStage.show();
     }
     @FXML
@@ -51,7 +51,7 @@ public class MainController {
         box.getChildren().add(new Text(((Long) AnimalHerbivore.getCount()).toString()));
         secondStage.initStyle(StageStyle.UTILITY);
         secondStage.initOwner(tilemap.getScene().getWindow());
-        secondStage.setScene(new Scene(box));
+        secondStage.setScene(new Scene(box,100,50));
         secondStage.show();
 
         new AnimationTimer() {

@@ -130,13 +130,13 @@ public abstract class Animal {
     }
 
     public Animal(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
-        this.hunger = hunger;
-        this.reproductionDrive = reproductionDrive;
-        this.survivalDrive = survivalDrive;
-        this.speed = speed;
-        this.sensesRange = sensesRange;
-        this.mutationRate = mutationRate;
-        this.location = location;
+        setHunger(hunger);
+        setReproductionDrive(reproductionDrive);
+        setSurvivalDrive(survivalDrive);
+        setSpeed(speed);
+        setSensesRange(sensesRange);
+        setMutationRate(mutationRate);
+        setLocation(location);
         ++animalCount;
     }
 

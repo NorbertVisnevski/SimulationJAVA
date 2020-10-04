@@ -2,7 +2,7 @@ package com.NV.simulation.graphics;
 
 import javafx.scene.image.Image;
 
-public class TextureStorage {
+class TextureStorage {
     public static Image grassland = new Image("file:resources/textures/grassland.png");
     public static Image mountain = new Image("file:resources/textures/mountain.png");
     public static Image marsh = new Image("file:resources/textures/marsh.png");

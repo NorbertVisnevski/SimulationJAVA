@@ -8,10 +8,11 @@ import javafx.scene.layout.Pane;
 import java.util.Random;
 
 public final class MasterData {
-    public static Map map;
-    public static AnimalManager animalManager;
+    public static Map map = new Map();
+    public static AnimalManager animalManager = new AnimalManager();
     public static Random random = new Random();
-    public static Pane tileMap;
+    public static StringBuilder stringBuilder = new StringBuilder();
+    public static Pane tileMap;//Just temporary
     public static MainController mainUIController;
 
 }

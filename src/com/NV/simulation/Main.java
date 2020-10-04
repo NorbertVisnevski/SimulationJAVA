@@ -16,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         // simulation init
-        MasterData.map = new Map();
         Tile t;
         for(int i = 0; i< 40; ++i)
         {
@@ -27,7 +26,6 @@ public class Main {
             }
         }
 
-        MasterData.animalManager = new AnimalManager();
         MasterData.animalManager.setMap(MasterData.map);
 
         Animal a;
@@ -54,6 +52,5 @@ public class Main {
         MasterData.animalManager.add(a);
 
         javafx.application.Application.launch(Application.class,args);
-
     }
 }
