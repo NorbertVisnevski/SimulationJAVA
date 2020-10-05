@@ -1,6 +1,7 @@
 package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.map.Map;
 import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
@@ -22,6 +23,11 @@ public class WeatherManager {
     private List<Tile> oceanList;
     private List<Tile> continentList;
 
+    public List<Cloud> getCloudList()
+    {
+        return new ArrayList<>(cloudList);
+    }
+
     public void generateNewClouds()
     {
         if(continentList.size() > 0 && MasterData.random.nextInt(2)==0)
@@ -34,10 +40,11 @@ public class WeatherManager {
         }
     }
 
-    public void linkToMap()
+    public void linkToMap(Map map)
     {
-        List<Tile> oceanList = MasterData.map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("WATER")||tile.getTerrainType().equals("MARSH")).collect(Collectors.toList());
-        List<Tile> continentList = MasterData.map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("PLANES")||tile.getTerrainType().equals("FOREST")).collect(Collectors.toList());
+        oceanList = map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("WATER")||tile.getTerrainType().equals("MARSH")).collect(Collectors.toList());
+
+        continentList = map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("PLANES")||tile.getTerrainType().equals("FOREST")).collect(Collectors.toList());
     }
 
     public void updateClouds()

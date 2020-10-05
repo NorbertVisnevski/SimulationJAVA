@@ -3,6 +3,7 @@ package com.NV.simulation.graphics;
 import com.NV.simulation.animals.*;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.map.Tile;
+import com.NV.simulation.weather.Cloud;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,11 @@ public class Application extends javafx.application.Application {
         List<Animal> animalmap = MasterData.animalManager.getAnimalList();
         for (Animal animal : animalmap) {
             MasterData.tileMap.getChildren().add(new GraphicAnimal(animal));
+        }
+
+        List<Cloud> cloudList = MasterData.weatherManager.getCloudList();
+        for (Cloud cloud : cloudList) {
+            MasterData.tileMap.getChildren().add(new GraphicalCloud(cloud));
         }
     }
 

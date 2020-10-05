@@ -11,6 +11,8 @@ public class SimpleActionController {
     {
         MasterData.animalManager.update();
         MasterData.map.replenishGroundNutrience(0.01);
+        MasterData.wind.updateWind();
+        MasterData.weatherManager.updateClouds();
         Application.updateSimulationState();
     }
 }
