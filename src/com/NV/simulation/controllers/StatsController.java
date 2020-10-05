@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -16,7 +17,12 @@ public class StatsController {
     @FXML
     private TableView statTable;
 
+    @FXML
+    private PieChart herbCarChart;
+
     private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
+
+    private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores",AnimalHerbivore.getCount()),new PieChart.Data("Carnivores",AnimalCarnivore.getCount()));
 
     @FXML
     public void initialize() {
@@ -41,6 +47,8 @@ public class StatsController {
         statTable.getItems().add(entry);
 
 
+        herbCarChart.setData(piechartData);
+
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
@@ -51,6 +59,8 @@ public class StatsController {
                 tableData.get(4).count.set(AnimalFox.getCount());
                 tableData.get(5).count.set(AnimalWolf.getCount());
 
+                piechartData.get(0).setPieValue(AnimalHerbivore.getCount());
+                piechartData.get(1).setPieValue(AnimalCarnivore.getCount());
             }
         }.start();
     }

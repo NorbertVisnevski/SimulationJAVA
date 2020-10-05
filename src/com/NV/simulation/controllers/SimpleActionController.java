@@ -10,6 +10,7 @@ public class SimpleActionController {
     public void nextSimulationTurn()
     {
         MasterData.animalManager.update();
+        MasterData.map.replenishGroundNutrience(0.01);
         Application.updateSimulationState();
     }
 }

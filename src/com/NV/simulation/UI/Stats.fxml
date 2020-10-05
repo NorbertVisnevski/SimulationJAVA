@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="209.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.StatsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.StatsController">
    <children>
-      <TableView fx:id="statTable" focusTraversable="false" />
+      <TableView fx:id="statTable" focusTraversable="false" prefHeight="400.0" prefWidth="178.0" />
+      <PieChart fx:id="herbCarChart" layoutX="177.0" prefHeight="400.0" prefWidth="421.0" title="Herbivores/Carnivores" />
    </children>
 </AnchorPane>

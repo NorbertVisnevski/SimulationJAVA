@@ -10,12 +10,12 @@ public class NutritiousTile extends Tile {
 
     public NutritiousTile() {
         super();
-        this.nutritionContent = 0.0;
+        setNutritionContent(0);
     }
 
     public NutritiousTile(Point position, String terrainType, boolean impassible, double travelDifficulty, double nutritionContent) {
         super(position, terrainType, impassible, travelDifficulty);
-        this.nutritionContent = nutritionContent;
+        setNutritionContent(nutritionContent);
     }
 
     public double getNutritionContent() {
@@ -24,9 +24,17 @@ public class NutritiousTile extends Tile {
 
     public void setNutritionContent(double nutritionContent) {
         if(nutritionContent>0)
-            this.nutritionContent = nutritionContent;
+        {
+            if(nutritionContent<=100.0)
+                this.nutritionContent = nutritionContent;
+            else
+                this.nutritionContent = 100.0;
+        }
         else
             this.nutritionContent = 0.0;
+    }
+    public void addNutritionContent(double nutritionContent) {
+        setNutritionContent(getNutritionContent()+nutritionContent);
     }
 
     public void replenishNutrition()

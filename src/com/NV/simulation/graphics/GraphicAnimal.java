@@ -48,31 +48,31 @@ class GraphicAnimal extends Rectangle {
         }
 
         MasterData.stringBuilder.append("Hunger: ");
-        MasterData.stringBuilder.append(animal.getHunger());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getHunger()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Speed: ");
-        MasterData.stringBuilder.append(animal.getSpeed());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getSpeed()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Energy expenses: ");
-        MasterData.stringBuilder.append(animal.getNutritionExpenses());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getNutritionExpenses()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Sensing range: ");
-        MasterData.stringBuilder.append(animal.getSensesRange());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getSensesRange()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Reproduction drive: ");
-        MasterData.stringBuilder.append(animal.getReproductionDrive());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getReproductionDrive()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Survival drive: ");
-        MasterData.stringBuilder.append(animal.getSurvivalDrive());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getSurvivalDrive()));
         MasterData.stringBuilder.append("\n");
 
         MasterData.stringBuilder.append("Mutation rate: ");
-        MasterData.stringBuilder.append(animal.getMutationRate());
+        MasterData.stringBuilder.append(String.format("%.02f",animal.getMutationRate()));
         MasterData.stringBuilder.append("\n");
 
         Tooltip.install(this, new Tooltip(MasterData.stringBuilder.toString()));

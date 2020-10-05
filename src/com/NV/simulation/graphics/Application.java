@@ -44,6 +44,7 @@ public class Application extends javafx.application.Application {
 
         primaryStage.setScene(new Scene(root,WINDOW_WIDTH,WINDOW_HEIGHT));
         primaryStage.show();
+        primaryStage.setTitle("Simulation");
         updateSimulationState();
 
         new AnimationTimer() {

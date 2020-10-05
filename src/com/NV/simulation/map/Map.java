@@ -21,7 +21,10 @@ public class Map {
     {
         tileMap.put(tile.getPosition(),tile);
     }
-
+    public List<Tile> getTileNeighbours(Point position)
+    {
+        return getTileNeighbours(position,false);
+    }
     public List<Tile> getTileNeighbours(Point position, boolean canWalkOn)
     {
          List<Tile> list = new ArrayList<>();
@@ -104,5 +107,15 @@ public class Map {
     public Tile getTileAt(Point coordinates)
     {
         return tileMap.get(coordinates);
+    }
+
+    public void replenishGroundNutrience(double amount)
+    {
+        getTileMap().stream().forEach(tile->{
+            if(tile instanceof NutritiousTile)
+            {
+                ((NutritiousTile) tile).setNutritionContent(((NutritiousTile) tile).getNutritionContent()+amount);
+            }
+        });
     }
 }
