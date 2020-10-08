@@ -19,7 +19,7 @@ public class ContinentalCloud extends Cloud {
     }
 
     public ContinentalCloud() {
-        this(new Point(),5.0);
+        this(new Point());
     }
 
     public ContinentalCloud(Point location, double moisture) {

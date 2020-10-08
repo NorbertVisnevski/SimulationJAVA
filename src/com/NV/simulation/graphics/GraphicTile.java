@@ -63,11 +63,12 @@ class GraphicTile extends Polygon {
         {
             MasterData.stringBuilder.append("Impassible terrain");
         }
-
-        MasterData.stringBuilder.append("Travel difficulty: ");
-        MasterData.stringBuilder.append(String.format("%.02f",tile.getTravelDifficulty()));
-        MasterData.stringBuilder.append("\n");
-
+        else
+        {
+            MasterData.stringBuilder.append("Travel difficulty: ");
+            MasterData.stringBuilder.append(String.format("%.02f",tile.getTravelDifficulty()));
+            MasterData.stringBuilder.append("\n");
+        }
         if(tile.getClass() == NutritiousTile.class)
         {
             MasterData.stringBuilder.append("Nutritious content: ");

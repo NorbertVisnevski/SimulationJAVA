@@ -27,7 +27,7 @@ public class OceanianCloud extends Cloud {
     }
 
     public OceanianCloud() {
-        this(new Point(),25.0);
+        this(new Point());
     }
 
     public OceanianCloud(Point location, double moisture) {

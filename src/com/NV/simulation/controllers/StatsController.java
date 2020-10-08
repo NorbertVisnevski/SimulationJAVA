@@ -20,6 +20,8 @@ public class StatsController {
     @FXML
     private PieChart herbCarChart;
 
+    public AnimationTimer animationTimer;
+
     private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
 
     private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores",AnimalHerbivore.getCount()),new PieChart.Data("Carnivores",AnimalCarnivore.getCount()));
@@ -49,7 +51,7 @@ public class StatsController {
 
         herbCarChart.setData(piechartData);
 
-        new AnimationTimer() {
+        animationTimer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 tableData.get(0).count.set(Animal.getCount());
@@ -62,7 +64,8 @@ public class StatsController {
                 piechartData.get(0).setPieValue(AnimalHerbivore.getCount());
                 piechartData.get(1).setPieValue(AnimalCarnivore.getCount());
             }
-        }.start();
+        };
+        animationTimer.start();
     }
 
     private class TableEntry{
