@@ -1,7 +1,7 @@
 package com.NV.simulation.managers;
 
+import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
-import com.NV.simulation.map.Map;
 import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 
@@ -11,16 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AnimalManager {
-
-    private Map map;
-
-    public Map getMap() {
-        return map;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
-    }
 
     private List<Animal> animalCollection = new ArrayList<>();
 
@@ -83,13 +73,13 @@ public class AnimalManager {
                 }
 
                 Point point = animal.calculateMove();
-                if(map.getTileAt(point).isImpassible())
+                if(MasterData.map.getTileAt(point).isImpassible())
                 {
-                    point = map.getTileNeighbours(animal.getLocation(),true).get(0).getPosition();
+                    point = MasterData.map.getTileNeighbours(animal.getLocation(),true).get(0).getPosition();
                 }
                 if (animal instanceof AnimalHerbivore) {
                     if (point.equals(animal.getLocation())) {
-                        Tile tile = map.getTileAt(point);
+                        Tile tile = MasterData.map.getTileAt(point);
                         if (tile instanceof NutritiousTile) {
                             ((NutritiousTile) tile).herbivoreInteraction((AnimalHerbivore) animal);
                         }
@@ -98,7 +88,7 @@ public class AnimalManager {
 
                 //update hunger
                 if (!animal.getLocation().equals(point)) {
-                    animal.setHunger(animal.getHunger() + map.getTileAt(point).getTravelDifficulty());
+                    animal.setHunger(animal.getHunger() + MasterData.map.getTileAt(point).getTravelDifficulty());
                 }
                 animal.setLocation(point);
                 animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());

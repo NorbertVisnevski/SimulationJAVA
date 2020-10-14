@@ -21,6 +21,12 @@ public class Map {
     {
         tileMap.put(tile.getPosition(),tile);
     }
+    public void add(List<Tile> list)
+    {
+        for (Tile tile:list) {
+            tileMap.put(tile.getPosition(),tile);
+        }
+    }
     public List<Tile> getTileNeighbours(Point position)
     {
         return getTileNeighbours(position,false);

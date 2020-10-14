@@ -9,6 +9,8 @@ import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -30,30 +32,37 @@ public class Main {
 
         MasterData.weatherManager.linkToMap(MasterData.map);
 
-        MasterData.animalManager.setMap(MasterData.map);
 
+        List<Animal> l = new ArrayList<>();
         Animal a;
         a = new AnimalRabbit();
         a.setLocation(new Point(20,9));
-        MasterData.animalManager.add(a);
+        l.add(a);
         a = new AnimalRabbit();
         a.setLocation(new Point(11,9));
         a.setSensesRange(20);
         a.setReproductionDrive(20);
-        MasterData.animalManager.add(a);
+        l.add(a);
         a = new AnimalWolf();
         a.setLocation(new Point(18,9));
-        MasterData.animalManager.add(a);
+        l.add(a);
+        a = new AnimalWolf();
+        a.setLocation(new Point(18,9));
+        l.add(a);
+        a = new AnimalWolf();
+        a.setLocation(new Point(18,9));
+        l.add(a);
         a = new AnimalFox();
         a.setLocation(new Point(0,0));
-        MasterData.animalManager.add(a);
+        l.add(a);
         a = new AnimalRabbit();
         a.setLocation(new Point(22,9));
-        MasterData.animalManager.add(a);
+        l.add(a);
         a = new AnimalRabbit();
         a.setLocation(new Point(11,9));
         a.setSensesRange(10);
-        MasterData.animalManager.add(a);
+        l.add(a);
+        MasterData.animalManager.add(l);
 
         javafx.application.Application.launch(Application.class,args);
     }

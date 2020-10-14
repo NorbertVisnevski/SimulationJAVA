@@ -49,7 +49,6 @@ public class WeatherManager {
 
     public void updateClouds()
     {
-        List<Cloud>toBeDeleted = new ArrayList<>();
         Iterator<Cloud> i = cloudList.iterator();
         while (i.hasNext())
         {
