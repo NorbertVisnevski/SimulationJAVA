@@ -14,7 +14,12 @@ public class WindController {
 
     private String windDirection;
 
-    public AnimationTimer animationTimer;
+    private AnimationTimer animationTimer;
+
+    public void stop()
+    {
+        animationTimer.stop();
+    }
 
     @FXML
     public void initialize() {

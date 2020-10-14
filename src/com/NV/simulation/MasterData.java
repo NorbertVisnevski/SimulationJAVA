@@ -5,7 +5,9 @@ import com.NV.simulation.managers.AnimalManager;
 import com.NV.simulation.managers.WeatherManager;
 import com.NV.simulation.map.Map;
 import com.NV.simulation.weather.Wind;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Window;
 
 import java.util.Random;
 
@@ -14,6 +16,7 @@ public final class MasterData {
     public static AnimalManager animalManager = new AnimalManager();
     public static Random random = new Random();
     public static StringBuilder stringBuilder = new StringBuilder();
+    public static Window mainWindow = null;
     public static Pane tileMap;//Just temporary
     public static MainController mainUIController;
     public static Wind wind = new Wind();

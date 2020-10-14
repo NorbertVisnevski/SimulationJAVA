@@ -50,6 +50,9 @@ public class Application extends javafx.application.Application {
 
         primaryStage.setScene(new Scene(root,WINDOW_WIDTH,WINDOW_HEIGHT));
         primaryStage.show();
+
+        MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();
+
         primaryStage.setTitle("Simulation");
         updateSimulationState();
 

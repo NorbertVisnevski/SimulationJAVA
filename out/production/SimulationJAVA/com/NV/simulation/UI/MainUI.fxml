@@ -29,14 +29,14 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Preferences…" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
+                  <MenuItem mnemonicParsing="false" text="Quit" onAction="#quit"/>
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Edit">
                 <items>
                   <MenuItem mnemonicParsing="false" onAction="#actionWindow" text="ActionWindow" />
                         <MenuItem mnemonicParsing="false" onAction="#statWindow" text="Stats" />
-                        <MenuItem mnemonicParsing="false" onAction="#openWindIndecator" text="WindIndecator" />
+                        <MenuItem mnemonicParsing="false" onAction="#openWindIndicator" text="WindIndicator" />
                 </items>
               </Menu>
             </menus>

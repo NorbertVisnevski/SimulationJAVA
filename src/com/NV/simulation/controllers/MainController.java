@@ -21,7 +21,7 @@ public class MainController{
             FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
             Parent root = loader.load();
             Stage secondStage = new Stage();
-            secondStage.initOwner(tilemap.getScene().getWindow());
+            secondStage.initOwner(MasterData.mainWindow);
             secondStage.initStyle(StageStyle.UTILITY);
             secondStage.setTitle("Simple Actions");
             secondStage.setResizable(false);
@@ -37,32 +37,38 @@ public class MainController{
             FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/Stats.fxml"));
             Parent root = loader.load();
             Stage secondStage = new Stage();
-            secondStage.initOwner(tilemap.getScene().getWindow());
+            secondStage.initOwner(MasterData.mainWindow);
             secondStage.initStyle(StageStyle.UTILITY);
             secondStage.setTitle("Stats");
             secondStage.setResizable(false);
             secondStage.setScene(new Scene(root));
             secondStage.show();
-            secondStage.setOnCloseRequest(e->((StatsController)loader.getController()).animationTimer.stop());
+            secondStage.setOnCloseRequest(e->((StatsController)loader.getController()).stop());
         }
         catch(Exception e){}
 
     }
     @FXML
-    public void openWindIndecator(ActionEvent event)
+    public void openWindIndicator(ActionEvent event)
     {
         try {
-            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndecator.fxml"));
+            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
             Parent root = loader.load();
             Stage secondStage = new Stage();
-            secondStage.initOwner(tilemap.getScene().getWindow());
+            secondStage.initOwner(MasterData.mainWindow);
             secondStage.initStyle(StageStyle.UTILITY);
             secondStage.setTitle("Wind");
             secondStage.setResizable(false);
             secondStage.setScene(new Scene(root));
             secondStage.show();
-            secondStage.setOnCloseRequest(e->((WindController)loader.getController()).animationTimer.stop());
+            secondStage.setOnCloseRequest(e->((WindController)loader.getController()).stop());
         }
         catch(Exception e){}
+    }
+
+    @FXML
+    public void quit(ActionEvent event)
+    {
+        ((Stage) MasterData.mainWindow).close();
     }
 }

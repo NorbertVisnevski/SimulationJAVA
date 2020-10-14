@@ -4,42 +4,42 @@ import java.awt.*;
 
 public interface Animal {
 
-    public boolean isDead();
+    boolean isDead();
 
-    public void setDead();
+    void setDead();
 
-    public double getHunger();
+    double getHunger();
 
-    public void setHunger(double hunger);
+    void setHunger(double hunger);
 
-    public double getReproductionDrive();
+    double getReproductionDrive();
 
-    public void setReproductionDrive(double reproductionDrive);
+    void setReproductionDrive(double reproductionDrive);
 
-    public double getSurvivalDrive();
+    double getSurvivalDrive();
 
-    public void setSurvivalDrive(double survivalDrive);
+    void setSurvivalDrive(double survivalDrive);
 
-    public double getSpeed();
+    double getSpeed();
 
-    public void setSpeed(double speed);
+    void setSpeed(double speed);
 
-    public double getSensesRange();
+    double getSensesRange();
 
-    public void setSensesRange(double sensesRange);
+    void setSensesRange(double sensesRange);
 
-    public double getMutationRate();
+    double getMutationRate();
 
-    public void setMutationRate(double mutationRate);
+    void setMutationRate(double mutationRate);
 
-    public Point getLocation();
+    Point getLocation();
 
-    public void setLocation(Point location);
+    void setLocation(Point location);
 
-    public double getNutritionExpenses();
+    double getNutritionExpenses();
 
-    public Point calculateMove();
+    Point calculateMove();
 
-    public Animal mateWith(Animal other);
+    Animal mateWith(Animal other);
 
 }
