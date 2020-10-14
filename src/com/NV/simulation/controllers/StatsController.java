@@ -24,7 +24,7 @@ public class StatsController {
 
     private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
 
-    private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores",AnimalHerbivore.getCount()),new PieChart.Data("Carnivores",AnimalCarnivore.getCount()));
+    private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", AnimalHerbivore.getCount()),new PieChart.Data("Carnivores", AnimalCarnivore.getCount()));
 
     @FXML
     public void initialize() {
@@ -39,12 +39,12 @@ public class StatsController {
         statTable.getColumns().add(column2);
 
 
-        tableData.add(new TableEntry("Animal",Animal.getCount()));
-        tableData.add(new TableEntry("Herbivore",AnimalHerbivore.getCount()));
-        tableData.add(new TableEntry("Carnivore",AnimalCarnivore.getCount()));
+        tableData.add(new TableEntry("Animal",AnimalBase.getCount()));
+        tableData.add(new TableEntry("Herbivore", AnimalHerbivore.getCount()));
+        tableData.add(new TableEntry("Carnivore", AnimalCarnivore.getCount()));
         tableData.add(new TableEntry("Rabbit", AnimalRabbit.getCount()));
         tableData.add(new TableEntry("Fox", AnimalFox.getCount()));
-        tableData.add(new TableEntry("Wolf",AnimalWolf.getCount()));
+        tableData.add(new TableEntry("Wolf", AnimalWolf.getCount()));
         for(TableEntry entry : tableData)
         statTable.getItems().add(entry);
 
@@ -54,7 +54,7 @@ public class StatsController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                tableData.get(0).count.set(Animal.getCount());
+                tableData.get(0).count.set(AnimalBase.getCount());
                 tableData.get(1).count.set(AnimalHerbivore.getCount());
                 tableData.get(2).count.set(AnimalCarnivore.getCount());
                 tableData.get(3).count.set(AnimalRabbit.getCount());

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.List;
 
-public abstract class AnimalCarnivore extends Animal {
+public abstract class AnimalCarnivore extends AnimalBase {
 
     private static long carnivoreCount = 0;
 

@@ -1,7 +1,6 @@
 package com.NV.simulation.managers;
 
 import com.NV.simulation.animals.*;
-import com.NV.simulation.animals.*;
 import com.NV.simulation.map.Map;
 import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;

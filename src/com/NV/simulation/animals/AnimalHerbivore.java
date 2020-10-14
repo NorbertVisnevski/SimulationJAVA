@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AnimalHerbivore extends Animal {
+public abstract class AnimalHerbivore extends AnimalBase {
 
     private static long herbivoreCount = 0;
 

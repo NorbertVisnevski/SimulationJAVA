@@ -5,11 +5,8 @@ import com.NV.simulation.animals.AnimalFox;
 import com.NV.simulation.animals.AnimalRabbit;
 import com.NV.simulation.animals.AnimalWolf;
 import com.NV.simulation.graphics.Application;
-import com.NV.simulation.managers.AnimalManager;
-import com.NV.simulation.map.Map;
 import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
-import com.NV.simulation.weather.Wind;
 
 import java.awt.*;
 
