@@ -1,8 +1,8 @@
 package com.NV.simulation.animals;
 
-import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.map.Map;
+import com.NV.simulation.map.Tile;
 
 import java.awt.*;
 import java.util.*;
@@ -38,22 +38,17 @@ public abstract class AnimalHerbivore extends AnimalBase {
     @Override
     protected void findFood(List<Point> possibleMoves)
     {
-        List<NutritiousTile> list = (ArrayList<NutritiousTile>)(ArrayList<?>)tileOptions.stream().filter(tile->(tile instanceof NutritiousTile)).collect(Collectors.toList());
+        List<Tile> list = new ArrayList<>(tileOptions);
         Collections.shuffle(list);
         double nutritionExpenses = getNutritionExpenses();
 
-        if(list.size()==0)
-        {
-            possibleMoves.add(tileOptions.get(MasterData.random.nextInt()%tileOptions.size()).getPosition());
-            return;
-        }
-        NutritiousTile currentTile = list.stream().filter(tile->tile.getPosition().equals(getLocation())).findFirst().get();
+        Tile currentTile = list.stream().filter(tile->tile.getPosition().equals(getLocation())).findFirst().get();
         Point newLocation = getLocation();
         if(currentTile.getNutritionContent() < getNutritionExpenses())
         {
-            Comparator<NutritiousTile> cmp = new Comparator<NutritiousTile>() {
+            Comparator<Tile> cmp = new Comparator<Tile>() {
                 @Override
-                public int compare(NutritiousTile o1, NutritiousTile o2) {
+                public int compare(Tile o1, Tile o2) {
                     Double a = o1.getNutritionContent();
                     Double b = o2.getNutritionContent();
                     return a.compareTo(b);

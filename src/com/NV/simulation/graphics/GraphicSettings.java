@@ -2,7 +2,7 @@ package com.NV.simulation.graphics;
 
 class GraphicSettings {
 
-    public final static int xStartOffset = 0; // offsets the entire field to the right
+    public final static int xStartOffset = 1; // offsets the entire field to the right
 
     public final static int yStartOffset = 20; // offsets the entire fiels downwards
 

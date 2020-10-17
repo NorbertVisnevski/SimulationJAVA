@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.SimpleActionController">
+<AnchorPane prefHeight="126.0" prefWidth="181.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.SimpleActionController">
    <children>
-      <Button mnemonicParsing="false" onAction="#nextSimulationTurn" text="Next Simulation Turn" />
+      <VBox layoutY="35.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="180.0" prefWidth="181.0">
+         <children>
+            <Button fx:id="btn1turn" mnemonicParsing="false" onAction="#nextSimulationTurn" prefHeight="25.0" prefWidth="181.0" text="Next Simulation Turn">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn100turn" mnemonicParsing="false" onAction="#nextSimulationTurn" prefHeight="25.0" prefWidth="181.0" text="100 Simulation Turns">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn1000turn" mnemonicParsing="false" onAction="#nextSimulationTurn" prefHeight="25.0" prefWidth="181.0" text="1000 Simulation Turns">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Label layoutX="9.0" prefHeight="25.0" prefWidth="67.0" text="Actions">
+         <font>
+            <Font name="SansSerif Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
-</VBox>
+</AnchorPane>

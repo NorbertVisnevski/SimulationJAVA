@@ -2,7 +2,6 @@ package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
-import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
@@ -80,9 +79,7 @@ public class AnimalManager {
                 if (animal instanceof AnimalHerbivore) {
                     if (point.equals(animal.getLocation())) {
                         Tile tile = MasterData.map.getTileAt(point);
-                        if (tile instanceof NutritiousTile) {
-                            ((NutritiousTile) tile).herbivoreInteraction((AnimalHerbivore) animal);
-                        }
+                        tile.herbivoreInteraction((AnimalHerbivore) animal);
                     }
                 }
 

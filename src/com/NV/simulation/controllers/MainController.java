@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,19 +17,22 @@ public class MainController{
     public Pane tilemap;
 
     @FXML
+    public VBox actionBar;
+
+    @FXML
     public void actionWindow(ActionEvent event) {
-        try {
-            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
-            Parent root = loader.load();
-            Stage secondStage = new Stage();
-            secondStage.initOwner(MasterData.mainWindow);
-            secondStage.initStyle(StageStyle.UTILITY);
-            secondStage.setTitle("Simple Actions");
-            secondStage.setResizable(false);
-            secondStage.setScene(new Scene(root));
-            secondStage.show();
-        }
-        catch(Exception e){}
+//        try {
+//            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
+//            Parent root = loader.load();
+//            Stage secondStage = new Stage();
+//            secondStage.initOwner(MasterData.mainWindow);
+//            secondStage.initStyle(StageStyle.UTILITY);
+//            secondStage.setTitle("Simple Actions");
+//            secondStage.setResizable(false);
+//            secondStage.setScene(new Scene(root));
+//            secondStage.show();
+//        }
+//        catch(Exception e){}
 
     }
     @FXML
@@ -51,19 +55,19 @@ public class MainController{
     @FXML
     public void openWindIndicator(ActionEvent event)
     {
-        try {
-            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
-            Parent root = loader.load();
-            Stage secondStage = new Stage();
-            secondStage.initOwner(MasterData.mainWindow);
-            secondStage.initStyle(StageStyle.UTILITY);
-            secondStage.setTitle("Wind");
-            secondStage.setResizable(false);
-            secondStage.setScene(new Scene(root));
-            secondStage.show();
-            secondStage.setOnCloseRequest(e->((WindController)loader.getController()).stop());
-        }
-        catch(Exception e){}
+//        try {
+//            FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
+//            Parent root = loader.load();
+//            Stage secondStage = new Stage();
+//            secondStage.initOwner(MasterData.mainWindow);
+//            secondStage.initStyle(StageStyle.UTILITY);
+//            secondStage.setTitle("Wind");
+//            secondStage.setResizable(false);
+//            secondStage.setScene(new Scene(root));
+//            secondStage.show();
+//            secondStage.setOnCloseRequest(e->((WindController)loader.getController()).stop());
+//        }
+//        catch(Exception e){}
     }
 
     @FXML

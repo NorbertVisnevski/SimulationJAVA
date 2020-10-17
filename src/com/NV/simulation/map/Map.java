@@ -117,11 +117,6 @@ public class Map {
 
     public void replenishGroundNutrience(double amount)
     {
-        getTileMap().stream().forEach(tile->{
-            if(tile instanceof NutritiousTile)
-            {
-                ((NutritiousTile) tile).setNutritionContent(((NutritiousTile) tile).getNutritionContent()+amount);
-            }
-        });
+        getTileMap().stream().forEach(tile->tile.setNutritionContent(tile.getNutritionContent()+amount));
     }
 }

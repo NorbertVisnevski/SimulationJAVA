@@ -1,7 +1,6 @@
 package com.NV.simulation.weather;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
@@ -65,7 +64,7 @@ public abstract class Cloud {
 
     public void rain(List<Tile>list)
     {
-        list.stream().filter(tile->tile.getClass() == NutritiousTile.class).forEach(tile->((NutritiousTile)tile).addNutritionContent(getMoisture()/ list.size()));
+        list.stream().forEach(tile->tile.addNutritionContent(getMoisture()/ list.size()));
     }
 
 }

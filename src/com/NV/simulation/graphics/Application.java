@@ -2,13 +2,17 @@ package com.NV.simulation.graphics;
 
 import com.NV.simulation.animals.*;
 import com.NV.simulation.MasterData;
+import com.NV.simulation.controllers.WindController;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.List;
 
@@ -20,22 +24,28 @@ public class Application extends javafx.application.Application {
     private final static int WINDOW_WIDTH = 2300;
     private final static int WINDOW_HEIGHT = 1100;
 
+    private static Group animalGroup = new Group();
+    private static Group tileGroup = new Group();
+    private static Group cloudGroup = new Group();
+
 
     public static void updateSimulationState() {
-        MasterData.tileMap.getChildren().clear();
+        animalGroup.getChildren().clear();
+        tileGroup.getChildren().clear();
+        cloudGroup.getChildren().clear();
         List<Tile> tilemap = MasterData.map.getTileMap();
         for (Tile tile : tilemap) {
-            MasterData.tileMap.getChildren().add(new GraphicTile(tile));
+            tileGroup.getChildren().add(new GraphicTile(tile));
         }
 
         List<Animal> animalmap = MasterData.animalManager.getAnimalList();
         for (Animal animal : animalmap) {
-            MasterData.tileMap.getChildren().add(new GraphicAnimal(animal));
+            animalGroup.getChildren().add(new GraphicAnimal(animal));
         }
 
         List<Cloud> cloudList = MasterData.weatherManager.getCloudList();
         for (Cloud cloud : cloudList) {
-            MasterData.tileMap.getChildren().add(new GraphicalCloud(cloud));
+            cloudGroup.getChildren().add(new GraphicalCloud(cloud));
         }
     }
 
@@ -47,9 +57,18 @@ public class Application extends javafx.application.Application {
         Parent root = loader.load();
         MasterData.mainUIController = loader.getController();
         MasterData.tileMap = MasterData.mainUIController.tilemap;
+        MasterData.tileMap.getChildren().addAll(tileGroup,animalGroup,cloudGroup);
 
-        primaryStage.setScene(new Scene(root,WINDOW_WIDTH,WINDOW_HEIGHT));
+        VBox actionBar = MasterData.mainUIController.actionBar;
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
+
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
+        actionBar.getChildren().add(loader.load());
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
+        actionBar.getChildren().add(loader.load());
 
         MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();
 

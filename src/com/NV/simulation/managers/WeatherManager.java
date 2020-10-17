@@ -2,7 +2,6 @@ package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.map.Map;
-import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
 import com.NV.simulation.weather.ContinentalCloud;
@@ -101,7 +100,7 @@ public class WeatherManager {
             cloud.moveTo(tile);
             if(cloud.willRain())
             {
-                cloud.rain(MasterData.map.getTileNeighbours(cloud.getLocation()).stream().filter(t->t.getClass() == NutritiousTile.class).collect(Collectors.toList()));
+                cloud.rain(MasterData.map.getTileNeighbours(cloud.getLocation()).stream().collect(Collectors.toList()));
                 i.remove();
                 continue;
             }

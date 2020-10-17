@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.MainController">
-   <content>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="640.0">
+
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="720.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.MainController">
+   <children>
+      <VBox minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
         <children>
           <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -29,7 +32,7 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Preferences…" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" onAction="#quit"/>
+                  <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Edit">
@@ -41,15 +44,27 @@
               </Menu>
             </menus>
           </MenuBar>
-          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" />
-               </children>
+            <HBox prefWidth="1920.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets />
                </VBox.margin>
-          </AnchorPane>
+               <children>
+                  <ScrollPane pannable="true" prefWidth="1730.0" style="-fx-background: #000000; -fx-background-color: transparent;">
+                     <content>
+                        <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #000000;" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane hbarPolicy="NEVER" prefWidth="190.0" style="-fx-background-color: transparent; -fx-background: #ffffff;">
+                     <content>
+                        <VBox fx:id="actionBar" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </VBox>
-   </content>
-</ScrollPane>
+   </children>
+</AnchorPane>

@@ -1,12 +1,12 @@
 package com.NV.simulation.graphics;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.NutritiousTile;
 import com.NV.simulation.map.Tile;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import javafx.stage.Stage;
 
 class GraphicTile extends Polygon {
 
@@ -61,7 +61,7 @@ class GraphicTile extends Polygon {
         }
         if(tile.isImpassible())
         {
-            MasterData.stringBuilder.append("Impassible terrain");
+            MasterData.stringBuilder.append("Impassible terrain\n");
         }
         else
         {
@@ -69,12 +69,10 @@ class GraphicTile extends Polygon {
             MasterData.stringBuilder.append(String.format("%.02f",tile.getTravelDifficulty()));
             MasterData.stringBuilder.append("\n");
         }
-        if(tile.getClass() == NutritiousTile.class)
-        {
-            MasterData.stringBuilder.append("Nutritious content: ");
-            MasterData.stringBuilder.append(String.format("%.02f",((NutritiousTile)(tile)).getNutritionContent()));
-            MasterData.stringBuilder.append("\n");
-        }
+        MasterData.stringBuilder.append("Nutritious content: ");
+        MasterData.stringBuilder.append(String.format("%.02f",tile.getNutritionContent()));
+        MasterData.stringBuilder.append("\n");
+
 
         setStrokeWidth(1);
         setStroke(Color.BLACK);
