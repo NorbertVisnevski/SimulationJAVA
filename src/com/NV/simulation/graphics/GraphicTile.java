@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 public class GraphicTile extends Polygon {
     private Tile tile;
+    private Tooltip toolTip = new Tooltip();
 
     public GraphicTile(Tile tile)
     {
@@ -19,6 +20,7 @@ public class GraphicTile extends Polygon {
         setPosition(x,y);
         setStrokeWidth(1);
         setStroke(Color.BLACK);
+        Tooltip.install(this, toolTip);
         updateToolTip();
         if(MasterData.tileEditController != null)
         {
@@ -121,7 +123,7 @@ public class GraphicTile extends Polygon {
         MasterData.stringBuilder.append(String.format("%.02f",tile.getNutritionContent()));
         MasterData.stringBuilder.append("\n");
 
-        Tooltip.install(this, new Tooltip(MasterData.stringBuilder.toString()));
+        toolTip.setText(MasterData.stringBuilder.toString());
     }
 
     public void updateGraphics()

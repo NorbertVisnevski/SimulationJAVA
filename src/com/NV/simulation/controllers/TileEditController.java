@@ -102,6 +102,7 @@ public class TileEditController {
         tile.setTravelDifficulty(Double.parseDouble(travelDifficulty.getText()));
         tile.setNutritionContent(Double.parseDouble(nutritionContent.getText()));
         gTile.updateToolTip();
+        setTile(tile,gTile);
     }
 
 

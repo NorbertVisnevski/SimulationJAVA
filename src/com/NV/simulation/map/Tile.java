@@ -3,8 +3,9 @@ package com.NV.simulation.map;
 import com.NV.simulation.animals.AnimalHerbivore;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Tile {
+public class Tile implements Serializable {
 
     private Point position;
 
