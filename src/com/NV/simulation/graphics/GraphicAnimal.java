@@ -6,7 +6,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-class GraphicAnimal extends Rectangle {
+public class GraphicAnimal extends Rectangle {
     GraphicAnimal(Animal animal) {
         double x = animal.getLocation().x * GraphicSettings.TILE_WIDTH + (animal.getLocation().y % 2) * GraphicSettings.n + GraphicSettings.xStartOffset;
         double y = animal.getLocation().y * GraphicSettings.TILE_HEIGHT * 0.75 + GraphicSettings.yStartOffset;

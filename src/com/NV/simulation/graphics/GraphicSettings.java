@@ -1,6 +1,6 @@
 package com.NV.simulation.graphics;
 
-class GraphicSettings {
+public class GraphicSettings {
 
     public final static int xStartOffset = 1; // offsets the entire field to the right
 

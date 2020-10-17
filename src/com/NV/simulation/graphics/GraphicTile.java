@@ -8,9 +8,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
-class GraphicTile extends Polygon {
-
-
+public class GraphicTile extends Polygon {
     GraphicTile(Tile tile) {
         double x = tile.getPosition().x * GraphicSettings.TILE_WIDTH + (tile.getPosition().y % 2) * GraphicSettings.n + GraphicSettings.xStartOffset;
         double y = tile.getPosition().y * GraphicSettings.TILE_HEIGHT * 0.75 + GraphicSettings.yStartOffset;

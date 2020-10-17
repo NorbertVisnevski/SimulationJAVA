@@ -69,6 +69,9 @@ public class Application extends javafx.application.Application {
         actionBar.getChildren().add(loader.load());
         loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
         actionBar.getChildren().add(loader.load());
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/TileEditor.fxml"));
+        MasterData.tileEditController = loader.getController();
+        actionBar.getChildren().add(loader.load());
 
         MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();
 
