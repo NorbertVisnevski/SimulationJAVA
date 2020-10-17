@@ -65,13 +65,15 @@ public class Application extends javafx.application.Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/TileEditor.fxml"));
+        actionBar.getChildren().add(loader.load());
+        MasterData.tileEditController = loader.getController();
+
         loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
         actionBar.getChildren().add(loader.load());
         loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
         actionBar.getChildren().add(loader.load());
-        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/TileEditor.fxml"));
-        MasterData.tileEditController = loader.getController();
-        actionBar.getChildren().add(loader.load());
+
 
         MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();
 
