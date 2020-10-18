@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Map implements Serializable{
+public class Map{
 
     private HashMap<Point,Tile> tileMap;
 
@@ -28,6 +28,11 @@ public class Map implements Serializable{
             tileMap.put(tile.getPosition(),tile);
         }
     }
+    public void clear()
+    {
+        tileMap.clear();
+    }
+
     public List<Tile> getTileNeighbours(Point position)
     {
         return getTileNeighbours(position,false);

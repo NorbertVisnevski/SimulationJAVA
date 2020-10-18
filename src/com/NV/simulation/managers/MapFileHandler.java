@@ -1,34 +1,70 @@
 package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.graphics.Application;
+import com.NV.simulation.map.Map;
+import com.NV.simulation.map.Tile;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class MapFileHandler implements AsyncFileHandler{
-    public static File currentFile = null;
 
     public void writeAsync(File file)
     {
-        new Thread(() -> {
-            if(file!=null)
-            {
+        if(file != null)
+        {
+            new Thread(() -> {
                 try
                 {
                     System.out.println(file.getPath());
-                    BufferedWriter buffer = new BufferedWriter(new FileWriter(file.getPath()));
+                    FileOutputStream fileOutput = new FileOutputStream(file.getPath());
+                    ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 
-                    buffer.writeO(MasterData.map.toString());
+                    // Method for serialization of object
+                    objectOutput.writeObject(MasterData.map.getTileMap());
 
-                    buffer.close();
-
-                    System.out.println("File saved");
+                    objectOutput.close();
+                    fileOutput.close();
                 }
-                catch(Exception e){}
+                catch(Exception e){
+                    System.out.println(e);
+                }
+            }).start();
+        }
+    }
 
-            }
-        }).start();
+    public void readAsync(File file)
+    {
+        Thread thread = new Thread(()-> {
+                try
+                {
+                    System.out.println(file.getPath());
+                    FileInputStream fileInput = new FileInputStream(file.getPath());
+                    ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+
+                    List<Tile> map = (ArrayList<Tile>) objectInput.readObject();
+
+                    objectInput.close();
+                    fileInput.close();
+
+                    Application.addCallbackFunction(()->{
+                        MasterData.map.clear();
+                        MasterData.animalManager.clear();
+                        MasterData.weatherManager.clear();
+                        MasterData.map.add(map);
+                        MasterData.weatherManager.linkToMap(MasterData.map);
+                        Application.updateSimulationState();
+                    });
+                }
+                catch(Exception e){
+                    System.out.println(e);
+                }
+            });
+        thread.start();
     }
 }

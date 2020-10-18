@@ -28,7 +28,7 @@ public class WindController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                windDirection= MasterData.wind.getDirection();
+                windDirection= MasterData.weatherManager.getWindDirection();
                 imageView.setRotate((imageView.getRotate()+(calculateAngle(windDirection)-imageView.getRotate())*75/360));
             }
         };

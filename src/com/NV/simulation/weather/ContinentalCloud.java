@@ -4,8 +4,9 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class ContinentalCloud extends Cloud {
+public class ContinentalCloud extends Cloud implements Serializable {
 
     @Override
     public void moveTo(Tile tile)

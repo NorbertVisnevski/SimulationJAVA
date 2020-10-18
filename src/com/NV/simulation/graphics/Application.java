@@ -13,13 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 
 //For rendering window
 //TODO fix this mess
-public class Application extends javafx.application.Application {
+public final class Application extends javafx.application.Application {
 
     private final static int WINDOW_WIDTH = 2300;
     private final static int WINDOW_HEIGHT = 1100;
@@ -28,6 +31,13 @@ public class Application extends javafx.application.Application {
     private static Group tileGroup = new Group();
     private static Group cloudGroup = new Group();
 
+
+    private static Deque<Runnable> callbackList = new LinkedList<>();
+
+    public synchronized static void addCallbackFunction(Runnable runnable)
+    {
+        callbackList.addLast(runnable);
+    }
 
     public static void updateSimulationState() {
         animalGroup.getChildren().clear();
@@ -83,7 +93,11 @@ public class Application extends javafx.application.Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-
+                if(callbackList.size()>0)
+                {
+                    callbackList.getFirst().run();
+                    callbackList.removeFirst();
+                }
             }
         }.start();
 

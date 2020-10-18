@@ -5,6 +5,7 @@ import com.NV.simulation.animals.*;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,6 +57,11 @@ public class AnimalManager {
     public void add(Collection<Animal> animals){
         animalCollection.addAll(animals);
         animalCollection.sort(listSorter);
+    }
+    public void clear()
+    {
+        animalCollection.stream().forEach(animal->animal.setDead());
+        animalCollection.clear();
     }
 
     public void update() {

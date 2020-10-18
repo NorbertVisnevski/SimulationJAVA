@@ -19,8 +19,20 @@ public class WeatherManager {
 
     private List<Cloud> cloudList = new ArrayList<>();
 
+    private Wind wind = new Wind();
+
     private List<Tile> oceanList;
     private List<Tile> continentList;
+
+    public void add(Cloud cloud)
+    {
+        cloudList.add(cloud);
+    }
+
+    public void add(List<Cloud> clouds)
+    {
+        cloudList.addAll(clouds);
+    }
 
     public List<Cloud> getCloudList()
     {
@@ -46,6 +58,13 @@ public class WeatherManager {
         continentList = map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("PLANES")||tile.getTerrainType().equals("FOREST")).collect(Collectors.toList());
     }
 
+    public void clear()
+    {
+        oceanList.clear();
+        continentList.clear();
+        cloudList.clear();
+    }
+
     public void updateClouds()
     {
         Iterator<Cloud> i = cloudList.iterator();
@@ -53,7 +72,7 @@ public class WeatherManager {
         {
             Cloud cloud = i.next();
             Point newPos = new Point(cloud.getLocation());
-            switch(MasterData.wind.getDirection())
+            switch(wind.getDirection())
             {
                 case Wind.WindDirections.EAST:
                     newPos.x= newPos.x+1;
@@ -105,6 +124,17 @@ public class WeatherManager {
                 continue;
             }
         }
+        wind.updateWind();
         generateNewClouds();
+    }
+
+    public String getWindDirection()
+    {
+        return wind.getDirection();
+    }
+
+    public void setWindDirection(String direction)
+    {
+       wind.setDirection(direction);
     }
 }

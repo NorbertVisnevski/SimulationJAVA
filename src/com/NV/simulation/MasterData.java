@@ -6,7 +6,6 @@ import com.NV.simulation.managers.AnimalManager;
 import com.NV.simulation.managers.WeatherManager;
 import com.NV.simulation.map.Map;
 import com.NV.simulation.weather.Wind;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
@@ -21,7 +20,6 @@ public final class MasterData {
     public static Pane tileMap;//Just temporary
     public static MainController mainUIController;
     public static TileEditController tileEditController;
-    public static Wind wind = new Wind();
     public static WeatherManager weatherManager = new WeatherManager();
 
 }

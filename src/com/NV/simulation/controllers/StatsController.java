@@ -26,9 +26,11 @@ public class StatsController {
 
     private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", AnimalHerbivore.getCount()),new PieChart.Data("Carnivores", AnimalCarnivore.getCount()));
 
+    private Thread thread;
+
     public void stop()
     {
-        animationTimer.stop();
+        thread.interrupt();
     }
 
     @FXML
@@ -56,21 +58,27 @@ public class StatsController {
 
         herbCarChart.setData(piechartData);
 
-        animationTimer = new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime) {
-                tableData.get(0).count.set(AnimalBase.getCount());
-                tableData.get(1).count.set(AnimalHerbivore.getCount());
-                tableData.get(2).count.set(AnimalCarnivore.getCount());
-                tableData.get(3).count.set(AnimalRabbit.getCount());
-                tableData.get(4).count.set(AnimalFox.getCount());
-                tableData.get(5).count.set(AnimalWolf.getCount());
+        thread = new Thread(()-> {
+            try{
+                while(true)
+                {
+                    tableData.get(0).count.set(AnimalBase.getCount());
+                    tableData.get(1).count.set(AnimalHerbivore.getCount());
+                    tableData.get(2).count.set(AnimalCarnivore.getCount());
+                    tableData.get(3).count.set(AnimalRabbit.getCount());
+                    tableData.get(4).count.set(AnimalFox.getCount());
+                    tableData.get(5).count.set(AnimalWolf.getCount());
 
-                piechartData.get(0).setPieValue(AnimalHerbivore.getCount());
-                piechartData.get(1).setPieValue(AnimalCarnivore.getCount());
+                    piechartData.get(0).setPieValue(AnimalHerbivore.getCount());
+                    piechartData.get(1).setPieValue(AnimalCarnivore.getCount());
+                }
             }
-        };
-        animationTimer.start();
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+        });
+        thread.start();
     }
 
     private class TableEntry{

@@ -6,11 +6,12 @@ import com.NV.simulation.map.Tile;
 import com.NV.simulation.MasterData;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AnimalBase implements Animal{
+public abstract class AnimalBase implements Animal, Serializable {
 
     private static long animalCount = 0;
 
