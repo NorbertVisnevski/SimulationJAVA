@@ -81,8 +81,13 @@ public final class Application extends javafx.application.Application {
 
         loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
         actionBar.getChildren().add(loader.load());
+
         loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
         actionBar.getChildren().add(loader.load());
+
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/AddAnimal.fxml"));
+        actionBar.getChildren().add(loader.load());
+        MasterData.addAnimalController = loader.getController();
 
 
         MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();

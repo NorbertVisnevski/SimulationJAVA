@@ -11,4 +11,7 @@ public class TextureStorage {
     public static Image forest = new Image("file:resources/textures/forest.png");
     public static Image frozenwasteland = new Image("file:resources/textures/frozenwasteland.png");
     public static Image arrow = new Image("file:resources/textures/arrow.png");
+    public static Image rabbit = new Image("file:resources/textures/Rabbit.png");
+    public static Image wolf = new Image("file:resources/textures/Wolf.png");
+    public static Image fox = new Image("file:resources/textures/Fox.png");
 }

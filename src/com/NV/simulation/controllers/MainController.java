@@ -77,7 +77,7 @@ public class MainController{
     @FXML
     public void onSaveAs(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
+        fileChooser.setTitle("Save as");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("SIM", "*.sim"),
                 new FileChooser.ExtensionFilter("MAP", "*.map"));

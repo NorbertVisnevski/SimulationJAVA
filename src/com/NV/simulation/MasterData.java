@@ -1,5 +1,6 @@
 package com.NV.simulation;
 
+import com.NV.simulation.controllers.AddAnimalController;
 import com.NV.simulation.controllers.MainController;
 import com.NV.simulation.controllers.TileEditController;
 import com.NV.simulation.managers.AnimalManager;
@@ -20,6 +21,7 @@ public final class MasterData {
     public static Pane tileMap;//Just temporary
     public static MainController mainUIController;
     public static TileEditController tileEditController;
+    public static AddAnimalController addAnimalController;
     public static WeatherManager weatherManager = new WeatherManager();
 
 }

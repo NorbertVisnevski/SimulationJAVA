@@ -1,5 +1,6 @@
 package com.NV.simulation.controllers;
 
+import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.GraphicTile;
 import com.NV.simulation.map.Tile;
@@ -61,36 +62,8 @@ public class TileEditController {
                 Tile.TerrainTypes.FROZEN_WASTELAND
                 );
 
-        DecimalFormat format = new DecimalFormat("#");
-
-        final TextFormatter<Object> decimalTextFormatter = new TextFormatter<>(change -> {
-            if (change.getControlNewText().isEmpty()) {
-                return change;
-            }
-            ParsePosition parsePosition = new ParsePosition(0);
-            Object object = format.parse(change.getControlNewText(), parsePosition);
-
-            if (object == null || parsePosition.getIndex() < change.getControlNewText().length()) {
-                return null;
-            } else {
-                return change;
-            }
-        });
-        travelDifficulty.setTextFormatter(decimalTextFormatter);
-        final TextFormatter<Object> decimalTextFormatter1 = new TextFormatter<>(change -> {
-            if (change.getControlNewText().isEmpty()) {
-                return change;
-            }
-            ParsePosition parsePosition = new ParsePosition(0);
-            Object object = format.parse(change.getControlNewText(), parsePosition);
-
-            if (object == null || parsePosition.getIndex() < change.getControlNewText().length()) {
-                return null;
-            } else {
-                return change;
-            }
-        });
-        nutritionContent.setTextFormatter(decimalTextFormatter1);
+        travelDifficulty.setTextFormatter(NumberTextFormatter.getFormatter());
+        nutritionContent.setTextFormatter(NumberTextFormatter.getFormatter());
 
     }
 
