@@ -1,20 +1,14 @@
 package com.NV.simulation.controllers;
 
 import com.NV.simulation.formaters.NumberTextFormatter;
-import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.GraphicTile;
 import com.NV.simulation.map.Tile;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +21,7 @@ public class TileEditController {
     private Pane tilePane;
 
     @FXML
-    private ChoiceBox terrainType;
+    private ChoiceBox<String> terrainType;
 
     @FXML
     private CheckBox impassible;
@@ -70,7 +64,7 @@ public class TileEditController {
     @FXML
     public void onApply(ActionEvent event)
     {
-        tile.setTerrainType(terrainType.getSelectionModel().getSelectedItem().toString());
+        tile.setTerrainType(terrainType.getSelectionModel().getSelectedItem());
         tile.setImpassible(impassible.isSelected());
         tile.setTravelDifficulty(Double.parseDouble(travelDifficulty.getText()));
         tile.setNutritionContent(Double.parseDouble(nutritionContent.getText()));

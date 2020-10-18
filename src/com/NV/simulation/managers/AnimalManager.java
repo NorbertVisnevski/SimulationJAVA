@@ -5,7 +5,6 @@ import com.NV.simulation.animals.*;
 import com.NV.simulation.map.Tile;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;

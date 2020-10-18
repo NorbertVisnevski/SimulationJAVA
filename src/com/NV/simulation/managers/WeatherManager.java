@@ -7,7 +7,6 @@ import com.NV.simulation.weather.Cloud;
 import com.NV.simulation.weather.ContinentalCloud;
 import com.NV.simulation.weather.OceanianCloud;
 import com.NV.simulation.weather.Wind;
-import com.sun.prism.shader.Mask_TextureRGB_AlphaTest_Loader;
 
 import java.awt.*;
 import java.util.ArrayList;

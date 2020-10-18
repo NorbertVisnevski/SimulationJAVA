@@ -14,10 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.util.concurrent.Future;
 
 public class MainController{
 

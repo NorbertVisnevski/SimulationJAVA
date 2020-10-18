@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationFileHandler implements AsyncFileHandler{
-    public static File currentFile = null;
 
     public void writeAsync(File file)
     {

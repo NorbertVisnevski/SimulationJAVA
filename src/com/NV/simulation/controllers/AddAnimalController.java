@@ -15,7 +15,7 @@ public class AddAnimalController {
     private Rectangle animalTextureSpace;
 
     @FXML
-    private ChoiceBox animalTypeChoiceBox;
+    private ChoiceBox<String> animalTypeChoiceBox;
 
     private String type = "Rabbit";
 
@@ -28,7 +28,7 @@ public class AddAnimalController {
 
     public void onTypeChange()
     {
-        type = (String)animalTypeChoiceBox.getSelectionModel().getSelectedItem();
+        type = animalTypeChoiceBox.getSelectionModel().getSelectedItem();
         switchType();
     }
 

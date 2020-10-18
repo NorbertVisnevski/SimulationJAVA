@@ -2,16 +2,10 @@ package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.Application;
-import com.NV.simulation.map.Map;
 import com.NV.simulation.map.Tile;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 public class MapFileHandler implements AsyncFileHandler{
 
     public void writeAsync(File file)

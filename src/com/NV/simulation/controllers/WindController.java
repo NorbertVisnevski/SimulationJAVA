@@ -1,7 +1,6 @@
 package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.animals.*;
 import com.NV.simulation.graphics.TextureStorage;
 import com.NV.simulation.weather.Wind;
 import javafx.animation.AnimationTimer;
@@ -28,7 +27,7 @@ public class WindController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                windDirection= MasterData.weatherManager.getWindDirection();
+                windDirection = MasterData.weatherManager.getWindDirection();
                 imageView.setRotate((imageView.getRotate()+(calculateAngle(windDirection)-imageView.getRotate())*75/360));
             }
         };

@@ -20,8 +20,6 @@ public class StatsController {
     @FXML
     private PieChart herbCarChart;
 
-    private AnimationTimer animationTimer;
-
     private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
 
     private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", AnimalHerbivore.getCount()),new PieChart.Data("Carnivores", AnimalCarnivore.getCount()));

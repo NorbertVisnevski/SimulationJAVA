@@ -20,6 +20,6 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d2d8dd" height="66.0" layoutX="14.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
       <Rectangle fx:id="animalTextureSpace" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="64.0" layoutX="15.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="64.0" />
-      <ChoiceBox fx:id="animalTypeChoiceBox" layoutX="92.0" layoutY="52.0" prefHeight="31.0" prefWidth="78.0" onAction="#onTypeChange"/>
+      <ChoiceBox fx:id="animalTypeChoiceBox" layoutX="92.0" layoutY="52.0" onAction="#onTypeChange" prefHeight="31.0" prefWidth="78.0" />
    </children>
 </AnchorPane>
