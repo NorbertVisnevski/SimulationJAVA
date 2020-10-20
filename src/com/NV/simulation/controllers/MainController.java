@@ -9,11 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.awt.*;
 import java.io.File;
 
 public class MainController{
@@ -23,6 +26,19 @@ public class MainController{
 
     @FXML
     public VBox actionBar;
+
+    private Point mouseLocation = new Point();
+
+    @FXML
+    public void onMouseMoved(MouseEvent event)
+    {
+        mouseLocation = new Point((int)event.getX(), (int)event.getY());
+    }
+
+    public Point getMouseLocation()
+    {
+        return mouseLocation;
+    }
 
     @FXML
     public void statWindow(ActionEvent event) {
@@ -36,7 +52,8 @@ public class MainController{
             secondStage.setResizable(false);
             secondStage.setScene(new Scene(root));
             secondStage.show();
-            secondStage.setOnCloseRequest(e -> ((StatsController) loader.getController()).stop());
+            MasterData.statsController = loader.getController();
+            secondStage.setOnCloseRequest(e -> MasterData.statsController.stop());
         } catch (Exception e) {
             System.out.println(e);
         }

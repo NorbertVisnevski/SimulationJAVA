@@ -7,7 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class GraphicAnimal extends Rectangle {
-    GraphicAnimal(Animal animal) {
+
+    private Tooltip toolTip = new Tooltip();
+
+    public GraphicAnimal(Animal animal) {
         double x = animal.getLocation().x * GraphicSettings.TILE_WIDTH + (animal.getLocation().y % 2) * GraphicSettings.n + GraphicSettings.xStartOffset;
         double y = animal.getLocation().y * GraphicSettings.TILE_HEIGHT * 0.75 + GraphicSettings.yStartOffset;
         setX(x + MasterData.random.nextInt(48));
@@ -75,7 +78,14 @@ public class GraphicAnimal extends Rectangle {
         MasterData.stringBuilder.append(String.format("%.02f",animal.getMutationRate()));
         MasterData.stringBuilder.append("\n");
 
-        Tooltip.install(this, new Tooltip(MasterData.stringBuilder.toString()));
 
+        toolTip.setText(MasterData.stringBuilder.toString());
+        Tooltip.install(this, toolTip);
+
+    }
+
+    public void uninstallTooltip()
+    {
+        Tooltip.uninstall(this,toolTip);
     }
 }

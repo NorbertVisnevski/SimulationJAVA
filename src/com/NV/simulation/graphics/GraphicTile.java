@@ -131,6 +131,11 @@ public class GraphicTile extends Polygon {
         updateToolTip();
     }
 
+    public void uninstallTooltip()
+    {
+        Tooltip.uninstall(this,toolTip);
+    }
+
     public void update(Tile tile)
     {
         this.tile = tile;

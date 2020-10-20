@@ -58,8 +58,9 @@ public class StatsController {
 
         thread = new Thread(()-> {
             try{
-                while(true)
+                while(!Thread.interrupted())
                 {
+                    //System.out.println("hello");
                     tableData.get(0).count.set(AnimalBase.getCount());
                     tableData.get(1).count.set(AnimalHerbivore.getCount());
                     tableData.get(2).count.set(AnimalCarnivore.getCount());

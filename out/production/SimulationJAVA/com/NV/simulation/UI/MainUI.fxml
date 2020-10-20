@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="720.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.MainController">
    <children>
       <VBox minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
@@ -46,7 +45,7 @@
                <children>
                   <ScrollPane pannable="true" prefWidth="1730.0" style="-fx-background: #000000; -fx-background-color: transparent;">
                      <content>
-                        <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #000000;" />
+                        <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" onMouseDragged="#onMouseMoved" onMouseMoved="#onMouseMoved" style="-fx-background-color: #000000;" />
                      </content>
                   </ScrollPane>
                   <ScrollPane hbarPolicy="NEVER" prefWidth="190.0" style="-fx-background-color: transparent; -fx-background: #ffffff;">

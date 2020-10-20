@@ -5,11 +5,14 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.controllers.WindController;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
+import com.sun.javafx.iio.ImageStorage;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,7 +41,9 @@ public final class Application extends javafx.application.Application {
     }
 
     public static void updateSimulationState() {
+        animalGroup.getChildren().forEach(a->((GraphicAnimal)a).uninstallTooltip());
         animalGroup.getChildren().clear();
+        tileGroup.getChildren().forEach(a->((GraphicTile)a).uninstallTooltip());
         tileGroup.getChildren().clear();
         cloudGroup.getChildren().clear();
         List<Tile> tilemap = MasterData.map.getTileMap();
@@ -63,9 +68,13 @@ public final class Application extends javafx.application.Application {
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/MainUI.fxml"));
 
         Parent root = loader.load();
+        ((AnchorPane)root).setOnMouseClicked(e->{
+            if(e.getButton() == MouseButton.SECONDARY)
+                MasterData.animalPlacer.placer.setVisible(false);
+        });
         MasterData.mainUIController = loader.getController();
         MasterData.tileMap = MasterData.mainUIController.tilemap;
-        MasterData.tileMap.getChildren().addAll(tileGroup,animalGroup,cloudGroup);
+        MasterData.tileMap.getChildren().addAll(tileGroup,animalGroup,cloudGroup,MasterData.animalPlacer.placer);
 
         VBox actionBar = MasterData.mainUIController.actionBar;
 
@@ -91,11 +100,18 @@ public final class Application extends javafx.application.Application {
         MasterData.mainWindow = MasterData.mainUIController.tilemap.getScene().getWindow();
 
         primaryStage.setTitle("Simulation");
+        primaryStage.setOnCloseRequest(e->{
+            if(MasterData.statsController != null)
+            {
+                MasterData.statsController.stop();
+            }
+        });
         updateSimulationState();
 
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
+                MasterData.animalPlacer.update();
                 if(callbackList.size()>0)
                 {
                     callbackList.getFirst().run();

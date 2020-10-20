@@ -2,8 +2,10 @@ package com.NV.simulation;
 
 import com.NV.simulation.controllers.AddAnimalController;
 import com.NV.simulation.controllers.MainController;
+import com.NV.simulation.controllers.StatsController;
 import com.NV.simulation.controllers.TileEditController;
 import com.NV.simulation.managers.AnimalManager;
+import com.NV.simulation.managers.AnimalPlacer;
 import com.NV.simulation.managers.WeatherManager;
 import com.NV.simulation.map.Map;
 import com.NV.simulation.weather.Wind;
@@ -20,8 +22,10 @@ public final class MasterData {
     public static Window mainWindow = null;
     public static Pane tileMap;//Just temporary
     public static MainController mainUIController;
+    public static StatsController statsController;
     public static TileEditController tileEditController;
     public static AddAnimalController addAnimalController;
     public static WeatherManager weatherManager = new WeatherManager();
+    public static AnimalPlacer animalPlacer = new AnimalPlacer();
 
 }
