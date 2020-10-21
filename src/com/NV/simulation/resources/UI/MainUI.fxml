@@ -43,14 +43,14 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <ScrollPane pannable="true" prefWidth="1730.0" style="-fx-background: #000000; -fx-background-color: transparent;">
+                  <ScrollPane minWidth="1000.0" pannable="true" prefHeight="1055.0" prefWidth="1974.0" style="-fx-background: #000000; -fx-background-color: transparent;">
                      <content>
                         <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" onMouseDragged="#onMouseMoved" onMouseMoved="#onMouseMoved" style="-fx-background-color: #000000;" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane hbarPolicy="NEVER" prefWidth="190.0" style="-fx-background-color: transparent; -fx-background: #ffffff;">
+                  <ScrollPane hbarPolicy="NEVER" minWidth="183.0" prefWidth="190.0" style="-fx-background-color: transparent; -fx-background: #ffffff;">
                      <content>
-                        <VBox fx:id="actionBar" />
+                        <VBox fx:id="actionBar" minWidth="181.0" />
                      </content>
                   </ScrollPane>
                </children>

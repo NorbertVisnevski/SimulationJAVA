@@ -64,5 +64,7 @@ public class Main {
         MasterData.animalManager.add(l);
 
         javafx.application.Application.launch(Application.class,args);
+
+
     }
 }

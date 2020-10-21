@@ -1,6 +1,10 @@
 package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.animals.Animal;
+import com.NV.simulation.animals.AnimalFox;
+import com.NV.simulation.animals.AnimalRabbit;
+import com.NV.simulation.animals.AnimalWolf;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.TextureStorage;
 import com.NV.simulation.map.Tile;
@@ -11,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+
+import javax.swing.text.Position;
+import java.awt.*;
 
 public class AddAnimalController {
 
@@ -83,8 +90,40 @@ public class AddAnimalController {
     @FXML
     public void onApply()
     {
-        System.out.println("applied");
-        MasterData.animalPlacer.placer.setVisible(true);
+        MasterData.animalPlacer.enable();
+    }
+
+    public Animal createAnimal(Point location)
+    {
+        switch(type)
+        {
+            case "Rabbit":
+                return new AnimalRabbit(Double.parseDouble(hungerTextField.getText()),
+                        Double.parseDouble(reproductionDriveTextField.getText()),
+                        Double.parseDouble(survivalDriveTextField.getText()),
+                        Double.parseDouble(speedTextField.getText()),
+                        Double.parseDouble(sensingRangeTextField.getText()),
+                        Double.parseDouble(mutationRateTextField.getText()),
+                        new Point(location));
+            case "Wolf":
+                return new AnimalWolf(Double.parseDouble(hungerTextField.getText()),
+                    Double.parseDouble(reproductionDriveTextField.getText()),
+                    Double.parseDouble(survivalDriveTextField.getText()),
+                    Double.parseDouble(speedTextField.getText()),
+                    Double.parseDouble(sensingRangeTextField.getText()),
+                    Double.parseDouble(mutationRateTextField.getText()),
+                    new Point(location));
+            case "Fox":
+                return new AnimalFox(Double.parseDouble(hungerTextField.getText()),
+                    Double.parseDouble(reproductionDriveTextField.getText()),
+                    Double.parseDouble(survivalDriveTextField.getText()),
+                    Double.parseDouble(speedTextField.getText()),
+                    Double.parseDouble(sensingRangeTextField.getText()),
+                    Double.parseDouble(mutationRateTextField.getText()),
+                    new Point(location));
+            default:
+                return null;
+        }
     }
 
 }

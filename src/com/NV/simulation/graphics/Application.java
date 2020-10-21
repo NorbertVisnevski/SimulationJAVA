@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,9 +26,6 @@ import java.util.List;
 //For rendering window
 //TODO fix this mess
 public final class Application extends javafx.application.Application {
-
-    private final static int WINDOW_WIDTH = 2300;
-    private final static int WINDOW_HEIGHT = 1100;
 
     private static Group animalGroup = new Group();
     private static Group tileGroup = new Group();
@@ -65,12 +64,13 @@ public final class Application extends javafx.application.Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-        FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/MainUI.fxml"));
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/MainUI.fxml"));
 
         Parent root = loader.load();
-        ((AnchorPane)root).setOnMouseClicked(e->{
+        root.setOnMouseClicked(e->{
             if(e.getButton() == MouseButton.SECONDARY)
-                MasterData.animalPlacer.placer.setVisible(false);
+                MasterData.animalPlacer.disable();
         });
         MasterData.mainUIController = loader.getController();
         MasterData.tileMap = MasterData.mainUIController.tilemap;
@@ -82,17 +82,17 @@ public final class Application extends javafx.application.Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/TileEditor.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/TileEditor.fxml"));
         actionBar.getChildren().add(loader.load());
         MasterData.tileEditController = loader.getController();
 
-        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/WindIndicator.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/WindIndicator.fxml"));
         actionBar.getChildren().add(loader.load());
 
-        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/SimpleActions.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/SimpleActions.fxml"));
         actionBar.getChildren().add(loader.load());
 
-        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/AddAnimal.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/AddAnimal.fxml"));
         actionBar.getChildren().add(loader.load());
         MasterData.addAnimalController = loader.getController();
 

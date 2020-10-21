@@ -3,10 +3,13 @@ package com.NV.simulation.graphics;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.map.Tile;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class GraphicTile extends Polygon {
     private Tile tile;
@@ -22,10 +25,22 @@ public class GraphicTile extends Polygon {
         setStroke(Color.BLACK);
         Tooltip.install(this, toolTip);
         updateToolTip();
-        if(MasterData.tileEditController != null)
-        {
-            setOnMouseClicked(e->MasterData.tileEditController.setTile(tile, this));
-        }
+
+        setOnMouseClicked(e->{
+            if(MasterData.animalPlacer.readyToPlace())
+            {
+                if(!tile.isImpassible())
+                {
+                    if(e.getButton() == MouseButton.PRIMARY)
+                    MasterData.animalPlacer.placeAnimal(tile.getPosition());
+                }
+            }
+            else
+            {
+                MasterData.tileEditController.setTile(tile, this);
+            }
+        });
+
     }
     public GraphicTile(Tile tile, double x, double y)
     {
