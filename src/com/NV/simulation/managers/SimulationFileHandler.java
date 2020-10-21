@@ -3,6 +3,7 @@ package com.NV.simulation.managers;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;
 import com.NV.simulation.graphics.Application;
+import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.map.Map;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
@@ -36,6 +37,7 @@ public class SimulationFileHandler implements AsyncFileHandler{
                 }
                 catch(Exception e){
                     System.out.println(e);
+                    Application.addCallbackFunction(()->{new ErrorDialog();});
                 }
             }).start();
         }
@@ -73,6 +75,7 @@ public class SimulationFileHandler implements AsyncFileHandler{
             }
             catch(Exception e){
                 System.out.println(e);
+                Application.addCallbackFunction(()->{new ErrorDialog();});
             }
         });
         thread.start();

@@ -55,12 +55,12 @@ public class AddAnimalController {
         animalTypeChoiceBox.getSelectionModel().select("Rabbit");
         onTypeChange();
 
-        speedTextField.setTextFormatter(NumberTextFormatter.getFormatter());
-        hungerTextField.setTextFormatter(NumberTextFormatter.getFormatter());
-        sensingRangeTextField.setTextFormatter(NumberTextFormatter.getFormatter());
-        survivalDriveTextField.setTextFormatter(NumberTextFormatter.getFormatter());
-        reproductionDriveTextField.setTextFormatter(NumberTextFormatter.getFormatter());
-        mutationRateTextField.setTextFormatter(NumberTextFormatter.getFormatter());
+        speedTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
+        hungerTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
+        sensingRangeTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
+        survivalDriveTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
+        reproductionDriveTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
+        mutationRateTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
     }
 
     public void onTypeChange()

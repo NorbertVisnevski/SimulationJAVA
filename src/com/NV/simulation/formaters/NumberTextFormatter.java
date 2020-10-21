@@ -2,13 +2,14 @@ package com.NV.simulation.formaters;
 
 import javafx.scene.control.TextFormatter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParsePosition;
 
 public class NumberTextFormatter {
 
     private static DecimalFormat format = new DecimalFormat("#");
 
-    public static final TextFormatter getFormatter()
+    public final TextFormatter getFormatter()
     {
         return new TextFormatter<Object>(change -> {
             if (change.getControlNewText().isEmpty()) {

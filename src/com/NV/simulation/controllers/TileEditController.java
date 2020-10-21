@@ -56,8 +56,8 @@ public class TileEditController {
                 Tile.TerrainTypes.FROZEN_WASTELAND
                 );
 
-        travelDifficulty.setTextFormatter(NumberTextFormatter.getFormatter());
-        nutritionContent.setTextFormatter(NumberTextFormatter.getFormatter());
+        travelDifficulty.setTextFormatter(new NumberTextFormatter().getFormatter());
+        nutritionContent.setTextFormatter(new NumberTextFormatter().getFormatter());
 
     }
 

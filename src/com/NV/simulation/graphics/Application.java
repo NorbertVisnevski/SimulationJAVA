@@ -3,6 +3,7 @@ package com.NV.simulation.graphics;
 import com.NV.simulation.animals.*;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.controllers.WindController;
+import com.NV.simulation.graphics.dialogs.NewMapDialog;
 import com.NV.simulation.map.Tile;
 import com.NV.simulation.weather.Cloud;
 import com.sun.javafx.iio.ImageStorage;

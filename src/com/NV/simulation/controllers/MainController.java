@@ -1,6 +1,7 @@
 package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.graphics.dialogs.NewMapDialog;
 import com.NV.simulation.managers.AsyncFileHandler;
 import com.NV.simulation.managers.MapFileHandler;
 import com.NV.simulation.managers.SimulationFileHandler;
@@ -115,6 +116,12 @@ public class MainController{
                 simWriter.writeAsync(file);
             }
         }
+    }
+
+    @FXML
+    public void onNew()
+    {
+        new NewMapDialog();
     }
 
     @FXML

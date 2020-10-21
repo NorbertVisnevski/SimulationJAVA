@@ -2,6 +2,7 @@ package com.NV.simulation.managers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.Application;
+import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.map.Tile;
 import java.io.*;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MapFileHandler implements AsyncFileHandler{
                 }
                 catch(Exception e){
                     System.out.println(e);
+                    Application.addCallbackFunction(()->{new ErrorDialog();});
                 }
             }).start();
         }
@@ -57,6 +59,7 @@ public class MapFileHandler implements AsyncFileHandler{
                 }
                 catch(Exception e){
                     System.out.println(e);
+                    Application.addCallbackFunction(()->{new ErrorDialog();});
                 }
             });
         thread.start();
