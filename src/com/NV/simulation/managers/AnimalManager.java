@@ -59,7 +59,7 @@ public class AnimalManager {
     }
     public void clear()
     {
-        animalCollection.stream().forEach(animal->animal.setDead());
+        animalCollection.forEach(Animal::setDead);
         animalCollection.clear();
     }
 
@@ -69,6 +69,13 @@ public class AnimalManager {
         //TODO fix this!
         try {
             for (Animal animal : animalCollection) {
+
+                if(animal.isDead())
+                {
+                    deadAnimals.add(animal);
+                    continue;
+                }
+
                 //kill if animal is hungry to death
                 if (animal.getHunger() > 100.0) {
                     animal.setDead();

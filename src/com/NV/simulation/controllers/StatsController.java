@@ -1,5 +1,6 @@
 package com.NV.simulation.controllers;
 
+import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.LongProperty;
@@ -13,6 +14,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.util.List;
+
 public class StatsController {
     @FXML
     private TableView statTable;
@@ -22,7 +25,7 @@ public class StatsController {
 
     private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
 
-    private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", AnimalHerbivore.getCount()),new PieChart.Data("Carnivores", AnimalCarnivore.getCount()));
+    private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", 0),new PieChart.Data("Carnivores", 0));
 
     private Thread thread;
 
@@ -44,12 +47,12 @@ public class StatsController {
         statTable.getColumns().add(column2);
 
 
-        tableData.add(new TableEntry("Animal",AnimalBase.getCount()));
-        tableData.add(new TableEntry("Herbivore", AnimalHerbivore.getCount()));
-        tableData.add(new TableEntry("Carnivore", AnimalCarnivore.getCount()));
-        tableData.add(new TableEntry("Rabbit", AnimalRabbit.getCount()));
-        tableData.add(new TableEntry("Fox", AnimalFox.getCount()));
-        tableData.add(new TableEntry("Wolf", AnimalWolf.getCount()));
+        tableData.add(new TableEntry("Animal",0));
+        tableData.add(new TableEntry("Herbivore", 0));
+        tableData.add(new TableEntry("Carnivore", 0));
+        tableData.add(new TableEntry("Rabbit", 0));
+        tableData.add(new TableEntry("Fox", 0));
+        tableData.add(new TableEntry("Wolf", 0));
         for(TableEntry entry : tableData)
         statTable.getItems().add(entry);
 
@@ -58,18 +61,50 @@ public class StatsController {
 
         thread = new Thread(()-> {
             try{
+                int carnivores=0
+                    ,herbivores=0
+                    ,rabbits=0
+                    ,wolfs=0
+                    ,foxes=0;
+
                 while(!Thread.interrupted())
                 {
-                    //System.out.println("hello");
-                    tableData.get(0).count.set(AnimalBase.getCount());
-                    tableData.get(1).count.set(AnimalHerbivore.getCount());
-                    tableData.get(2).count.set(AnimalCarnivore.getCount());
-                    tableData.get(3).count.set(AnimalRabbit.getCount());
-                    tableData.get(4).count.set(AnimalFox.getCount());
-                    tableData.get(5).count.set(AnimalWolf.getCount());
+                    List<Animal> list = MasterData.animalManager.getAnimalList();
+                    tableData.get(0).count.set(list.size());
+                    for(Animal animal : list)
+                    {
+                        if(animal instanceof AnimalWolf)
+                        {
+                            ++wolfs;
+                            ++carnivores;
+                        }
+                        else if(animal instanceof AnimalFox)
+                        {
+                            ++foxes;
+                            ++carnivores;
+                        }
+                        else if(animal instanceof AnimalRabbit)
+                        {
+                            ++rabbits;
+                            ++herbivores;
+                        }
+                    }
+                    tableData.get(1).count.set(herbivores);
+                    tableData.get(2).count.set(carnivores);
+                    tableData.get(3).count.set(rabbits);
+                    tableData.get(4).count.set(foxes);
+                    tableData.get(5).count.set(wolfs);
 
-                    piechartData.get(0).setPieValue(AnimalHerbivore.getCount());
-                    piechartData.get(1).setPieValue(AnimalCarnivore.getCount());
+                    piechartData.get(0).setPieValue(herbivores);
+                    piechartData.get(1).setPieValue(carnivores);
+
+                    carnivores=0;
+                    herbivores=0;
+                    rabbits=0;
+                    wolfs=0;
+                    foxes=0;
+
+                    Thread.sleep(1000);
                 }
             }
             catch (Exception e)

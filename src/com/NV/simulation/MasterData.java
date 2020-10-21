@@ -27,5 +27,12 @@ public final class MasterData {
     public static AddAnimalController addAnimalController;
     public static WeatherManager weatherManager = new WeatherManager();
     public static AnimalPlacer animalPlacer = new AnimalPlacer();
+    public static void clearManagers()
+    {
+        animalManager.clear();
+        map.clear();
+        weatherManager.clear();
+        tileEditController.clear();
+    }
 
 }

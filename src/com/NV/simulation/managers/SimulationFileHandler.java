@@ -62,11 +62,9 @@ public class SimulationFileHandler implements AsyncFileHandler{
 
                 Application.addCallbackFunction(()->{
 
-                    MasterData.animalManager.clear();
+                    MasterData.clearManagers();
                     MasterData.animalManager.add(animals);
-                    MasterData.map.clear();
                     MasterData.map.add(map);
-                    MasterData.weatherManager.clear();
                     MasterData.weatherManager.linkToMap(MasterData.map);
                     MasterData.weatherManager.add(clouds);
                     MasterData.weatherManager.setWindDirection(windDirection);

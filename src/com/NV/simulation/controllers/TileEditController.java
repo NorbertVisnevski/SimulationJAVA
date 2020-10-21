@@ -90,4 +90,14 @@ public class TileEditController {
         nutritionContent.setText(((Double)tile.getNutritionContent()).toString());
 
     }
+
+    public void clear()
+    {
+        tile = null;
+        mainGroup.getChildren().clear();
+        Label l = new Label("No tile selected");
+        l.setLayoutY(25);
+        l.setLayoutX(15);
+        mainGroup.getChildren().add(l);
+    }
 }

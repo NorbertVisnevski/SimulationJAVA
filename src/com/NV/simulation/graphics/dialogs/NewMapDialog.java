@@ -57,9 +57,7 @@ public class NewMapDialog {
 
         result.ifPresent(data -> {
             Application.addCallbackFunction(()->{
-                MasterData.animalManager.clear();
-                MasterData.weatherManager.clear();
-                MasterData.map.clear();
+                MasterData.clearManagers();
                 for(int i = 0; i < data.getKey(); ++i)
                 {
                     for(int j = 0; j < data.getValue(); ++j)

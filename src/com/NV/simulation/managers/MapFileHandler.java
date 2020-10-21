@@ -49,9 +49,7 @@ public class MapFileHandler implements AsyncFileHandler{
                     fileInput.close();
 
                     Application.addCallbackFunction(()->{
-                        MasterData.map.clear();
-                        MasterData.animalManager.clear();
-                        MasterData.weatherManager.clear();
+                        MasterData.clearManagers();
                         MasterData.map.add(map);
                         MasterData.weatherManager.linkToMap(MasterData.map);
                         Application.updateSimulationState();

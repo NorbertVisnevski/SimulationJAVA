@@ -10,28 +10,19 @@ import java.util.List;
 
 public abstract class AnimalCarnivore extends AnimalBase {
 
-    private static long carnivoreCount = 0;
 
     public AnimalCarnivore() {
         super();
-        ++carnivoreCount;
     }
 
     public AnimalCarnivore(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super( hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
-        ++carnivoreCount;
-    }
-
-    public static long getCount()
-    {
-        return carnivoreCount;
     }
 
     @Override
     public void setDead()
     {
         super.setDead();
-        --carnivoreCount;
     }
 
     @Override

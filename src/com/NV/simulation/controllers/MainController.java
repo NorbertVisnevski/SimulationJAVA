@@ -44,7 +44,7 @@ public class MainController{
     @FXML
     public void statWindow(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/UI/Stats.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/Stats.fxml"));
             Parent root = loader.load();
             Stage secondStage = new Stage();
             secondStage.initOwner(MasterData.mainWindow);

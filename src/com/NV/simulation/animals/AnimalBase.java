@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 public abstract class AnimalBase implements Animal, Serializable {
 
-    private static long animalCount = 0;
-
     private boolean dead = false;
 
     private double hunger;
@@ -33,10 +31,6 @@ public abstract class AnimalBase implements Animal, Serializable {
 
     protected List<Tile> tileOptions;
 
-    public static long getCount()
-    {
-        return animalCount;
-    }
 
     public boolean isDead() {
         return dead;
@@ -44,7 +38,6 @@ public abstract class AnimalBase implements Animal, Serializable {
 
     public void setDead(){
         this.dead = true;
-        --animalCount;
     }
 
     public double getHunger() {
@@ -138,7 +131,6 @@ public abstract class AnimalBase implements Animal, Serializable {
         setSensesRange(sensesRange);
         setMutationRate(mutationRate);
         setLocation(location);
-        ++animalCount;
     }
 
     public Point calculateMove()

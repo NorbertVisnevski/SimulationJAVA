@@ -23,7 +23,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onNew" text="New" />
                   <MenuItem mnemonicParsing="false" onAction="#onOpen" text="Open…" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSave" text="Save" />
                   <MenuItem mnemonicParsing="false" onAction="#onSaveAs" text="Save As…" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Preferences…" />
