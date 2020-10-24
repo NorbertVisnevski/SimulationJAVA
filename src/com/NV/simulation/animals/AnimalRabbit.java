@@ -12,11 +12,4 @@ public class AnimalRabbit extends AnimalHerbivore {
     public AnimalRabbit(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
-
-    @Override
-    public void setDead()
-    {
-        super.setDead();
-    }
-
 }

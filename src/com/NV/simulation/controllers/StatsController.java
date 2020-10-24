@@ -23,7 +23,7 @@ public class StatsController {
     @FXML
     private PieChart herbCarChart;
 
-    private ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
+    private final ObservableList<TableEntry> tableData = FXCollections.observableArrayList();
 
     private ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(new PieChart.Data("Herbivores", 0),new PieChart.Data("Carnivores", 0));
 
@@ -69,7 +69,7 @@ public class StatsController {
 
                 while(!Thread.interrupted())
                 {
-                    List<Animal> list = MasterData.animalManager.getAnimalList();
+                    List<Animal> list = MasterData.animalManager.getList();
                     tableData.get(0).count.set(list.size());
                     for(Animal animal : list)
                     {

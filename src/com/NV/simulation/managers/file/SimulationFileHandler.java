@@ -25,9 +25,9 @@ public class SimulationFileHandler implements AsyncFileHandler{
                     ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 
                     // Method for serialization of object
-                    objectOutput.writeObject(MasterData.map.getTileMap());
-                    objectOutput.writeObject(MasterData.animalManager.getAnimalList());
-                    objectOutput.writeObject(MasterData.weatherManager.getCloudList());
+                    objectOutput.writeObject(MasterData.map.getList());
+                    objectOutput.writeObject(MasterData.animalManager.getList());
+                    objectOutput.writeObject(MasterData.weatherManager.getList());
                     objectOutput.writeObject(MasterData.weatherManager.getWindDirection());
 
                     objectOutput.close();

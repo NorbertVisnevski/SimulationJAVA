@@ -20,12 +20,6 @@ public class AnimalFox extends AnimalCarnivore {
     }
 
     @Override
-    public void setDead()
-    {
-        super.setDead();
-    }
-
-    @Override
     protected void survive(java.util.List<Point> possibleMoves)
     {
         java.util.List<Animal> carnivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());

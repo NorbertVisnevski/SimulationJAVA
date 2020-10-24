@@ -12,10 +12,4 @@ public class AnimalWolf extends AnimalCarnivore {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
 
-    @Override
-    public void setDead()
-    {
-        super.setDead();
-    }
-
 }

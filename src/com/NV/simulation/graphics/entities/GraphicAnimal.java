@@ -42,6 +42,11 @@ public class GraphicAnimal extends Rectangle {
             setFill(new ImagePattern(TextureStorage.rabbit));
             MasterData.stringBuilder.append("Species: Rabbit\n");
         }
+        else if(animal.getClass() == AnimalDeer.class)
+        {
+            setFill(new ImagePattern(TextureStorage.deer));
+            MasterData.stringBuilder.append("Species: Deer\n");
+        }
         else if(animal.getClass() == AnimalWolf.class)
         {
             setFill(new ImagePattern(TextureStorage.wolf));

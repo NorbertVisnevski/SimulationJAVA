@@ -20,12 +20,6 @@ public abstract class AnimalHerbivore extends AnimalBase {
     }
 
     @Override
-    public void setDead()
-    {
-        super.setDead();
-    }
-
-    @Override
     protected void findFood(List<Point> possibleMoves)
     {
         List<Tile> list = new ArrayList<>(tileOptions);

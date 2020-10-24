@@ -21,7 +21,7 @@ public class MapFileHandler implements AsyncFileHandler{
                     ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 
                     // Method for serialization of object
-                    objectOutput.writeObject(MasterData.map.getTileMap());
+                    objectOutput.writeObject(MasterData.map.getList());
 
                     objectOutput.close();
                     fileOutput.close();

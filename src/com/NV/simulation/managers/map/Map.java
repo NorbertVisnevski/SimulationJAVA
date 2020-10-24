@@ -17,7 +17,7 @@ public class Map implements CollectionManager<Tile> {
         this.tileMap = new HashMap<>();
     }
 
-    public List<Tile> getTileMap() {
+    public List<Tile> getList() {
         return new ArrayList<>(tileMap.values().stream().collect(Collectors.toList()));
     }
 
@@ -132,6 +132,6 @@ public class Map implements CollectionManager<Tile> {
 
     public void replenishGroundNutrience(double amount)
     {
-        getTileMap().stream().forEach(tile->tile.setNutritionContent(tile.getNutritionContent()+amount));
+        getList().stream().forEach(tile->tile.setNutritionContent(tile.getNutritionContent()+amount));
     }
 }

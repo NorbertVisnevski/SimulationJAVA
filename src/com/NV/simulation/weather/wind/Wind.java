@@ -1,4 +1,4 @@
-package com.NV.simulation.weather;
+package com.NV.simulation.weather.wind;
 
 import com.NV.simulation.MasterData;
 
@@ -9,7 +9,7 @@ public class Wind {
 
     private String direction;
 
-    private static List<String> directions;
+    private static final List<String> directions;
 
     static
     {

@@ -24,7 +24,7 @@ public class AnimalManager implements CollectionManager<Animal> {
         }
     };
 
-    public List<Animal> getAnimalList()
+    public List<Animal> getList()
     {
         return new ArrayList<>(animalCollection);
     }
@@ -104,7 +104,7 @@ public class AnimalManager implements CollectionManager<Animal> {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     Animal food = null;
                     if (animal instanceof AnimalWolf)
-                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox).findFirst().orElse(null);
+                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox || anim instanceof AnimalDeer).findFirst().orElse(null);
                     if (animal instanceof AnimalFox)
                         food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit).findFirst().orElse(null);
 

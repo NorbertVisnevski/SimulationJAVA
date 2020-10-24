@@ -48,17 +48,17 @@ public final class Application extends javafx.application.Application {
         tileGroup.getChildren().forEach(a->((GraphicTile)a).uninstallTooltip());
         tileGroup.getChildren().clear();
         cloudGroup.getChildren().clear();
-        List<Tile> tilemap = MasterData.map.getTileMap();
+        List<Tile> tilemap = MasterData.map.getList();
         for (Tile tile : tilemap) {
             tileGroup.getChildren().add(new GraphicTile(tile));
         }
 
-        List<Animal> animalmap = MasterData.animalManager.getAnimalList();
+        List<Animal> animalmap = MasterData.animalManager.getList();
         for (Animal animal : animalmap) {
             animalGroup.getChildren().add(new GraphicAnimal(animal));
         }
 
-        List<Cloud> cloudList = MasterData.weatherManager.getCloudList();
+        List<Cloud> cloudList = MasterData.weatherManager.getList();
         for (Cloud cloud : cloudList) {
             cloudGroup.getChildren().add(new GraphicalCloud(cloud));
         }

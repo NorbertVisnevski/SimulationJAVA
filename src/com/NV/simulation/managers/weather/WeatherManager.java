@@ -7,7 +7,7 @@ import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.clouds.Cloud;
 import com.NV.simulation.weather.clouds.ContinentalCloud;
 import com.NV.simulation.weather.clouds.OceanianCloud;
-import com.NV.simulation.weather.Wind;
+import com.NV.simulation.weather.wind.Wind;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -35,8 +35,7 @@ public class WeatherManager implements CollectionManager<Cloud> {
         cloudList.addAll(clouds);
     }
 
-    public List<Cloud> getCloudList()
-    {
+    public List<Cloud> getList() {
         return new ArrayList<>(cloudList);
     }
 
@@ -54,9 +53,9 @@ public class WeatherManager implements CollectionManager<Cloud> {
 
     public void linkToMap(Map map)
     {
-        oceanList = map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("WATER")||tile.getTerrainType().equals("MARSH")).collect(Collectors.toList());
+        oceanList = map.getList().stream().filter(tile->tile.getTerrainType().equals("WATER")||tile.getTerrainType().equals("MARSH")).collect(Collectors.toList());
 
-        continentList = map.getTileMap().stream().filter(tile->tile.getTerrainType().equals("PLANES")||tile.getTerrainType().equals("FOREST")).collect(Collectors.toList());
+        continentList = map.getList().stream().filter(tile->tile.getTerrainType().equals("PLANES")||tile.getTerrainType().equals("FOREST")).collect(Collectors.toList());
     }
 
     public void clear()

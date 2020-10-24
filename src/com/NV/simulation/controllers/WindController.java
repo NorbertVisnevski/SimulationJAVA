@@ -2,7 +2,7 @@ package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.TextureStorage;
-import com.NV.simulation.weather.Wind;
+import com.NV.simulation.weather.wind.Wind;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;

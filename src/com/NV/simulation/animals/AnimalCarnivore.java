@@ -20,12 +20,6 @@ public abstract class AnimalCarnivore extends AnimalBase {
     }
 
     @Override
-    public void setDead()
-    {
-        super.setDead();
-    }
-
-    @Override
     protected void findFood(List<Point> possibleMoves)
     {
         java.util.List<Animal> herbivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());

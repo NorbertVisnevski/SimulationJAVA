@@ -1,10 +1,7 @@
 package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.animals.Animal;
-import com.NV.simulation.animals.AnimalFox;
-import com.NV.simulation.animals.AnimalRabbit;
-import com.NV.simulation.animals.AnimalWolf;
+import com.NV.simulation.animals.*;
 
 public class ReproductionHelper {
 
@@ -30,6 +27,10 @@ public class ReproductionHelper {
         else if(a1.getClass() == AnimalWolf.class)
         {
             newAnimal = new AnimalWolf(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
+        }
+        else if(a1.getClass() == AnimalDeer.class)
+        {
+            newAnimal = new AnimalDeer(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
         }
 
         a1.setHunger(a1.getHunger()+25.0);
