@@ -1,22 +1,30 @@
-package com.NV.simulation.graphics;
+package com.NV.simulation.graphics.entities;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.graphics.GraphicSettings;
+import com.NV.simulation.graphics.TextureStorage;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class GraphicAnimal extends Rectangle {
 
     private Tooltip toolTip = new Tooltip();
 
+    private double x;
+    private double y;
+
     public GraphicAnimal(Animal animal) {
         double x = animal.getLocation().x * GraphicSettings.TILE_WIDTH + (animal.getLocation().y % 2) * GraphicSettings.n + GraphicSettings.xStartOffset;
         double y = animal.getLocation().y * GraphicSettings.TILE_HEIGHT * 0.75 + GraphicSettings.yStartOffset;
-        setX(x + MasterData.random.nextInt(48));
-        setY(y + MasterData.random.nextInt(16));
-        setHeight(8);
-        setWidth(8);
+        setX(x);
+        this.x=x;
+        this.y=y;
+        setY(y);
+        setHeight(32);
+        setWidth(32);
 
         MasterData.stringBuilder.setLength(0);
         MasterData.stringBuilder.append("Animal\n");
@@ -31,17 +39,17 @@ public class GraphicAnimal extends Rectangle {
         }
         if(animal.getClass() == AnimalRabbit.class)
         {
-            setFill(Color.WHITE);
+            setFill(new ImagePattern(TextureStorage.rabbit));
             MasterData.stringBuilder.append("Species: Rabbit\n");
         }
         else if(animal.getClass() == AnimalWolf.class)
         {
-            setFill(Color.GREY);
+            setFill(new ImagePattern(TextureStorage.wolf));
             MasterData.stringBuilder.append("Species: Wolf\n");
         }
         else if(animal.getClass() == AnimalFox.class)
         {
-            setFill(Color.ORANGE);
+            setFill(new ImagePattern(TextureStorage.fox));
             MasterData.stringBuilder.append("Species: Fox\n");
         }
         else
@@ -81,6 +89,13 @@ public class GraphicAnimal extends Rectangle {
 
         toolTip.setText(MasterData.stringBuilder.toString());
         Tooltip.install(this, toolTip);
+
+    }
+
+    public void shufflePosition()
+    {
+        setX(x+MasterData.random.nextInt(32));
+        setY(y-32+MasterData.random.nextInt(48));
 
     }
 

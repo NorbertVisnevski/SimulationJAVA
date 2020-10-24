@@ -66,7 +66,9 @@ public class SimulationFileHandler implements AsyncFileHandler{
                     MasterData.weatherManager.linkToMap(MasterData.map);
                     MasterData.weatherManager.add(clouds);
                     MasterData.weatherManager.setWindDirection(windDirection);
+
                     Application.updateSimulationState();
+                    Application.shuffleEntities();
                 });
             }
             catch(Exception e){

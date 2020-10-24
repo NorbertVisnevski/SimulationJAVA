@@ -2,7 +2,7 @@ package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.formaters.NumberTextFormatter;
-import com.NV.simulation.graphics.GraphicTile;
+import com.NV.simulation.graphics.entities.GraphicTile;
 import com.NV.simulation.tile.Tile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

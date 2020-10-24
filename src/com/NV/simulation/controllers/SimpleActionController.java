@@ -34,5 +34,6 @@ public class SimpleActionController {
             MasterData.weatherManager.updateClouds();
         }
         Application.updateSimulationState();
+        Application.shuffleEntities();
     }
 }

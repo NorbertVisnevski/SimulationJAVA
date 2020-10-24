@@ -2,6 +2,9 @@ package com.NV.simulation.graphics;
 
 import com.NV.simulation.animals.*;
 import com.NV.simulation.MasterData;
+import com.NV.simulation.graphics.entities.GraphicAnimal;
+import com.NV.simulation.graphics.entities.GraphicTile;
+import com.NV.simulation.graphics.entities.GraphicalCloud;
 import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.Cloud;
 import javafx.animation.AnimationTimer;
@@ -22,9 +25,9 @@ import java.util.List;
 //TODO fix this mess
 public final class Application extends javafx.application.Application {
 
-    private static Group animalGroup = new Group();
-    private static Group tileGroup = new Group();
-    private static Group cloudGroup = new Group();
+    public static Group animalGroup = new Group();
+    public static Group tileGroup = new Group();
+    public static Group cloudGroup = new Group();
 
 
     private static Deque<Runnable> callbackList = new LinkedList<>();
@@ -32,6 +35,11 @@ public final class Application extends javafx.application.Application {
     public synchronized static void addCallbackFunction(Runnable runnable)
     {
         callbackList.addLast(runnable);
+    }
+
+    public static void shuffleEntities()
+    {
+        animalGroup.getChildren().forEach(animal->((GraphicAnimal)animal).shufflePosition());
     }
 
     public static void updateSimulationState() {
@@ -102,6 +110,7 @@ public final class Application extends javafx.application.Application {
             }
         });
         updateSimulationState();
+        shuffleEntities();
 
         new AnimationTimer() {
             @Override

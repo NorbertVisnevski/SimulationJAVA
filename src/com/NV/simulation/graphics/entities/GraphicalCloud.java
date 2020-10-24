@@ -1,7 +1,9 @@
-package com.NV.simulation.graphics;
+package com.NV.simulation.graphics.entities;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.graphics.GraphicSettings;
+import com.NV.simulation.graphics.TextureStorage;
 import com.NV.simulation.weather.Cloud;
 import com.NV.simulation.weather.ContinentalCloud;
 import com.NV.simulation.weather.OceanianCloud;

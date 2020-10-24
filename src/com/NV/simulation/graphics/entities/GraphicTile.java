@@ -1,6 +1,8 @@
-package com.NV.simulation.graphics;
+package com.NV.simulation.graphics.entities;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.graphics.GraphicSettings;
+import com.NV.simulation.graphics.TextureStorage;
 import com.NV.simulation.tile.Tile;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;

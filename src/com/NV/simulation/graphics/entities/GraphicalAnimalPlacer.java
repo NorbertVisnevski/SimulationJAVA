@@ -1,4 +1,4 @@
-package com.NV.simulation.graphics;
+package com.NV.simulation.graphics.entities;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;

@@ -17,14 +17,10 @@ public class AnimalManager {
     private static Comparator<Animal> listSorter = new Comparator<>() {
         @Override
         public int compare(Animal o1, Animal o2) {
-            if(o1 == o2)
-                return 0;
             Double d1 = o2.getSpeed();
             Double d2 = o1.getSpeed();
-            int res =  d1.compareTo(d2);
-            if(res == 0)
-                res = 1;
-            return res;
+
+            return d1.compareTo(d2);
         }
     };
 
@@ -134,6 +130,6 @@ public class AnimalManager {
             add(newAnimals);
         }
         catch(Exception e)
-        {System.out.println(e);}
+        {System.out.println("Animal manager" + e);}
     }
 }
