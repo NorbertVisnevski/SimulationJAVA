@@ -5,7 +5,7 @@ import com.NV.simulation.animals.Animal;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.tile.Tile;
-import com.NV.simulation.weather.Cloud;
+import com.NV.simulation.weather.clouds.Cloud;
 
 import java.io.*;
 import java.util.ArrayList;

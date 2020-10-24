@@ -1,5 +1,7 @@
 package com.NV.simulation.managers.map;
 
+import com.NV.simulation.animals.Animal;
+import com.NV.simulation.managers.CollectionManager;
 import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
@@ -7,7 +9,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Map{
+public class Map implements CollectionManager<Tile> {
 
     private HashMap<Point, Tile> tileMap;
 
@@ -23,12 +25,18 @@ public class Map{
     {
         tileMap.put(tile.getPosition(),tile);
     }
-    public void add(List<Tile> list)
+    public void add(Collection<Tile> list)
     {
         for (Tile tile:list) {
             tileMap.put(tile.getPosition(),tile);
         }
     }
+
+    public void update()
+    {
+        replenishGroundNutrience(0.5);
+    }
+
     public void clear()
     {
         tileMap.clear();

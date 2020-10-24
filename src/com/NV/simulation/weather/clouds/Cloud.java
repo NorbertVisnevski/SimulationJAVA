@@ -1,4 +1,4 @@
-package com.NV.simulation.weather;
+package com.NV.simulation.weather.clouds;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.tile.Tile;

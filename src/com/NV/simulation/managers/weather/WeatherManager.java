@@ -1,24 +1,26 @@
 package com.NV.simulation.managers.weather;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.managers.CollectionManager;
 import com.NV.simulation.managers.map.Map;
 import com.NV.simulation.tile.Tile;
-import com.NV.simulation.weather.Cloud;
-import com.NV.simulation.weather.ContinentalCloud;
-import com.NV.simulation.weather.OceanianCloud;
+import com.NV.simulation.weather.clouds.Cloud;
+import com.NV.simulation.weather.clouds.ContinentalCloud;
+import com.NV.simulation.weather.clouds.OceanianCloud;
 import com.NV.simulation.weather.Wind;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WeatherManager {
+public class WeatherManager implements CollectionManager<Cloud> {
 
-    private List<Cloud> cloudList = new ArrayList<>();
+    private final List<Cloud> cloudList = new ArrayList<>();
 
-    private Wind wind = new Wind();
+    private final Wind wind = new Wind();
 
     private List<Tile> oceanList;
     private List<Tile> continentList;
@@ -28,7 +30,7 @@ public class WeatherManager {
         cloudList.add(cloud);
     }
 
-    public void add(List<Cloud> clouds)
+    public void add(Collection<Cloud> clouds)
     {
         cloudList.addAll(clouds);
     }
@@ -64,7 +66,7 @@ public class WeatherManager {
         cloudList.clear();
     }
 
-    public void updateClouds()
+    public void update()
     {
         Iterator<Cloud> i = cloudList.iterator();
         while (i.hasNext())

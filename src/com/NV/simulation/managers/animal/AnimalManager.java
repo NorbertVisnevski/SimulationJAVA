@@ -2,6 +2,7 @@ package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.managers.CollectionManager;
 import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
@@ -9,12 +10,11 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AnimalManager {
+public class AnimalManager implements CollectionManager<Animal> {
 
-    private List<Animal> animalCollection = new ArrayList<>();
+    private final List<Animal> animalCollection = new ArrayList<>();
 
-
-    private static Comparator<Animal> listSorter = new Comparator<>() {
+    private static final Comparator<Animal> listSorter = new Comparator<>() {
         @Override
         public int compare(Animal o1, Animal o2) {
             Double d1 = o2.getSpeed();

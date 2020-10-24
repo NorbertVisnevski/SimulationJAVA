@@ -1,14 +1,10 @@
 package com.NV.simulation.graphics.entities;
 
-import com.NV.simulation.MasterData;
-import com.NV.simulation.animals.*;
 import com.NV.simulation.graphics.GraphicSettings;
 import com.NV.simulation.graphics.TextureStorage;
-import com.NV.simulation.weather.Cloud;
-import com.NV.simulation.weather.ContinentalCloud;
-import com.NV.simulation.weather.OceanianCloud;
-import javafx.scene.control.Tooltip;
-import javafx.scene.paint.Color;
+import com.NV.simulation.weather.clouds.Cloud;
+import com.NV.simulation.weather.clouds.ContinentalCloud;
+import com.NV.simulation.weather.clouds.OceanianCloud;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -29,6 +25,5 @@ public class GraphicalCloud extends Rectangle{
             }
 
             setOpacity(0.8);
-
     }
 }

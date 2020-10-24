@@ -2,7 +2,6 @@ package com.NV.simulation.weather;
 
 import com.NV.simulation.MasterData;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

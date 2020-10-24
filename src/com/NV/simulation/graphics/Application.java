@@ -6,7 +6,7 @@ import com.NV.simulation.graphics.entities.GraphicAnimal;
 import com.NV.simulation.graphics.entities.GraphicTile;
 import com.NV.simulation.graphics.entities.GraphicalCloud;
 import com.NV.simulation.tile.Tile;
-import com.NV.simulation.weather.Cloud;
+import com.NV.simulation.weather.clouds.Cloud;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
