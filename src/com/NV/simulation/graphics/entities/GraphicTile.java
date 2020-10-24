@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
-public class GraphicTile extends Polygon {
+public class GraphicTile extends Polygon implements WithStatTooltip {
     private Tile tile;
     private Tooltip toolTip = new Tooltip();
 
@@ -22,8 +22,8 @@ public class GraphicTile extends Polygon {
         setPosition(x,y);
         setStrokeWidth(1);
         setStroke(Color.BLACK);
-        Tooltip.install(this, toolTip);
-        updateToolTip();
+        initTooltip();
+        updateTooltip();
 
         setOnMouseClicked(e->{
             if(MasterData.animalPlacer.readyToPlace())
@@ -85,8 +85,25 @@ public class GraphicTile extends Polygon {
                 x + GraphicSettings.n, y - GraphicSettings.r * 0.5
         );
     }
-    public void updateToolTip()
+
+    private void updateGraphics()
     {
+        updateTooltip();
+    }
+
+    public void update(Tile tile)
+    {
+        this.tile = tile;
+        updateGraphics();
+    }
+
+    @Override
+    public void initTooltip() {
+        Tooltip.install(this,toolTip);
+    }
+
+    @Override
+    public void updateTooltip() {
         MasterData.stringBuilder.setLength(0);
         MasterData.stringBuilder.append("Tile\n");
 
@@ -140,19 +157,13 @@ public class GraphicTile extends Polygon {
         toolTip.setText(MasterData.stringBuilder.toString());
     }
 
-    public void updateGraphics()
-    {
-        updateToolTip();
+    @Override
+    public void clearTooltip() {
+        toolTip.setText("");
     }
 
-    public void uninstallTooltip()
-    {
+    @Override
+    public void uninstallTooltip() {
         Tooltip.uninstall(this,toolTip);
-    }
-
-    public void update(Tile tile)
-    {
-        this.tile = tile;
-        updateGraphics();
     }
 }

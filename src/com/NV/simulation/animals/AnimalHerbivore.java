@@ -24,7 +24,6 @@ public abstract class AnimalHerbivore extends AnimalBase {
     {
         List<Tile> list = new ArrayList<>(tileOptions);
         Collections.shuffle(list);
-        double nutritionExpenses = getNutritionExpenses();
 
         Tile currentTile = list.stream().filter(tile->tile.getPosition().equals(getLocation())).findFirst().get();
         Point newLocation = getLocation();

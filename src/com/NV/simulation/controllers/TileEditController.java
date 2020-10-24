@@ -70,7 +70,7 @@ public class TileEditController {
         tile.setTravelDifficulty(Double.parseDouble(travelDifficulty.getText()));
         tile.setNutritionContent(Double.parseDouble(nutritionContent.getText()));
         MasterData.weatherManager.linkToMap(MasterData.map);
-        gTile.updateToolTip();
+        gTile.updateTooltip();
         setTile(tile,gTile);
     }
 

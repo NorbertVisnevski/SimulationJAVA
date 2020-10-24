@@ -1,7 +1,6 @@
 package com.NV.simulation.managers;
 
 import java.util.Collection;
-import java.util.List;
 
 public interface CollectionManager<T> {
 
@@ -9,7 +8,7 @@ public interface CollectionManager<T> {
 
     void add(Collection<T> collection);
 
-    List<T> getList();
+    Collection<T> getList();
 
     void update();
 

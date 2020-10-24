@@ -9,14 +9,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class GraphicAnimal extends Rectangle {
+public class GraphicAnimal extends Rectangle implements WithStatTooltip {
 
     private Tooltip toolTip = new Tooltip();
+
+    private Animal animal;
 
     private double x;
     private double y;
 
     public GraphicAnimal(Animal animal) {
+        this.animal = animal;
         double x = animal.getLocation().x * GraphicSettings.TILE_WIDTH + (animal.getLocation().y % 2) * GraphicSettings.n + GraphicSettings.xStartOffset;
         double y = animal.getLocation().y * GraphicSettings.TILE_HEIGHT * 0.75 + GraphicSettings.yStartOffset;
         setX(x);
@@ -25,7 +28,24 @@ public class GraphicAnimal extends Rectangle {
         setY(y);
         setHeight(32);
         setWidth(32);
+        initTooltip();
+        updateTooltip();
+    }
 
+    public void shufflePosition()
+    {
+        setX(x+MasterData.random.nextInt(32));
+        setY(y-32+MasterData.random.nextInt(48));
+
+    }
+
+    @Override
+    public void initTooltip() {
+        Tooltip.install(this,toolTip);
+    }
+
+    @Override
+    public void updateTooltip() {
         MasterData.stringBuilder.setLength(0);
         MasterData.stringBuilder.append("Animal\n");
 
@@ -93,19 +113,15 @@ public class GraphicAnimal extends Rectangle {
 
 
         toolTip.setText(MasterData.stringBuilder.toString());
-        Tooltip.install(this, toolTip);
-
     }
 
-    public void shufflePosition()
-    {
-        setX(x+MasterData.random.nextInt(32));
-        setY(y-32+MasterData.random.nextInt(48));
-
+    @Override
+    public void clearTooltip() {
+        toolTip.setText("");
     }
 
-    public void uninstallTooltip()
-    {
+    @Override
+    public void uninstallTooltip() {
         Tooltip.uninstall(this,toolTip);
     }
 }
