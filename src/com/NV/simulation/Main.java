@@ -5,7 +5,7 @@ import com.NV.simulation.animals.AnimalFox;
 import com.NV.simulation.animals.AnimalRabbit;
 import com.NV.simulation.animals.AnimalWolf;
 import com.NV.simulation.graphics.Application;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.NV.simulation.map;
+package com.NV.simulation.tile;
 
 import com.NV.simulation.animals.AnimalHerbivore;
 

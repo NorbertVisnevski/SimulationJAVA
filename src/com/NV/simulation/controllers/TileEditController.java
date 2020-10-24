@@ -1,8 +1,9 @@
 package com.NV.simulation.controllers;
 
+import com.NV.simulation.MasterData;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.GraphicTile;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -68,6 +69,7 @@ public class TileEditController {
         tile.setImpassible(impassible.isSelected());
         tile.setTravelDifficulty(Double.parseDouble(travelDifficulty.getText()));
         tile.setNutritionContent(Double.parseDouble(nutritionContent.getText()));
+        MasterData.weatherManager.linkToMap(MasterData.map);
         gTile.updateToolTip();
         setTile(tile,gTile);
     }

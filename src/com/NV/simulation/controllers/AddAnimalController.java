@@ -7,16 +7,13 @@ import com.NV.simulation.animals.AnimalRabbit;
 import com.NV.simulation.animals.AnimalWolf;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.TextureStorage;
-import com.NV.simulation.map.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-import javax.swing.text.Position;
 import java.awt.*;
 
 public class AddAnimalController {

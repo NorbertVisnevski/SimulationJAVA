@@ -1,13 +1,11 @@
-package com.NV.simulation.managers;
+package com.NV.simulation.managers.file;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.dialogs.ErrorDialog;
-import com.NV.simulation.map.Map;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.Cloud;
-import com.NV.simulation.weather.Wind;
 
 import java.io.*;
 import java.util.ArrayList;

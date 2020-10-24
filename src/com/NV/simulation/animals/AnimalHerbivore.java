@@ -1,8 +1,8 @@
 package com.NV.simulation.animals;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.Map;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.managers.map.Map;
+import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
 import java.util.*;

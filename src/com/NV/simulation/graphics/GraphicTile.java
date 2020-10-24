@@ -1,15 +1,12 @@
 package com.NV.simulation.graphics;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
-import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class GraphicTile extends Polygon {
     private Tile tile;

@@ -1,14 +1,15 @@
-package com.NV.simulation.map;
+package com.NV.simulation.managers.map;
+
+import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Map{
 
-    private HashMap<Point,Tile> tileMap;
+    private HashMap<Point, Tile> tileMap;
 
     public Map() {
         this.tileMap = new HashMap<>();

@@ -1,8 +1,8 @@
-package com.NV.simulation.managers;
+package com.NV.simulation.managers.weather;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.Map;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.managers.map.Map;
+import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.Cloud;
 import com.NV.simulation.weather.ContinentalCloud;
 import com.NV.simulation.weather.OceanianCloud;

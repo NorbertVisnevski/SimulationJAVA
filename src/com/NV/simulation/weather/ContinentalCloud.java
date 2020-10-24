@@ -1,7 +1,6 @@
 package com.NV.simulation.weather;
 
-import com.NV.simulation.MasterData;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 
 import java.awt.*;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.NV.simulation.managers;
+package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;

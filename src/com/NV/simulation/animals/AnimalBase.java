@@ -1,8 +1,8 @@
 package com.NV.simulation.animals;
 
-import com.NV.simulation.managers.ReproductionHelper;
-import com.NV.simulation.map.Map;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.managers.animal.ReproductionHelper;
+import com.NV.simulation.managers.map.Map;
+import com.NV.simulation.tile.Tile;
 import com.NV.simulation.MasterData;
 
 import java.awt.*;

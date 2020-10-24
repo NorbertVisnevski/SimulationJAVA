@@ -1,7 +1,7 @@
 package com.NV.simulation.animals;
 
 import com.NV.simulation.MasterData;
-import com.NV.simulation.map.Map;
+import com.NV.simulation.managers.map.Map;
 
 import java.awt.*;
 import java.util.ArrayList;

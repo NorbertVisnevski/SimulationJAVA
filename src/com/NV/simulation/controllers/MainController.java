@@ -2,10 +2,9 @@ package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.dialogs.NewMapDialog;
-import com.NV.simulation.managers.AsyncFileHandler;
-import com.NV.simulation.managers.MapFileHandler;
-import com.NV.simulation.managers.SimulationFileHandler;
-import javafx.event.ActionEvent;
+import com.NV.simulation.managers.file.AsyncFileHandler;
+import com.NV.simulation.managers.file.MapFileHandler;
+import com.NV.simulation.managers.file.SimulationFileHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,7 +41,7 @@ public class MainController{
     }
 
     @FXML
-    public void statWindow(ActionEvent event) {
+    public void statWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/Stats.fxml"));
             Parent root = loader.load();
@@ -61,7 +60,14 @@ public class MainController{
     }
 
     @FXML
-    public void onOpen(ActionEvent event) {
+    public void onSave()
+    {
+        //TODO add normal save
+        onSaveAs();
+    }
+
+    @FXML
+    public void onOpen() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(
@@ -90,7 +96,7 @@ public class MainController{
     }
 
     @FXML
-    public void onSaveAs(ActionEvent event) {
+    public void onSaveAs() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save as");
         fileChooser.getExtensionFilters().addAll(
@@ -125,7 +131,7 @@ public class MainController{
     }
 
     @FXML
-    public void quit(ActionEvent event)
+    public void quit()
     {
         ((Stage) MasterData.mainWindow).close();
     }

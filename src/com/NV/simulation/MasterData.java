@@ -4,11 +4,10 @@ import com.NV.simulation.controllers.AddAnimalController;
 import com.NV.simulation.controllers.MainController;
 import com.NV.simulation.controllers.StatsController;
 import com.NV.simulation.controllers.TileEditController;
-import com.NV.simulation.managers.AnimalManager;
-import com.NV.simulation.managers.AnimalPlacer;
-import com.NV.simulation.managers.WeatherManager;
-import com.NV.simulation.map.Map;
-import com.NV.simulation.weather.Wind;
+import com.NV.simulation.managers.animal.AnimalManager;
+import com.NV.simulation.managers.animal.AnimalPlacer;
+import com.NV.simulation.managers.weather.WeatherManager;
+import com.NV.simulation.managers.map.Map;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 

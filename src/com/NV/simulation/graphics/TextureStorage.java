@@ -14,4 +14,6 @@ public class TextureStorage {
     public static Image rabbit = new Image("file:src/com/NV/simulation/resources/textures/Rabbit.png");
     public static Image wolf = new Image("file:src/com/NV/simulation/resources/textures/Wolf.png");
     public static Image fox = new Image("file:src/com/NV/simulation/resources/textures/Fox.png");
+    public static Image cloud2 = new Image("file:src/com/NV/simulation/resources/textures/cloud2.png");
+    public static Image cloud1 = new Image("file:src/com/NV/simulation/resources/textures/cloud1.png");
 }

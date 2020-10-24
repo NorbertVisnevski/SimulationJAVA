@@ -2,23 +2,17 @@ package com.NV.simulation.graphics;
 
 import com.NV.simulation.animals.*;
 import com.NV.simulation.MasterData;
-import com.NV.simulation.controllers.WindController;
-import com.NV.simulation.graphics.dialogs.NewMapDialog;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.Cloud;
-import com.sun.javafx.iio.ImageStorage;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.NV.simulation.managers;
+package com.NV.simulation.managers.file;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.dialogs.ErrorDialog;
-import com.NV.simulation.map.Tile;
+import com.NV.simulation.tile.Tile;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

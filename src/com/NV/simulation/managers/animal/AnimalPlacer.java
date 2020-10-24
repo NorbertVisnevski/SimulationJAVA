@@ -1,15 +1,11 @@
-package com.NV.simulation.managers;
+package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;
 import com.NV.simulation.graphics.Application;
-import com.NV.simulation.graphics.GraphicSettings;
 import com.NV.simulation.graphics.GraphicalAnimalPlacer;
-import com.NV.simulation.map.Tile;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class AnimalPlacer {
 
