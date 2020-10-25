@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class Map implements CollectionManager<Tile> {
 
-    private HashMap<Point, Tile> tileMap;
+    private final HashMap<Point, Tile> tileMap;
 
     public Map() {
         this.tileMap = new HashMap<>();
     }
 
     public List<Tile> getList() {
-        return new ArrayList<>(tileMap.values().stream().collect(Collectors.toList()));
+        return new ArrayList<>(new ArrayList<>(tileMap.values()));
     }
 
     public void add(Tile tile)
@@ -68,7 +68,7 @@ public class Map implements CollectionManager<Tile> {
              list.add(getTileAt(new Point(position.x + 1, position.y + 1)));
              list.add(getTileAt(new Point(position.x, position.y+1)));
          }
-         list = list.stream().filter(tile->tile!=null).collect(Collectors.toList());
+         list = list.stream().filter(Objects::nonNull).collect(Collectors.toList());
          if(canWalkOn)
          {
              list = list.stream().filter(tile->!tile.isImpassible()).collect(Collectors.toList());
@@ -87,7 +87,8 @@ public class Map implements CollectionManager<Tile> {
             }
         };
         List<Point> possibleMoves = new ArrayList<>();
-        possibleMoves.add(tileMap.stream().min((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
+        //possibleMoves.add(tileMap.stream().min((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
+        possibleMoves.add(tileMap.stream().min(cmp).get().getPosition());
 
         int x = 0;
         int y = 0;
@@ -111,7 +112,8 @@ public class Map implements CollectionManager<Tile> {
             }
         };
         List<Point> possibleMoves = new ArrayList<>();
-        possibleMoves.add(tileMap.stream().max((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
+        //possibleMoves.add(tileMap.stream().max((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
+        possibleMoves.add(tileMap.stream().max(cmp).get().getPosition());
 
         int x = 0;
         int y = 0;
@@ -132,6 +134,6 @@ public class Map implements CollectionManager<Tile> {
 
     public void replenishGroundNutrience(double amount)
     {
-        getList().stream().forEach(tile->tile.setNutritionContent(tile.getNutritionContent()+amount));
+        getList().forEach(tile->tile.setNutritionContent(tile.getNutritionContent()+amount));
     }
 }

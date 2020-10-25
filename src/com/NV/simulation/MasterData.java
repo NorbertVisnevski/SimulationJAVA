@@ -19,7 +19,7 @@ public final class MasterData {
     public static Random random = new Random();
     public static StringBuilder stringBuilder = new StringBuilder();
     public static Window mainWindow = null;
-    public static Pane tileMap;//Just temporary
+    public static Pane tileMap;
     public static MainController mainUIController;
     public static StatsController statsController;
     public static TileEditController tileEditController;

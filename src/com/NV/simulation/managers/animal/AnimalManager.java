@@ -31,18 +31,16 @@ public class AnimalManager implements CollectionManager<Animal> {
 
     public List<Animal> getAnimalsInRange(Point origin, double radius)
     {
-        return new ArrayList<>(animalCollection.stream().
-                filter(animal->Math.floor(origin.distance(animal.getLocation()))<=radius).
-                filter(animal->!animal.isDead()).
-                collect(Collectors.toList()));
+        return animalCollection.stream().
+                filter(animal -> Math.floor(origin.distance(animal.getLocation())) <= radius).
+                filter(animal -> !animal.isDead()).collect(Collectors.toList());
     }
 
     public List<Animal> getAnimalsAt(Point origin)
     {
-        return new ArrayList<>(animalCollection.stream().
-                filter(animal->animal.getLocation().equals(origin)).
-                filter(animal->!animal.isDead()).
-                collect(Collectors.toList()));
+        return animalCollection.stream().
+                filter(animal -> animal.getLocation().equals(origin)).
+                filter(animal -> !animal.isDead()).collect(Collectors.toList());
     }
 
     public void add(Animal animal){
@@ -104,9 +102,15 @@ public class AnimalManager implements CollectionManager<Animal> {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     Animal food = null;
                     if (animal instanceof AnimalWolf)
-                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox || anim instanceof AnimalDeer).findFirst().orElse(null);
+                        food = animalsAtLocation.stream()
+                                .filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox || anim instanceof AnimalDeer)
+                                .findFirst()
+                                .orElse(null);
                     if (animal instanceof AnimalFox)
-                        food = animalsAtLocation.stream().filter(anim -> anim instanceof AnimalRabbit).findFirst().orElse(null);
+                        food = animalsAtLocation.stream()
+                                .filter(anim -> anim instanceof AnimalRabbit)
+                                .findFirst()
+                                .orElse(null);
 
                     if (food != null) {
                         animal.setHunger(0.0);
@@ -119,11 +123,13 @@ public class AnimalManager implements CollectionManager<Animal> {
                 if(animal.getHunger()<50.0) {
 
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
-                    Animal possibleMate = animalsAtLocation.stream().filter(anim -> anim.getClass() == animal.getClass()).filter(anim->anim.getHunger()<50.0).filter(anim->anim!=animal).findFirst().orElse(null);
+                    animalsAtLocation.stream()
+                            .filter(anim -> anim.getClass() == animal.getClass())
+                            .filter(anim -> anim.getHunger() < 50.0)
+                            .filter(anim -> anim != animal)
+                            .findFirst()
+                            .ifPresent(possibleMate -> newAnimals.add(animal.mateWith(possibleMate)));
 
-                    if (possibleMate != null) {
-                        newAnimals.add(animal.mateWith(possibleMate));
-                    }
                 }
             }
             animalCollection.removeAll(deadAnimals);

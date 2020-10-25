@@ -119,7 +119,7 @@ public class WeatherManager implements CollectionManager<Cloud> {
             cloud.moveTo(tile);
             if(cloud.willRain())
             {
-                cloud.rain(MasterData.map.getTileNeighbours(cloud.getLocation()).stream().collect(Collectors.toList()));
+                cloud.rain(new ArrayList<>(MasterData.map.getTileNeighbours(cloud.getLocation())));
                 i.remove();
                 continue;
             }
