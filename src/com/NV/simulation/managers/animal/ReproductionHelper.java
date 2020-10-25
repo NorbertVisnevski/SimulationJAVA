@@ -16,21 +16,27 @@ public class ReproductionHelper {
         double mutationRate = ReproductionHelper.getProperty(a1.getMutationRate(), a2.getMutationRate(), mr1, mr2);
 
         Animal newAnimal = null;
-        if(a1.getClass() == AnimalRabbit.class)
-        {
-            newAnimal = new AnimalRabbit(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
+
+        try{
+            newAnimal = (Animal)Class.forName(a1.getClass().getName()).getDeclaredConstructor().newInstance();
         }
-        else if(a1.getClass() == AnimalFox.class)
+        catch(Exception e){}
+
+        if(newAnimal != null)
         {
-            newAnimal = new AnimalFox(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
-        }
-        else if(a1.getClass() == AnimalWolf.class)
-        {
-            newAnimal = new AnimalWolf(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
-        }
-        else if(a1.getClass() == AnimalDeer.class)
-        {
-            newAnimal = new AnimalDeer(50.0,reproductionDrive,survivalDrive,speed,sensesRadius,mutationRate,a1.getLocation());
+            try{
+                newAnimal.setSpeed(speed);
+                newAnimal.setLocation(a1.getLocation());
+                newAnimal.setHunger(50);
+                newAnimal.setReproductionDrive(reproductionDrive);
+                newAnimal.setMutationRate(mutationRate);
+                newAnimal.setSensesRange(sensesRadius);
+                newAnimal.setSurvivalDrive(survivalDrive);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
 
         a1.setHunger(a1.getHunger()+25.0);
