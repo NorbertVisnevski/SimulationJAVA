@@ -2,7 +2,7 @@ package com.NV.simulation.graphics.dialogs;
 
 import javafx.scene.control.Alert;
 
-public class ErrorDialog{
+public class ErrorDialog {
     public ErrorDialog()
     {
         this("Error Dialog");

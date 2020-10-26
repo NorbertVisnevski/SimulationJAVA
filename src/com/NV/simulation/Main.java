@@ -32,6 +32,7 @@ public class Main {
         MasterData.weatherManager.linkToMap(MasterData.map);
 
 
+
         List<Animal> l = new ArrayList<>();
         Animal a;
         a = new AnimalRabbit();
