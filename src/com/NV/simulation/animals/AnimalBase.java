@@ -145,14 +145,14 @@ public abstract class AnimalBase implements Animal, Serializable {
         double y = 0;
         double divider = getHunger() + getReproductionDrive() + getSurvivalDrive();
         x += possibleMoves.get(0).x * getHunger();
-        x += possibleMoves.get(0).x * getReproductionDrive();
-        x += possibleMoves.get(0).x * getSurvivalDrive();
+        x += possibleMoves.get(1).x * getReproductionDrive();
+        x += possibleMoves.get(2).x * getSurvivalDrive();
 
         y += possibleMoves.get(0).y * getHunger();
-        y += possibleMoves.get(0).y * getReproductionDrive();
-        y += possibleMoves.get(0).y * getSurvivalDrive();
+        y += possibleMoves.get(1).y * getReproductionDrive();
+        y += possibleMoves.get(2).y * getSurvivalDrive();
 
-        return new Point((int)(x/divider), (int)(y/divider));
+        return new Point((int)(Math.round(x/divider)), (int)(Math.round(y/divider)));
     }
 
     protected abstract void findFood(List<Point> possibleMoves);

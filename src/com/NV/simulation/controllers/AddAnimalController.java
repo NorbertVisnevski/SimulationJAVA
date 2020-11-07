@@ -4,7 +4,6 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.TextureStorage;
-import com.NV.simulation.weather.wind.Wind;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -102,44 +101,33 @@ public class AddAnimalController {
 
     public Animal createAnimal(Point location)
     {
+        Animal animal = null;
         switch(type)
         {
             case Types.RABBIT:
-                return new AnimalRabbit(Double.parseDouble(hungerTextField.getText()),
-                        Double.parseDouble(reproductionDriveTextField.getText()),
-                        Double.parseDouble(survivalDriveTextField.getText()),
-                        Double.parseDouble(speedTextField.getText()),
-                        Double.parseDouble(sensingRangeTextField.getText()),
-                        Double.parseDouble(mutationRateTextField.getText()),
-                        new Point(location));
+                animal = new AnimalRabbit();
+                break;
             case Types.WOLF:
-                return new AnimalWolf(Double.parseDouble(hungerTextField.getText()),
-                    Double.parseDouble(reproductionDriveTextField.getText()),
-                    Double.parseDouble(survivalDriveTextField.getText()),
-                    Double.parseDouble(speedTextField.getText()),
-                    Double.parseDouble(sensingRangeTextField.getText()),
-                    Double.parseDouble(mutationRateTextField.getText()),
-                    new Point(location));
+                animal = new AnimalWolf();
+                break;
             case Types.FOX:
-                return new AnimalFox(Double.parseDouble(hungerTextField.getText()),
-                    Double.parseDouble(reproductionDriveTextField.getText()),
-                    Double.parseDouble(survivalDriveTextField.getText()),
-                    Double.parseDouble(speedTextField.getText()),
-                    Double.parseDouble(sensingRangeTextField.getText()),
-                    Double.parseDouble(mutationRateTextField.getText()),
-                    new Point(location));
+                animal = new AnimalFox();
+                break;
             case Types.DEER:
-                return new AnimalDeer(Double.parseDouble(hungerTextField.getText()),
-                        Double.parseDouble(reproductionDriveTextField.getText()),
-                        Double.parseDouble(survivalDriveTextField.getText()),
-                        Double.parseDouble(speedTextField.getText()),
-                        Double.parseDouble(sensingRangeTextField.getText()),
-                        Double.parseDouble(mutationRateTextField.getText()),
-                        new Point(location));
+                animal = new AnimalDeer();
+                break;
             default:
-                System.out.println("null animal");
                 return null;
         }
+        animal.setHunger(Double.parseDouble(hungerTextField.getText()));
+        animal.setReproductionDrive(Double.parseDouble(reproductionDriveTextField.getText()));
+        animal.setSurvivalDrive(Double.parseDouble(survivalDriveTextField.getText()));
+        animal.setSpeed(Double.parseDouble(speedTextField.getText()));
+        animal.setSensesRange(Double.parseDouble(sensingRangeTextField.getText()));
+        animal.setMutationRate(Double.parseDouble(mutationRateTextField.getText()));
+        animal.setLocation(new Point(location));
+
+        return animal;
     }
 
 }

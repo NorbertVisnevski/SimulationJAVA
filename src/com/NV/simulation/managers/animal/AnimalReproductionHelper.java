@@ -24,7 +24,7 @@ public class AnimalReproductionHelper {
         double sensesRadius = AnimalReproductionHelper.getProperty(a1.getSensesRange(), a2.getSensesRange(), mr1, mr2);
         double mutationRate = AnimalReproductionHelper.getProperty(a1.getMutationRate(), a2.getMutationRate(), mr1, mr2);
 
-        Animal newAnimal = (Animal)Class.forName(a1.getClass().getName()).getDeclaredConstructor().newInstance();
+        Animal newAnimal = (Animal)Class.forName(MasterData.random.nextInt(2)==0 ? a1.getClass().getName():a2.getClass().getName()).getDeclaredConstructor().newInstance();
 
         newAnimal.setSpeed(speed);
         newAnimal.setLocation(a1.getLocation());

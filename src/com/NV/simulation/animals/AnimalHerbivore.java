@@ -53,8 +53,7 @@ public abstract class AnimalHerbivore extends AnimalBase {
 
         if(carnivores.size()==0)
         {
-            Random rand = new Random();
-            possibleMoves.add(tileOptions.get(rand.nextInt(tileOptions.size())).getPosition());
+            possibleMoves.add(tileOptions.get(MasterData.random.nextInt(tileOptions.size())).getPosition());
             return;
         }
 

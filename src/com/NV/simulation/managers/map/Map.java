@@ -23,6 +23,7 @@ public class Map implements CollectionManager<Tile> {
 
     public void add(Tile tile)
     {
+        if(tile!=null)
         tileMap.put(tile.getPosition(),tile);
     }
     public void add(Collection<Tile> list)

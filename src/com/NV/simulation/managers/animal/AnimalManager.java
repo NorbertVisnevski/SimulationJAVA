@@ -49,11 +49,13 @@ public class AnimalManager implements CollectionManager<Animal> {
     }
 
     public void add(Animal animal){
-        animalCollection.add(animal);
-        animalCollection.sort(listSorter);
+        if(animal!=null) {
+            animalCollection.add(animal);
+            animalCollection.sort(listSorter);
+        }
     }
     public void add(Collection<Animal> animals){
-        animalCollection.addAll(animals);
+        animalCollection.addAll(animals.stream().filter(Objects::nonNull).collect(Collectors.toList()));
         animalCollection.sort(listSorter);
     }
     public void clear()

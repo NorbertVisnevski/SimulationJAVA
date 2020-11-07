@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class AnimalPlacer {
 
-    public GraphicalAnimalPlacer placer = new GraphicalAnimalPlacer();
+    public final GraphicalAnimalPlacer placer = new GraphicalAnimalPlacer();
 
     private boolean readyToPlace;
 

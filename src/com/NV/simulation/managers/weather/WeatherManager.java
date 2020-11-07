@@ -10,9 +10,7 @@ import com.NV.simulation.weather.clouds.OceanianCloud;
 import com.NV.simulation.weather.wind.Wind;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,12 +25,13 @@ public class WeatherManager implements CollectionManager<Cloud> {
 
     public void add(Cloud cloud)
     {
+        if(cloud!=null)
         cloudList.add(cloud);
     }
 
     public void add(Collection<Cloud> clouds)
     {
-        cloudList.addAll(clouds);
+        cloudList.addAll(clouds.stream().filter(Objects::nonNull).collect(Collectors.toList()));
     }
 
     public List<Cloud> getList() {

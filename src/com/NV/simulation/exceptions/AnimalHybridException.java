@@ -20,6 +20,7 @@ public class AnimalHybridException extends Exception {
         super(message);
         animals = new Pair<>(animal1,animal2);
     }
+
     Pair<Animal, Animal>getIncompatibleAnimals()
     {
         return animals;
