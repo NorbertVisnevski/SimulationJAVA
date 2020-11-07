@@ -147,7 +147,7 @@ public class AnimalManager implements CollectionManager<Animal> {
 
             }
         }
-        catch(Exception e)
+        catch(NullPointerException e)
         {
             AsyncLogHandler log = new ErrorLogger();
             log.append(new File("log.txt"), "Animal manager error\n"+e);
@@ -159,6 +159,12 @@ public class AnimalManager implements CollectionManager<Animal> {
             }
             update();
             return;
+        }
+        catch(Exception e)
+        {
+            AsyncLogHandler log = new ErrorLogger();
+            log.append(new File("log.txt"), "Animal manager error\n"+e);
+            System.out.println(e);
         }
         animalCollection.removeAll(deadAnimals);
         add(newAnimals);

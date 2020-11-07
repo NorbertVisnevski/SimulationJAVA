@@ -47,16 +47,19 @@ public final class Application extends javafx.application.Application {
         cloudGroup.getChildren().clear();
         List<Tile> tilemap = MasterData.map.getList();
         for (Tile tile : tilemap) {
+            if(tile != null)
             tileGroup.getChildren().add(new GraphicTile(tile));
         }
 
         List<Animal> animalmap = MasterData.animalManager.getList();
         for (Animal animal : animalmap) {
+            if(animal != null)
             animalGroup.getChildren().add(new GraphicAnimal(animal));
         }
 
         List<Cloud> cloudList = MasterData.weatherManager.getList();
         for (Cloud cloud : cloudList) {
+            if(cloud != null)
             cloudGroup.getChildren().add(new GraphicalCloud(cloud));
         }
     }
