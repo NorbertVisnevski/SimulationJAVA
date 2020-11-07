@@ -18,24 +18,21 @@ public class SimulationFileHandler implements AsyncFileHandler{
         if(file != null)
         {
             new Thread(() -> {
-                try
+                try( FileOutputStream fileOutput = new FileOutputStream(file.getPath());
+                     ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput))
                 {
-                    System.out.println(file.getPath());
-                    FileOutputStream fileOutput = new FileOutputStream(file.getPath());
-                    ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
-
-                    // Method for serialization of object
                     objectOutput.writeObject(MasterData.map.getList());
                     objectOutput.writeObject(MasterData.animalManager.getList());
                     objectOutput.writeObject(MasterData.weatherManager.getList());
                     objectOutput.writeObject(MasterData.weatherManager.getWindDirection());
-
-                    objectOutput.close();
-                    fileOutput.close();
                 }
-                catch(Exception e){
-                    System.out.println(e);
-                    Application.addCallbackFunction(()->{new ErrorDialog();});
+                catch(IOException e)
+                {
+                    Application.addCallbackFunction(()->{new ErrorDialog("File Error","Input output OS failure");});
+                }
+                catch(Exception e)
+                {
+                    Application.addCallbackFunction(()->{new ErrorDialog("File Error","Error: unknown");});
                 }
             }).start();
         }
@@ -44,19 +41,14 @@ public class SimulationFileHandler implements AsyncFileHandler{
     public void readAsync(File file)
     {
         Thread thread = new Thread(()-> {
-            try
+            try(FileInputStream fileInput = new FileInputStream(file.getPath());
+                ObjectInputStream objectInput = new ObjectInputStream(fileInput))
             {
-                System.out.println(file.getPath());
-                FileInputStream fileInput = new FileInputStream(file.getPath());
-                ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
                 List<Tile> map = (ArrayList<Tile>) objectInput.readObject();
                 List<Animal> animals = (ArrayList<Animal>)objectInput.readObject();
                 List<Cloud> clouds = (ArrayList<Cloud>)objectInput.readObject();
                 String windDirection = (String)objectInput.readObject();
-
-                objectInput.close();
-                fileInput.close();
 
                 Application.addCallbackFunction(()->{
 
@@ -71,9 +63,21 @@ public class SimulationFileHandler implements AsyncFileHandler{
                     Application.shuffleEntities();
                 });
             }
-            catch(Exception e){
-                System.out.println(e);
-                Application.addCallbackFunction(()->{new ErrorDialog();});
+            catch(StreamCorruptedException e)
+            {
+                Application.addCallbackFunction(()->{new ErrorDialog("File Error","File got corrupted or was saved with a outdated version of this application");});
+            }
+            catch(IOException e)
+            {
+                Application.addCallbackFunction(()->{new ErrorDialog("File Error","Input output OS failure");});
+            }
+            catch(ClassNotFoundException e)
+            {
+                Application.addCallbackFunction(()->{new ErrorDialog("File Error","Unable to understand saved content");});
+            }
+            catch(Exception e)
+            {
+                Application.addCallbackFunction(()->{new ErrorDialog("File Error","Error: unknown");});
             }
         });
         thread.start();

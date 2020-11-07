@@ -2,10 +2,16 @@ package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.graphics.Application;
+import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.managers.CollectionManager;
+import com.NV.simulation.managers.file.AsyncLogHandler;
+import com.NV.simulation.managers.file.ErrorLogger;
 import com.NV.simulation.tile.Tile;
+import com.NV.simulation.weather.clouds.Cloud;
 
 import java.awt.*;
+import java.io.File;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,12 +66,10 @@ public class AnimalManager implements CollectionManager<Animal> {
     public void update() {
         List<Animal> newAnimals = new ArrayList<>();
         List<Animal> deadAnimals = new ArrayList<>();
-        //TODO fix this!
         try {
             for (Animal animal : animalCollection) {
 
-                if(animal.isDead())
-                {
+                if (animal.isDead()) {
                     deadAnimals.add(animal);
                     continue;
                 }
@@ -78,9 +82,8 @@ public class AnimalManager implements CollectionManager<Animal> {
                 }
 
                 Point point = animal.calculateMove();
-                if(MasterData.map.getTileAt(point).isImpassible())
-                {
-                    point = MasterData.map.getTileNeighbours(animal.getLocation(),true).get(0).getPosition();
+                if (MasterData.map.getTileAt(point).isImpassible()) {
+                    point = MasterData.map.getTileNeighbours(animal.getLocation(), true).get(0).getPosition();
                 }
                 if (animal instanceof AnimalHerbivore) {
                     if (point.equals(animal.getLocation())) {
@@ -95,7 +98,6 @@ public class AnimalManager implements CollectionManager<Animal> {
                 }
                 animal.setLocation(point);
                 animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());
-
 
 
                 if (animal instanceof AnimalCarnivore) {
@@ -120,22 +122,46 @@ public class AnimalManager implements CollectionManager<Animal> {
                 }
 
                 //reproduce
-                if(animal.getHunger()<50.0) {
 
+                if (animal.getHunger() < 50.0) {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     animalsAtLocation.stream()
                             .filter(anim -> anim.getClass() == animal.getClass())
                             .filter(anim -> anim.getHunger() < 50.0)
                             .filter(anim -> anim != animal)
                             .findFirst()
-                            .ifPresent(possibleMate -> newAnimals.add(animal.mateWith(possibleMate)));
+                            .ifPresent(possibleMate -> {
+                                try {
+                                    newAnimals.add(animal.mateWith(possibleMate));
+                                } catch (Exception e) {
+                                    AsyncLogHandler log = new ErrorLogger();
+                                    log.append(new File("log.txt"), "Hello");
 
+                                } finally {
+                                    Application.addCallbackFunction(() -> {
+                                        new ErrorDialog("Simulation Error", "Critical simulation logic error");
+                                    });
+                                }
+                            });
                 }
+
             }
-            animalCollection.removeAll(deadAnimals);
-            add(newAnimals);
         }
         catch(Exception e)
-        {System.out.println("Animal manager" + e);}
+        {
+            AsyncLogHandler log = new ErrorLogger();
+            log.append(new File("log.txt"), "Animal manager error\n"+e);
+            System.out.println(e);
+            Iterator<Animal> i = animalCollection.iterator();
+            while (i.hasNext()) {
+                if(i.next() == null)
+                    i.remove();
+            }
+            update();
+            return;
+        }
+        animalCollection.removeAll(deadAnimals);
+        add(newAnimals);
+
     }
 }

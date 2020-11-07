@@ -1,6 +1,6 @@
 package com.NV.simulation.animals;
 
-import com.NV.simulation.managers.animal.ReproductionHelper;
+import com.NV.simulation.managers.animal.AnimalReproductionHelper;
 import com.NV.simulation.managers.map.Map;
 import com.NV.simulation.tile.Tile;
 import com.NV.simulation.MasterData;
@@ -188,13 +188,9 @@ public abstract class AnimalBase implements Animal, Serializable {
 
     protected abstract void survive(List<Point> possibleMoves);
 
-    public Animal mateWith(Animal other)
+    public Animal mateWith(Animal other) throws Exception
     {
-        if(other.getClass() != this.getClass())
-        {
-            return null;
-        }
-        return ReproductionHelper.reproduce(this,other);
+        return AnimalReproductionHelper.reproduce(this,other);
     }
 
 

@@ -13,7 +13,8 @@ import javafx.stage.Window;
 
 import java.util.Random;
 
-public final class MasterData {
+public abstract class MasterData {
+
     public static Map map = new Map();
     public static AnimalManager animalManager = new AnimalManager();
     public static Random random = new Random();

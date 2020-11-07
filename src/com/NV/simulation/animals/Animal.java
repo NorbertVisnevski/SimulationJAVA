@@ -40,6 +40,6 @@ public interface Animal {
 
     Point calculateMove();
 
-    Animal mateWith(Animal other);
+    Animal mateWith(Animal other) throws Exception;
 
 }

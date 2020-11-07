@@ -1,6 +1,8 @@
 package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
+import com.NV.simulation.graphics.Application;
+import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.graphics.dialogs.NewMapDialog;
 import com.NV.simulation.managers.file.AsyncFileHandler;
 import com.NV.simulation.managers.file.MapFileHandler;
@@ -18,6 +20,7 @@ import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 public class MainController{
 
@@ -54,8 +57,11 @@ public class MainController{
             secondStage.show();
             MasterData.statsController = loader.getController();
             secondStage.setOnCloseRequest(e -> MasterData.statsController.stop());
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch(IOException e) {
+            Application.addCallbackFunction(()->{new ErrorDialog("UI Error","Unable to locate Stats.fxml");});
+        }
+        catch(Exception e) {
+            Application.addCallbackFunction(()->{new ErrorDialog("Error","Critical application error");});
         }
     }
 

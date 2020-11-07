@@ -20,9 +20,6 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-
-//For rendering window
-//TODO fix this mess
 public final class Application extends javafx.application.Application {
 
     public static Group animalGroup = new Group();
@@ -30,7 +27,7 @@ public final class Application extends javafx.application.Application {
     public static Group cloudGroup = new Group();
 
 
-    private static Deque<Runnable> callbackList = new LinkedList<>();
+    private final static Deque<Runnable> callbackList = new LinkedList<>();
 
     public synchronized static void addCallbackFunction(Runnable runnable)
     {
