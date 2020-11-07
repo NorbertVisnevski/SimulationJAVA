@@ -8,7 +8,6 @@ import com.NV.simulation.managers.CollectionManager;
 import com.NV.simulation.managers.file.AsyncLogHandler;
 import com.NV.simulation.managers.file.ErrorLogger;
 import com.NV.simulation.tile.Tile;
-import com.NV.simulation.weather.clouds.Cloud;
 
 import java.awt.*;
 import java.io.File;
@@ -134,10 +133,9 @@ public class AnimalManager implements CollectionManager<Animal> {
                                 try {
                                     newAnimals.add(animal.mateWith(possibleMate));
                                 } catch (Exception e) {
+                                    System.out.println(e);
                                     AsyncLogHandler log = new ErrorLogger();
                                     log.append(new File("log.txt"), "Hello");
-
-                                } finally {
                                     Application.addCallbackFunction(() -> {
                                         new ErrorDialog("Simulation Error", "Critical simulation logic error");
                                     });

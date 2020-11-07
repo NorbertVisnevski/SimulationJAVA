@@ -4,7 +4,9 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
 import com.NV.simulation.graphics.GraphicSettings;
 import com.NV.simulation.graphics.TextureStorage;
+import com.NV.simulation.tile.Tile;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +32,17 @@ public class GraphicAnimal extends Rectangle implements WithStatTooltip {
         setWidth(32);
         initTooltip();
         updateTooltip();
+        setOnMouseClicked(e->{
+            if(MasterData.animalPlacer.readyToPlace())
+            {
+                Tile tile = MasterData.map.getTileAt(animal.getLocation());
+                if(!tile.isImpassible())
+                {
+                    if(e.getButton() == MouseButton.PRIMARY)
+                        MasterData.animalPlacer.placeAnimal(tile.getPosition());
+                }
+            }
+        });
     }
 
     public void shufflePosition()
