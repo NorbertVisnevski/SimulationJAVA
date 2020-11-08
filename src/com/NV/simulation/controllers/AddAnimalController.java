@@ -63,22 +63,12 @@ public class AddAnimalController {
 
     private void switchType(String type)
     {
-        switch(type)
-        {
-            case "Rabbit":
-                animalTextureSpace.setFill(new ImagePattern(TextureStorage.rabbit, 0, 0, 1, 1, true));
-                break;
-            case "Wolf":
-                animalTextureSpace.setFill(new ImagePattern(TextureStorage.wolf, 0, 0, 1, 1, true));
-                break;
-            case "Fox":
-                animalTextureSpace.setFill(new ImagePattern(TextureStorage.fox, 0, 0, 1, 1, true));
-                break;
-            case "Deer":
-                animalTextureSpace.setFill(new ImagePattern(TextureStorage.deer, 0, 0, 1, 1, true));
-                break;
-            default:
-                animalTextureSpace.setFill(Color.DEEPPINK);
+        switch (type) {
+            case "Rabbit" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.rabbit, 0, 0, 1, 1, true));
+            case "Wolf" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.wolf, 0, 0, 1, 1, true));
+            case "Fox" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.fox, 0, 0, 1, 1, true));
+            case "Deer" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.deer, 0, 0, 1, 1, true));
+            default -> animalTextureSpace.setFill(Color.DEEPPINK);
         }
     }
 
@@ -90,24 +80,13 @@ public class AddAnimalController {
 
     public Animal createAnimal(Point location) throws UnknownAnimalException
     {
-        Animal animal = null;
-        switch(animalTypeChoiceBox.getSelectionModel().getSelectedItem())
-        {
-            case "Rabbit":
-                animal = new AnimalRabbit();
-                break;
-            case "Wolf":
-                animal = new AnimalWolf();
-                break;
-            case "Fox":
-                animal = new AnimalFox();
-                break;
-            case "Deer":
-                animal = new AnimalDeer();
-                break;
-            default:
-                throw new UnknownAnimalException("Can't create animal of type: " + animalTypeChoiceBox.getSelectionModel().getSelectedItem());
-        }
+        Animal animal = switch (animalTypeChoiceBox.getSelectionModel().getSelectedItem()) {
+            case "Rabbit" -> new AnimalRabbit();
+            case "Wolf" -> new AnimalWolf();
+            case "Fox" -> new AnimalFox();
+            case "Deer" -> new AnimalDeer();
+            default -> throw new UnknownAnimalException("Can't create animal of type: " + animalTypeChoiceBox.getSelectionModel().getSelectedItem());
+        };
         animal.setHunger(Double.parseDouble(hungerTextField.getText()));
         animal.setReproductionDrive(Double.parseDouble(reproductionDriveTextField.getText()));
         animal.setSurvivalDrive(Double.parseDouble(survivalDriveTextField.getText()));

@@ -41,24 +41,13 @@ public class AnimalPlacer {
         placer.setVisible(false);
     }
 
-    public void placeAnimal(Point position) {
-        try{
-            Animal animal = MasterData.addAnimalController.createAnimal(position);
-            Application.addCallbackFunction(() -> {
-                MasterData.animalManager.add(animal);
-                Application.animalGroup.getChildren().add(new GraphicAnimal(animal));
-                ((GraphicAnimal)Application.animalGroup.getChildren().get(Application.animalGroup.getChildren().size()-1)).shufflePosition();
-            });
-        }
-        catch(UnknownAnimalException e)
-        {
-            Application.addCallbackFunction(()->{new ErrorDialog("Animal placement error",e.getMessage());
-            });
-        }
-        catch(Exception e)
-        {
-            AsyncLogHandler log = new ErrorLogger();
-            log.append(new File("log.txt"), "Animal creation controller error\n"+e);
-        }
+    public void placeAnimal(Point position) throws UnknownAnimalException
+    {
+        Animal animal = MasterData.addAnimalController.createAnimal(position);
+        Application.addCallbackFunction(() -> {
+            MasterData.animalManager.add(animal);
+            Application.animalGroup.getChildren().add(new GraphicAnimal(animal));
+            ((GraphicAnimal)Application.animalGroup.getChildren().get(Application.animalGroup.getChildren().size()-1)).shufflePosition();
+        });
     }
 }

@@ -14,7 +14,9 @@ import javafx.stage.Window;
 import java.io.File;
 import java.util.Random;
 
-public abstract class MasterData {
+public final class MasterData {
+
+    private MasterData(){}
 
     public static Map map = new Map();
     public static AnimalManager animalManager = new AnimalManager();

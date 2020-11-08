@@ -45,6 +45,7 @@ public final class Application extends javafx.application.Application {
         tileGroup.getChildren().forEach(a->((GraphicTile)a).uninstallTooltip());
         tileGroup.getChildren().clear();
         cloudGroup.getChildren().clear();
+
         List<Tile> tilemap = MasterData.map.getList();
         for (Tile tile : tilemap) {
             if(tile != null)
@@ -66,7 +67,6 @@ public final class Application extends javafx.application.Application {
 
 
     public void start(Stage primaryStage) throws Exception {
-
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("/com/NV/simulation/resources/UI/MainUI.fxml"));
 

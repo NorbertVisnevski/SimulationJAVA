@@ -2,6 +2,7 @@ package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.exceptions.AnimalHybridException;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.managers.CollectionManager;
@@ -126,23 +127,18 @@ public class AnimalManager implements CollectionManager<Animal> {
 
                 if (animal.getHunger() < 50.0) {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
-                    animalsAtLocation.stream()
-                            .filter(anim -> anim.getClass() == animal.getClass())
-                            .filter(anim -> anim.getHunger() < 50.0)
-                            .filter(anim -> anim != animal)
-                            .findFirst()
-                            .ifPresent(possibleMate -> {
-                                try {
-                                    newAnimals.add(animal.mateWith(possibleMate));
-                                } catch (Exception e) {
-                                    System.out.println(e);
-                                    AsyncLogHandler log = new ErrorLogger();
-                                    log.append(new File("log.txt"), "Hello");
-                                    Application.addCallbackFunction(() -> {
-                                        new ErrorDialog("Simulation Error", "Critical simulation logic error");
-                                    });
-                                }
-                            });
+                    for(Animal anim : animalsAtLocation)
+                    {
+                        if(animal != anim && anim.getHunger() < 50)
+                        {
+                            try{
+                                newAnimals.add(animal.mateWith(anim));
+                                break;
+                            }
+                            catch (AnimalHybridException ignored)
+                            { }
+                        }
+                    }
                 }
 
             }

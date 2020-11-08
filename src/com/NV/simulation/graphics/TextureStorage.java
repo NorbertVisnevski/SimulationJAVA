@@ -16,5 +16,7 @@ public final class TextureStorage {
     public static final Image fox = new Image("file:src/com/NV/simulation/resources/textures/Fox.png");
     public static final Image deer = new Image("file:src/com/NV/simulation/resources/textures/Deer.png");
     public static final Image cloud2 = new Image("file:src/com/NV/simulation/resources/textures/cloud2.png");
-    public static final Image cloud1 = new Image("file:src/com/NV/simulation/resources/textures/cloud1.png");
+    public static final Image cloud1 = new Image("file:src/com/NV/simulation/resources/textures/cloud3.png");
+
+
 }

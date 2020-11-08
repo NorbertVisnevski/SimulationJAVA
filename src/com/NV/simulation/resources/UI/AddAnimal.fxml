@@ -33,6 +33,7 @@
             <String fx:value="Fox" />
             <String fx:value="Wolf" />
             <String fx:value="Deer" />
+            <String fx:value="Dog" />
          </FXCollections>
       </items>
       </ChoiceBox>
