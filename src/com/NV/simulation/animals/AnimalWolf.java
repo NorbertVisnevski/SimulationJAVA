@@ -12,4 +12,10 @@ public class AnimalWolf extends AnimalCarnivore {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
 
+    @Override
+    protected void initHuntedAnimals() {
+        huntedAnimals.add(AnimalRabbit.class);
+        huntedAnimals.add(AnimalDeer.class);
+        huntedAnimals.add(AnimalFox.class);
+    }
 }

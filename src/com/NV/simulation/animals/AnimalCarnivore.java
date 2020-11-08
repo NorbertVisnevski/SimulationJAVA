@@ -4,19 +4,22 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.managers.map.Map;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AnimalCarnivore extends AnimalBase {
 
+    protected final Set<Class<?>> huntedAnimals = new HashSet<>();
 
     public AnimalCarnivore() {
         super();
+        initHuntedAnimals();
     }
 
     public AnimalCarnivore(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super( hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
+        initHuntedAnimals();
     }
 
     @Override
@@ -50,6 +53,13 @@ public abstract class AnimalCarnivore extends AnimalBase {
         possibleMoves.add( new Point(x/pathTo.size(), y/pathTo.size()));
 
     }
+
+    public boolean canConsume(Animal animal)
+    {
+        return huntedAnimals.contains(animal.getClass());
+    }
+
+    protected abstract void initHuntedAnimals();
 
     @Override
     protected void survive(List<Point> possibleMoves)

@@ -83,6 +83,8 @@ public class AnimalManager implements CollectionManager<Animal> {
                     continue;
                 }
 
+                //update hunger
+                animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());
                 Point point = animal.calculateMove();
                 if (MasterData.map.getTileAt(point).isImpassible()) {
                     point = MasterData.map.getTileNeighbours(animal.getLocation(), true).get(0).getPosition();
@@ -94,32 +96,21 @@ public class AnimalManager implements CollectionManager<Animal> {
                     }
                 }
 
-                //update hunger
                 if (!animal.getLocation().equals(point)) {
                     animal.setHunger(animal.getHunger() + MasterData.map.getTileAt(point).getTravelDifficulty());
                 }
                 animal.setLocation(point);
-                animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());
-
 
                 if (animal instanceof AnimalCarnivore) {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
-                    Animal food = null;
-                    if (animal instanceof AnimalWolf)
-                        food = animalsAtLocation.stream()
-                                .filter(anim -> anim instanceof AnimalRabbit || anim instanceof AnimalFox || anim instanceof AnimalDeer)
-                                .findFirst()
-                                .orElse(null);
-                    if (animal instanceof AnimalFox)
-                        food = animalsAtLocation.stream()
-                                .filter(anim -> anim instanceof AnimalRabbit)
-                                .findFirst()
-                                .orElse(null);
-
-                    if (food != null) {
-                        animal.setHunger(0.0);
-                        food.setDead();
-                        deadAnimals.add(food);
+                    for(Animal anim:animalsAtLocation)
+                    {
+                        if(animal != anim && ((AnimalCarnivore) animal).canConsume(anim)) {
+                            animal.setHunger(0.0);
+                            anim.setDead();
+                            deadAnimals.add(anim);
+                            break;
+                        }
                     }
                 }
 
@@ -128,8 +119,7 @@ public class AnimalManager implements CollectionManager<Animal> {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     for(Animal anim : animalsAtLocation)
                     {
-                        if(animal != anim && anim.getHunger() <= 50)
-                        {
+                        if(animal != anim && anim.getHunger() <= 50) {
                             try{
                                 newAnimals.add(animal.mateWith(anim));
                                 break;

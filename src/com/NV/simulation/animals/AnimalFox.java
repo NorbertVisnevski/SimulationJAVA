@@ -20,6 +20,11 @@ public class AnimalFox extends AnimalCarnivore {
     }
 
     @Override
+    protected void initHuntedAnimals() {
+        huntedAnimals.add(AnimalRabbit.class);
+    }
+
+    @Override
     protected void survive(java.util.List<Point> possibleMoves)
     {
         java.util.List<Animal> carnivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
