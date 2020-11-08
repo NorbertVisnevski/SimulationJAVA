@@ -4,15 +4,10 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;
 import com.NV.simulation.exceptions.UnknownAnimalException;
 import com.NV.simulation.graphics.Application;
-import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.graphics.entities.GraphicAnimal;
 import com.NV.simulation.graphics.entities.GraphicalAnimalPlacer;
-import com.NV.simulation.managers.file.AsyncLogHandler;
-import com.NV.simulation.managers.file.ErrorLogger;
 
 import java.awt.*;
-import java.io.File;
-import java.util.logging.Logger;
 
 public class AnimalPlacer {
 

@@ -124,19 +124,17 @@ public class AnimalManager implements CollectionManager<Animal> {
                 }
 
                 //reproduce
-
-                if (animal.getHunger() < 50.0) {
+                if (animal.getHunger() <= 50.0) {
                     List<Animal> animalsAtLocation = getAnimalsAt(animal.getLocation());
                     for(Animal anim : animalsAtLocation)
                     {
-                        if(animal != anim && anim.getHunger() < 50)
+                        if(animal != anim && anim.getHunger() <= 50)
                         {
                             try{
                                 newAnimals.add(animal.mateWith(anim));
                                 break;
                             }
-                            catch (AnimalHybridException ignored)
-                            { }
+                            catch (AnimalHybridException ignored) { }
                         }
                     }
                 }
@@ -147,7 +145,6 @@ public class AnimalManager implements CollectionManager<Animal> {
         {
             AsyncLogHandler log = new ErrorLogger();
             log.append(new File("log.txt"), "Animal manager error\n"+e);
-            System.out.println(e);
             Iterator<Animal> i = animalCollection.iterator();
             while (i.hasNext()) {
                 if(i.next() == null)
@@ -160,7 +157,7 @@ public class AnimalManager implements CollectionManager<Animal> {
         {
             AsyncLogHandler log = new ErrorLogger();
             log.append(new File("log.txt"), "Animal manager error\n"+e);
-            System.out.println(e);
+            Application.addCallbackFunction(()->new ErrorDialog("Simulation Error",e.getMessage()));
         }
         animalCollection.removeAll(deadAnimals);
         add(newAnimals);
