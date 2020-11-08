@@ -51,8 +51,8 @@ public final class Application extends javafx.application.Application {
             tileGroup.getChildren().add(new GraphicTile(tile));
         }
 
-        List<Animal> animalmap = MasterData.animalManager.getList();
-        for (Animal animal : animalmap) {
+        List<Animal> animals = MasterData.animalManager.getList();
+        for (Animal animal : animals) {
             if(animal != null)
             animalGroup.getChildren().add(new GraphicAnimal(animal));
         }
@@ -104,10 +104,10 @@ public final class Application extends javafx.application.Application {
 
         primaryStage.setTitle("Simulation");
         primaryStage.setOnCloseRequest(e->{
-            if(MasterData.statsController != null)
-            {
-                MasterData.statsController.stop();
-            }
+        try{
+            MasterData.statsController.stop();
+        }
+        catch(Exception err){}
         });
         updateSimulationState();
         shuffleEntities();

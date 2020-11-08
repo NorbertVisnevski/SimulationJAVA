@@ -2,6 +2,7 @@ package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
+import com.NV.simulation.exceptions.UnknownAnimalException;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.TextureStorage;
 import javafx.fxml.FXML;
@@ -42,20 +43,9 @@ public class AddAnimalController {
     @FXML
     private TextField mutationRateTextField;
 
-    private final static class Types{
-        public static final String DEER = "Deer";
-        public static final String RABBIT = "Rabbit";
-        public static final String WOLF = "Wolf";
-        public static final String FOX = "Fox";
-        public static final List<String> collection = new ArrayList<>(Arrays.asList(DEER, RABBIT, WOLF,FOX));;
-    }
-
-    private String type = "Rabbit";
-
     public void initialize()
     {
-        animalTypeChoiceBox.getItems().addAll(Types.collection);
-        animalTypeChoiceBox.getSelectionModel().select("Rabbit");
+        animalTypeChoiceBox.getSelectionModel().select(0);
         onTypeChange();
 
         speedTextField.setTextFormatter(new NumberTextFormatter().getFormatter());
@@ -68,26 +58,25 @@ public class AddAnimalController {
 
     public void onTypeChange()
     {
-        type = animalTypeChoiceBox.getSelectionModel().getSelectedItem();
-        switchType();
+        switchType(animalTypeChoiceBox.getSelectionModel().getSelectedItem());
     }
 
-    private void switchType()
+    private void switchType(String type)
     {
         switch(type)
         {
-            case Types.RABBIT:
+            case "Rabbit":
                 animalTextureSpace.setFill(new ImagePattern(TextureStorage.rabbit, 0, 0, 1, 1, true));
-                return;
-            case Types.WOLF:
+                break;
+            case "Wolf":
                 animalTextureSpace.setFill(new ImagePattern(TextureStorage.wolf, 0, 0, 1, 1, true));
-                return;
-            case Types.FOX:
+                break;
+            case "Fox":
                 animalTextureSpace.setFill(new ImagePattern(TextureStorage.fox, 0, 0, 1, 1, true));
-                return;
-            case Types.DEER:
+                break;
+            case "Deer":
                 animalTextureSpace.setFill(new ImagePattern(TextureStorage.deer, 0, 0, 1, 1, true));
-                return;
+                break;
             default:
                 animalTextureSpace.setFill(Color.DEEPPINK);
         }
@@ -99,25 +88,25 @@ public class AddAnimalController {
         MasterData.animalPlacer.enable();
     }
 
-    public Animal createAnimal(Point location)
+    public Animal createAnimal(Point location) throws UnknownAnimalException
     {
         Animal animal = null;
-        switch(type)
+        switch(animalTypeChoiceBox.getSelectionModel().getSelectedItem())
         {
-            case Types.RABBIT:
+            case "Rabbit":
                 animal = new AnimalRabbit();
                 break;
-            case Types.WOLF:
+            case "Wolf":
                 animal = new AnimalWolf();
                 break;
-            case Types.FOX:
+            case "Fox":
                 animal = new AnimalFox();
                 break;
-            case Types.DEER:
+            case "Deer":
                 animal = new AnimalDeer();
                 break;
             default:
-                return null;
+                throw new UnknownAnimalException("Can't create animal of type: " + animalTypeChoiceBox.getSelectionModel().getSelectedItem());
         }
         animal.setHunger(Double.parseDouble(hungerTextField.getText()));
         animal.setReproductionDrive(Double.parseDouble(reproductionDriveTextField.getText()));

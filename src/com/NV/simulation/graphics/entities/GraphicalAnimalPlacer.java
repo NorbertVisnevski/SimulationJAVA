@@ -1,5 +1,7 @@
 package com.NV.simulation.graphics.entities;
 
+import com.NV.simulation.MasterData;
+import com.NV.simulation.tile.Tile;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import java.awt.*;

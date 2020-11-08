@@ -10,6 +10,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="181.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.AddAnimalController">
    <children>
       <Label layoutX="9.0" layoutY="6.0" text="Add Animal">
@@ -24,7 +26,16 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d2d8dd" height="66.0" layoutX="14.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
       <Rectangle fx:id="animalTextureSpace" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="64.0" layoutX="15.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="64.0" />
-      <ChoiceBox fx:id="animalTypeChoiceBox" layoutX="92.0" layoutY="52.0" onAction="#onTypeChange" prefHeight="31.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="animalTypeChoiceBox" layoutX="92.0" layoutY="52.0" onAction="#onTypeChange" prefHeight="31.0" prefWidth="78.0" >
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Rabbit" />
+            <String fx:value="Fox" />
+            <String fx:value="Wolf" />
+            <String fx:value="Deer" />
+         </FXCollections>
+      </items>
+      </ChoiceBox>
       <VBox layoutX="7.0" layoutY="100.0" prefHeight="200.0" prefWidth="168.0" spacing="10.0">
          <children>
             <HBox prefHeight="24.0" prefWidth="159.0">

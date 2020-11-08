@@ -39,7 +39,6 @@ public class GraphicTile extends Polygon implements WithStatTooltip {
                 MasterData.tileEditController.setTile(tile, this);
             }
         });
-
     }
     public GraphicTile(Tile tile, double x, double y)
     {

@@ -2,11 +2,17 @@ package com.NV.simulation.managers.animal;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.Animal;
+import com.NV.simulation.exceptions.UnknownAnimalException;
 import com.NV.simulation.graphics.Application;
+import com.NV.simulation.graphics.dialogs.ErrorDialog;
 import com.NV.simulation.graphics.entities.GraphicAnimal;
 import com.NV.simulation.graphics.entities.GraphicalAnimalPlacer;
+import com.NV.simulation.managers.file.AsyncLogHandler;
+import com.NV.simulation.managers.file.ErrorLogger;
 
 import java.awt.*;
+import java.io.File;
+import java.util.logging.Logger;
 
 public class AnimalPlacer {
 
@@ -36,13 +42,23 @@ public class AnimalPlacer {
     }
 
     public void placeAnimal(Point position) {
-        Animal animal = MasterData.addAnimalController.createAnimal(position);
-        if (animal != null) {
+        try{
+            Animal animal = MasterData.addAnimalController.createAnimal(position);
             Application.addCallbackFunction(() -> {
                 MasterData.animalManager.add(animal);
                 Application.animalGroup.getChildren().add(new GraphicAnimal(animal));
                 ((GraphicAnimal)Application.animalGroup.getChildren().get(Application.animalGroup.getChildren().size()-1)).shufflePosition();
             });
+        }
+        catch(UnknownAnimalException e)
+        {
+            Application.addCallbackFunction(()->{new ErrorDialog("Animal placement error",e.getMessage());
+            });
+        }
+        catch(Exception e)
+        {
+            AsyncLogHandler log = new ErrorLogger();
+            log.append(new File("log.txt"), "Animal creation controller error\n"+e);
         }
     }
 }
