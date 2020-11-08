@@ -11,6 +11,7 @@ import com.NV.simulation.managers.map.Map;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
+import java.io.File;
 import java.util.Random;
 
 public abstract class MasterData {
@@ -27,6 +28,7 @@ public abstract class MasterData {
     public static AddAnimalController addAnimalController;
     public static WeatherManager weatherManager = new WeatherManager();
     public static AnimalPlacer animalPlacer = new AnimalPlacer();
+    public static File currentFile = null;
     public static void clearManagers()
     {
         animalManager.clear();

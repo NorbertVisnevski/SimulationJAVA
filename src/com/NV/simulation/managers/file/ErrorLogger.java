@@ -3,16 +3,14 @@ package com.NV.simulation.managers.file;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ErrorLogger implements AsyncLogHandler{
     @Override
     public void append(File file, String message) {
         new Thread(()->{
-            try(FileWriter writer = new FileWriter(file.getName()))
+            try(FileWriter writer = new FileWriter(file.getPath()))
             {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 writer.append("\n");
@@ -29,7 +27,7 @@ public class ErrorLogger implements AsyncLogHandler{
     @Override
     public void clear(File file) {
         new Thread(()->{
-            try(FileWriter writer = new FileWriter(file.getName()))
+            try(FileWriter writer = new FileWriter(file.getPath()))
             {
                 writer.write("");
             }

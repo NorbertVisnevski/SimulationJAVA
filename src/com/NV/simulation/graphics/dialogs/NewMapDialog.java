@@ -25,7 +25,6 @@ public class NewMapDialog {
         ButtonType loginButtonType = new ButtonType("Generate", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
-// Create the username and password labels and fields.
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -43,7 +42,6 @@ public class NewMapDialog {
 
         dialog.getDialogPane().setContent(grid);
 
-// Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == loginButtonType) {
                 return new Pair<>((int)Double.parseDouble(width.getText()), (int)Double.parseDouble(height.getText()));
@@ -64,6 +62,7 @@ public class NewMapDialog {
                     }
                 }
                 MasterData.weatherManager.linkToMap(MasterData.map);
+                MasterData.currentFile = null;
                 Application.updateSimulationState();
             });
         });

@@ -25,6 +25,7 @@ public class SimulationFileHandler implements AsyncFileHandler{
                     objectOutput.writeObject(MasterData.animalManager.getList());
                     objectOutput.writeObject(MasterData.weatherManager.getList());
                     objectOutput.writeObject(MasterData.weatherManager.getWindDirection());
+                    MasterData.currentFile = file;
                 }
                 catch(IOException e)
                 {
@@ -58,6 +59,8 @@ public class SimulationFileHandler implements AsyncFileHandler{
                     MasterData.weatherManager.linkToMap(MasterData.map);
                     MasterData.weatherManager.add(clouds);
                     MasterData.weatherManager.setWindDirection(windDirection);
+
+                    MasterData.currentFile = file;
 
                     Application.updateSimulationState();
                     Application.shuffleEntities();

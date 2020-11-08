@@ -88,7 +88,6 @@ public class Map implements CollectionManager<Tile> {
             }
         };
         List<Point> possibleMoves = new ArrayList<>();
-        //possibleMoves.add(tileMap.stream().min((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
         possibleMoves.add(tileMap.stream().min(cmp).get().getPosition());
 
         int x = 0;
@@ -113,7 +112,6 @@ public class Map implements CollectionManager<Tile> {
             }
         };
         List<Point> possibleMoves = new ArrayList<>();
-        //possibleMoves.add(tileMap.stream().max((t1,t2)->cmp.compare(t1,t2)).get().getPosition());
         possibleMoves.add(tileMap.stream().max(cmp).get().getPosition());
 
         int x = 0;

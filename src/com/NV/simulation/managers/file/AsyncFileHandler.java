@@ -7,4 +7,5 @@ public interface AsyncFileHandler {
     void writeAsync(File file);
 
     void readAsync(File file);
+
 }

@@ -68,7 +68,23 @@ public class MainController{
     @FXML
     public void onSave()
     {
-        //TODO add normal save
+        if(MasterData.currentFile == null)
+        {
+            onSaveAs();
+            return;
+        }
+        String extension = "";
+
+        int i = MasterData.currentFile.getName().lastIndexOf('.');
+        if (i > 0) {
+            extension = MasterData.currentFile.getName().substring(i+1);
+        }
+        if(extension.equals("sim"))
+        {
+            AsyncFileHandler simWriter = new SimulationFileHandler();
+            simWriter.writeAsync(MasterData.currentFile);
+            return;
+        }
         onSaveAs();
     }
 
@@ -102,7 +118,7 @@ public class MainController{
     }
 
     @FXML
-    public void onSaveAs() {
+    public void onSaveAs(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save as");
         fileChooser.getExtensionFilters().addAll(
