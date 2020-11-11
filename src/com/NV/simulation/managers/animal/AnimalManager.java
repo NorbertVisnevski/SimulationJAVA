@@ -85,9 +85,18 @@ public class AnimalManager implements CollectionManager<Animal> {
 
                 //update hunger
                 animal.setHunger(animal.getHunger() + animal.getNutritionExpenses());
+
                 Point point = animal.calculateMove();
                 if (MasterData.map.getTileAt(point).isImpassible()) {
-                    point = MasterData.map.getTileNeighbours(animal.getLocation(), true).get(0).getPosition();
+                    try {
+                        point = MasterData.map.getTileNeighbours(animal.getLocation(), true).get(0).getPosition();
+                    }
+                    catch(Exception e)
+                    {
+                        animal.setDead();
+                        deadAnimals.add(animal);
+                        continue;
+                    }
                 }
                 if (animal instanceof AnimalHerbivore) {
                     if (point.equals(animal.getLocation())) {

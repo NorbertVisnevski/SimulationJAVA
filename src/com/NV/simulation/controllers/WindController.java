@@ -36,21 +36,14 @@ public class WindController {
 
     private int calculateAngle(String str)
     {
-        switch(str)
-        {
-            case Wind.WindDirections.SOUTH_WEST:
-                return 0;
-            case Wind.WindDirections.SOUTH_EAST:
-                return -90;
-            case Wind.WindDirections.EAST:
-                return -135;
-            case Wind.WindDirections.NORTH_EAST:
-                return 180;
-            case Wind.WindDirections.NORTH_WEST:
-                return 90;
-            case Wind.WindDirections.WEST:
-                return 45;
-        }
-        return 0;
+        return switch (str) {
+            case Wind.WindDirections.SOUTH_WEST -> 0;
+            case Wind.WindDirections.SOUTH_EAST -> -90;
+            case Wind.WindDirections.EAST -> -135;
+            case Wind.WindDirections.NORTH_EAST -> 180;
+            case Wind.WindDirections.NORTH_WEST -> 90;
+            case Wind.WindDirections.WEST -> 45;
+            default -> 0;
+        };
     }
 }
