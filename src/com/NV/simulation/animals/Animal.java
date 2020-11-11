@@ -36,6 +36,8 @@ public interface Animal {
 
     void setLocation(Point location);
 
+    boolean canProcreateWith(Animal animal);
+
     double getNutritionExpenses();
 
     Point calculateMove();

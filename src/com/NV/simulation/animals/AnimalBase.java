@@ -194,7 +194,10 @@ public abstract class AnimalBase implements Animal, Serializable {
     }
 
 
-
+    public boolean canProcreateWith(Animal animal)
+    {
+        return this.getClass() == animal.getClass();
+    }
 
 
 }

@@ -13,7 +13,7 @@ public class AnimalReproductionHelper {
         if(a1 == null || a2 == null)
             throw new NullPointerException("2 animals are needed for reproduction");
 
-        if(a1.getClass() != a2.getClass())
+        if(!a1.canProcreateWith(a2))
             throw new AnimalHybridException("Animals can't reproduce together",a1,a2);
 
         double mr1 = a1.getMutationRate();

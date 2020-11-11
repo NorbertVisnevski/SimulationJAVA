@@ -2,25 +2,24 @@ package com.NV.simulation.animals;
 
 import java.awt.*;
 
-public class AnimalWolf extends AnimalCarnivore {
+public class AnimalCoyote extends AnimalCarnivore{
 
-    public AnimalWolf() {
+    public AnimalCoyote() {
         super();
     }
 
-    public AnimalWolf(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
+    public AnimalCoyote(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
         super(hunger, reproductionDrive, survivalDrive, speed, sensesRange, mutationRate, location);
     }
 
     @Override
     protected void initHuntedAnimals() {
         huntedAnimals.add(AnimalRabbit.class);
-        huntedAnimals.add(AnimalDeer.class);
         huntedAnimals.add(AnimalFox.class);
     }
 
     @Override
     public boolean canProcreateWith(Animal animal) {
-        return (super.canProcreateWith(animal) || animal.getClass().equals(AnimalCoyote.class));
+        return (super.canProcreateWith(animal) || animal.getClass().equals(AnimalWolf.class));
     }
 }

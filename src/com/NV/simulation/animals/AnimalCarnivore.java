@@ -27,7 +27,7 @@ public abstract class AnimalCarnivore extends AnimalBase {
     {
         java.util.List<Animal> herbivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
 
-        herbivores = herbivores.stream().filter(animal->animal instanceof AnimalHerbivore).collect(Collectors.toList());
+        herbivores = herbivores.stream().filter(this::canConsume).collect(Collectors.toList());
 
 
         if(herbivores.size()==0)

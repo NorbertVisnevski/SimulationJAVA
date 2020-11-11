@@ -68,6 +68,7 @@ public class AddAnimalController {
             case "Wolf" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.wolf, 0, 0, 1, 1, true));
             case "Fox" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.fox, 0, 0, 1, 1, true));
             case "Deer" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.deer, 0, 0, 1, 1, true));
+            case "Coyote" -> animalTextureSpace.setFill(new ImagePattern(TextureStorage.coyote, 0, 0, 1, 1, true));
             default -> animalTextureSpace.setFill(Color.DEEPPINK);
         }
     }
@@ -85,6 +86,7 @@ public class AddAnimalController {
             case "Wolf" -> new AnimalWolf();
             case "Fox" -> new AnimalFox();
             case "Deer" -> new AnimalDeer();
+            case "Coyote" -> new AnimalCoyote();
             default -> throw new UnknownAnimalException("Can't create animal of type: " + animalTypeChoiceBox.getSelectionModel().getSelectedItem());
         };
         animal.setHunger(Double.parseDouble(hungerTextField.getText()));

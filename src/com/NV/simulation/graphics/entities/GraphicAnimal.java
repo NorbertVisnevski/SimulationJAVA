@@ -100,6 +100,11 @@ public class GraphicAnimal extends Rectangle implements WithStatTooltip {
             setFill(new ImagePattern(TextureStorage.fox));
             MasterData.stringBuilder.append("Species: Fox\n");
         }
+        else if(animal.getClass() == AnimalCoyote.class)
+        {
+            setFill(new ImagePattern(TextureStorage.coyote));
+            MasterData.stringBuilder.append("Species: Coyote\n");
+        }
         else
         {
             setFill(Color.SALMON);

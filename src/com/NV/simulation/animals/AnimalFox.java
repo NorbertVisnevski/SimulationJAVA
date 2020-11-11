@@ -29,7 +29,7 @@ public class AnimalFox extends AnimalCarnivore {
     {
         java.util.List<Animal> carnivores = MasterData.animalManager.getAnimalsInRange(getLocation(), getSensesRange());
 
-        carnivores = carnivores.stream().filter(animal->animal instanceof AnimalWolf).collect(Collectors.toList());
+        carnivores = carnivores.stream().filter(animal->animal instanceof AnimalWolf || animal instanceof AnimalCoyote).collect(Collectors.toList());
 
         if(carnivores.size()==0)
         {
