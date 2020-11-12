@@ -10,7 +10,7 @@ public class ErrorLogger implements AsyncLogHandler{
     @Override
     public void append(File file, String message) {
         new Thread(()->{
-            try(FileWriter writer = new FileWriter(file.getPath()))
+            try(FileWriter writer = new FileWriter(file.getPath(),true))
             {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 writer.append("\n");
@@ -20,7 +20,9 @@ public class ErrorLogger implements AsyncLogHandler{
                 writer.append("\n");
 
             }
-            catch(IOException e) { }
+            catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
         }).start();
     }
 

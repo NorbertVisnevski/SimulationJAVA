@@ -1,3 +1,45 @@
 
-11/11/2020 22:40:06 : Animal manager error
+12/11/2020 00:38:43 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:39:44 : Animal manager error
+Index 0 out of bounds for length 0
+
+12/11/2020 00:39:47 : Animal manager error
+Index 0 out of bounds for length 0
+
+12/11/2020 00:39:49 : Animal manager error
+Index 0 out of bounds for length 0
+
+12/11/2020 00:49:39 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:43 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:45 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:47 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:50 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:52 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:54 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:56 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:49:57 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:50:00 : Animal manager error
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+12/11/2020 00:50:03 : Animal manager error
 java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0

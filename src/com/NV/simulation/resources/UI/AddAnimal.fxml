@@ -55,7 +55,7 @@
             <HBox prefHeight="34.0" prefWidth="159.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="238.0" text="Mutation Rate" wrapText="true" />
-                  <TextField fx:id="mutationRateTextField" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="1.0" />
+                  <TextField fx:id="mutationRateTextField" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="0.1" />
                </children>
             </HBox>
             <HBox prefHeight="34.0" prefWidth="159.0">

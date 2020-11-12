@@ -7,7 +7,7 @@ import java.text.ParsePosition;
 
 public class NumberTextFormatter {
 
-    private static DecimalFormat format = new DecimalFormat("#");
+    private static final DecimalFormat format = new DecimalFormat("#");
 
     public final TextFormatter getFormatter()
     {

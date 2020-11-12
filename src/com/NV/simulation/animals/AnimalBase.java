@@ -100,10 +100,10 @@ public abstract class AnimalBase implements Animal, Serializable {
     }
 
     public void setMutationRate(double mutationRate) {
-        if(mutationRate>1.0)
+        if(mutationRate>0.1)
             this.mutationRate = mutationRate;
         else
-            this.mutationRate = 1.0;
+            this.mutationRate = 0.1;
     }
 
     public Point getLocation() {
@@ -120,7 +120,7 @@ public abstract class AnimalBase implements Animal, Serializable {
     }
 
     public AnimalBase() {
-        this(0.0,1.0,1.0,1.0,1.0,1.0,new Point());
+        this(0.0,1.0,1.0,1.0,1.0,0.1,new Point());
     }
 
     public AnimalBase(double hunger, double reproductionDrive, double survivalDrive, double speed, double sensesRange, double mutationRate, Point location) {
