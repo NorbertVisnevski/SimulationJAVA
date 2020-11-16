@@ -8,6 +8,7 @@ import com.NV.simulation.managers.animal.AnimalManager;
 import com.NV.simulation.managers.animal.AnimalPlacer;
 import com.NV.simulation.managers.weather.WeatherManager;
 import com.NV.simulation.managers.map.Map;
+import com.NV.simulation.threads.ManagerThread;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
@@ -31,6 +32,7 @@ public final class MasterData {
     public static WeatherManager weatherManager = new WeatherManager();
     public static AnimalPlacer animalPlacer = new AnimalPlacer();
     public static File currentFile = null;
+    public static volatile ManagerThread managerThread = new ManagerThread();
     public static void clearManagers()
     {
         animalManager.clear();

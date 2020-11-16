@@ -104,10 +104,14 @@ public final class Application extends javafx.application.Application {
 
         primaryStage.setTitle("Simulation");
         primaryStage.setOnCloseRequest(e->{
-        try{
-            MasterData.statsController.stop();
-        }
-        catch(Exception err){}
+            try{
+                MasterData.statsController.stop();
+            }
+            catch(Exception err){}
+            try{
+                MasterData.managerThread.interrupt();
+            }
+            catch(Exception err){}
         });
         updateSimulationState();
         shuffleEntities();

@@ -2,6 +2,7 @@ package com.NV.simulation.controllers;
 
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.Application;
+import com.NV.simulation.threads.ManagerThread;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,5 +36,23 @@ public class SimpleActionController {
         }
         Application.updateSimulationState();
         Application.shuffleEntities();
+    }
+
+    @FXML
+    public void onRun()
+    {
+        if(MasterData.managerThread.isInterrupted() || MasterData.managerThread.getState().equals(Thread.State.NEW))
+        {
+            MasterData.managerThread = new ManagerThread();
+            MasterData.managerThread.start();
+        }
+    }
+    @FXML
+    public void onStop()
+    {
+        if(MasterData.managerThread.isAlive())
+        {
+            MasterData.managerThread.interrupt();
+        }
     }
 }

@@ -137,7 +137,6 @@ public class AnimalManager implements CollectionManager<Animal> {
                         }
                     }
                 }
-
             }
         }
         catch(NullPointerException e)

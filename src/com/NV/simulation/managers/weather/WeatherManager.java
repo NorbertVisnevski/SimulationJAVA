@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class WeatherManager implements CollectionManager<Cloud> {
 
-    private final List<Cloud> cloudList = new ArrayList<>();
+        private final List<Cloud> cloudList = new LinkedList<>();
 
     private final Wind wind = new Wind();
 

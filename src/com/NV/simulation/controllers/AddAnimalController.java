@@ -3,6 +3,7 @@ package com.NV.simulation.controllers;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.animals.*;
 import com.NV.simulation.exceptions.UnknownAnimalException;
+import com.NV.simulation.factories.AnimalFactory;
 import com.NV.simulation.formaters.NumberTextFormatter;
 import com.NV.simulation.graphics.TextureStorage;
 import javafx.fxml.FXML;
@@ -81,14 +82,7 @@ public class AddAnimalController {
 
     public Animal createAnimal(Point location) throws UnknownAnimalException
     {
-        Animal animal = switch (animalTypeChoiceBox.getSelectionModel().getSelectedItem()) {
-            case "Rabbit" -> new AnimalRabbit();
-            case "Wolf" -> new AnimalWolf();
-            case "Fox" -> new AnimalFox();
-            case "Deer" -> new AnimalDeer();
-            case "Coyote" -> new AnimalCoyote();
-            default -> throw new UnknownAnimalException("Can't create animal of type: " + animalTypeChoiceBox.getSelectionModel().getSelectedItem());
-        };
+        Animal animal = AnimalFactory.newAnimal(animalTypeChoiceBox.getSelectionModel().getSelectedItem());
         animal.setHunger(Double.parseDouble(hungerTextField.getText()));
         animal.setReproductionDrive(Double.parseDouble(reproductionDriveTextField.getText()));
         animal.setSurvivalDrive(Double.parseDouble(survivalDriveTextField.getText()));

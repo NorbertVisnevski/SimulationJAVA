@@ -43,3 +43,45 @@ java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
 
 12/11/2020 00:50:03 : Animal manager error
 java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+17/11/2020 00:11:59 : Animal manager error
+java.lang.NullPointerException: Cannot invoke "com.NV.simulation.animals.Animal.getLocation()" because "animal" is null
+
+17/11/2020 00:12:05 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:12:05 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:12:11 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:12:11 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:17:43 : Animal manager error
+java.lang.NullPointerException: Cannot invoke "com.NV.simulation.animals.Animal.getLocation()" because "animal" is null
+
+17/11/2020 00:17:44 : Animal manager error
+java.lang.NullPointerException: Cannot invoke "com.NV.simulation.animals.Animal.getLocation()" because "animal" is null
+
+17/11/2020 00:17:44 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:17:47 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:17:50 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:17:56 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 00:18:04 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 01:09:04 : Animal manager error
+java.util.ConcurrentModificationException
+
+17/11/2020 01:09:04 : Animal manager error
+java.util.ConcurrentModificationException
