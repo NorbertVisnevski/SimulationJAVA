@@ -63,7 +63,7 @@ public class NewMapDialog {
                 }
                 MasterData.weatherManager.linkToMap(MasterData.map);
                 MasterData.currentFile = null;
-                Application.updateSimulationState();
+                Application.cleanUpdateSimulationState();
             });
         });
     }

@@ -42,7 +42,7 @@ public class MapFileHandler implements AsyncFileHandler{
                         MasterData.clearManagers();
                         MasterData.map.add(map);
                         MasterData.weatherManager.linkToMap(MasterData.map);
-                        Application.updateSimulationState();
+                        Application.cleanUpdateSimulationState();
                     });
                 }
                 catch(StreamCorruptedException e)

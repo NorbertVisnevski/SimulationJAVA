@@ -64,7 +64,7 @@ public class WeatherManager implements CollectionManager<Cloud> {
         cloudList.clear();
     }
 
-    public void update()
+    public synchronized void update()
     {
         Iterator<Cloud> i = cloudList.iterator();
         while (i.hasNext())

@@ -5,6 +5,7 @@ import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.entities.GraphicAnimal;
 import com.NV.simulation.graphics.entities.GraphicTile;
 import com.NV.simulation.graphics.entities.GraphicalCloud;
+import com.NV.simulation.threads.ThreadControlFlags;
 import com.NV.simulation.tile.Tile;
 import com.NV.simulation.weather.clouds.Cloud;
 import javafx.animation.AnimationTimer;
@@ -29,7 +30,7 @@ public final class Application extends javafx.application.Application {
 
     private final static Deque<Runnable> callbackList = new LinkedList<>();
 
-    public synchronized static void addCallbackFunction(Runnable runnable)
+    public static void addCallbackFunction(Runnable runnable)
     {
         callbackList.addLast(runnable);
     }
@@ -42,15 +43,7 @@ public final class Application extends javafx.application.Application {
     public static void updateSimulationState() {
         animalGroup.getChildren().forEach(a->((GraphicAnimal)a).uninstallTooltip());
         animalGroup.getChildren().clear();
-        tileGroup.getChildren().forEach(a->((GraphicTile)a).uninstallTooltip());
-        tileGroup.getChildren().clear();
         cloudGroup.getChildren().clear();
-
-        List<Tile> tilemap = MasterData.map.getList();
-        for (Tile tile : tilemap) {
-            if(tile != null)
-            tileGroup.getChildren().add(new GraphicTile(tile));
-        }
 
         List<Animal> animals = MasterData.animalManager.getList();
         for (Animal animal : animals) {
@@ -63,6 +56,18 @@ public final class Application extends javafx.application.Application {
             if(cloud != null)
             cloudGroup.getChildren().add(new GraphicalCloud(cloud));
         }
+
+        tileGroup.getChildren().forEach(tile->((GraphicTile)tile).updateTooltip());
+    }
+    public static void cleanUpdateSimulationState()
+    {
+        tileGroup.getChildren().clear();
+        List<Tile> tilemap = MasterData.map.getList();
+        for (Tile tile : tilemap) {
+            if(tile != null)
+                tileGroup.getChildren().add(new GraphicTile(tile));
+        }
+        updateSimulationState();
     }
 
 
@@ -113,7 +118,7 @@ public final class Application extends javafx.application.Application {
             }
             catch(Exception err){}
         });
-        updateSimulationState();
+        cleanUpdateSimulationState();
         shuffleEntities();
 
         new AnimationTimer() {

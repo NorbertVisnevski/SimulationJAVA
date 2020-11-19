@@ -65,7 +65,7 @@ public class AnimalManager implements CollectionManager<Animal> {
         animalCollection.clear();
     }
 
-    public void update() {
+    public synchronized void update() {
         List<Animal> newAnimals = new ArrayList<>();
         List<Animal> deadAnimals = new ArrayList<>();
         try {
@@ -143,11 +143,7 @@ public class AnimalManager implements CollectionManager<Animal> {
         {
             AsyncLogHandler log = new ErrorLogger();
             log.append(new File("log.txt"), "Animal manager error\n"+e);
-            Iterator<Animal> i = animalCollection.iterator();
-            while (i.hasNext()) {
-                if(i.next() == null)
-                    i.remove();
-            }
+            animalCollection.removeIf(Objects::isNull);
             update();
             return;
         }
@@ -155,7 +151,7 @@ public class AnimalManager implements CollectionManager<Animal> {
         {
             AsyncLogHandler log = new ErrorLogger();
             log.append(new File("log.txt"), "Animal manager error\n"+e);
-            Application.addCallbackFunction(()->new ErrorDialog("Simulation Error",e.getMessage()));
+            Application.addCallbackFunction(()->new ErrorDialog("Simulation Error",e.toString()));
         }
         animalCollection.removeAll(deadAnimals);
         add(newAnimals);

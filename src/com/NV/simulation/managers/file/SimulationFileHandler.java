@@ -62,7 +62,7 @@ public class SimulationFileHandler implements AsyncFileHandler{
 
                     MasterData.currentFile = file;
 
-                    Application.updateSimulationState();
+                    Application.cleanUpdateSimulationState();
                     Application.shuffleEntities();
                 });
             }

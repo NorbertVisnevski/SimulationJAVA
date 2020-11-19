@@ -77,7 +77,7 @@ public class Tile implements Serializable {
         return nutritionContent;
     }
 
-    public void setNutritionContent(double nutritionContent) {
+    public synchronized void setNutritionContent(double nutritionContent) {
         if(nutritionContent>0)
         {
             if(nutritionContent<=100.0)
@@ -88,7 +88,7 @@ public class Tile implements Serializable {
         else
             this.nutritionContent = 0.0;
     }
-    public void addNutritionContent(double nutritionContent) {
+    public synchronized void addNutritionContent(double nutritionContent) {
         setNutritionContent(getNutritionContent()+nutritionContent);
     }
 
@@ -97,7 +97,7 @@ public class Tile implements Serializable {
         replenishNutrition(0.01);
     }
 
-    public void replenishNutrition(double amount)
+    public synchronized void replenishNutrition(double amount)
     {
         setNutritionContent(getNutritionContent()+amount);
     }

@@ -3,9 +3,12 @@ package com.NV.simulation.controllers;
 import com.NV.simulation.MasterData;
 import com.NV.simulation.graphics.Application;
 import com.NV.simulation.threads.ManagerThread;
+import com.NV.simulation.threads.ThreadControlFlags;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.Slider;
 
 public class SimpleActionController {
 
@@ -13,27 +16,24 @@ public class SimpleActionController {
     private Button btn1turn;
 
     @FXML
-    private Button btn100turn;
+    private Slider simulationSpeedSlider;
 
     @FXML
-    private Button btn1000turn;
+    public void initialize()
+    {
+        ThreadControlFlags.simulationSpeed = (int)simulationSpeedSlider.getMax()-(int)simulationSpeedSlider.getValue();
+        simulationSpeedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            ThreadControlFlags.simulationSpeed = (int)simulationSpeedSlider.getMax()-newValue.intValue();
+        });
+    }
 
     @FXML
     public void nextSimulationTurn(ActionEvent event)
     {
-        int i = 0;
-        if (event.getSource().equals(btn1turn))
-            i = 1;
-        else if (event.getSource().equals(btn100turn))
-            i = 100;
-        else if (event.getSource().equals(btn1000turn))
-            i = 1000;
-        for(int j=0; j<i; ++j)
-        {
-            MasterData.animalManager.update();
-            MasterData.map.replenishGroundNutrience(0.01);
-            MasterData.weatherManager.update();
-        }
+        MasterData.animalManager.update();
+        MasterData.map.update();
+        MasterData.weatherManager.update();
         Application.updateSimulationState();
         Application.shuffleEntities();
     }

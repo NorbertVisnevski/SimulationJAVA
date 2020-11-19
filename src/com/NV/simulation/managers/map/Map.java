@@ -33,9 +33,9 @@ public class Map implements CollectionManager<Tile> {
         }
     }
 
-    public void update()
+    public synchronized void update()
     {
-        replenishGroundNutrience(0.5);
+        replenishGroundNutrience(0.01);
     }
 
     public void clear()
