@@ -21,21 +21,40 @@ public class SimpleActionController {
     @FXML
     public void initialize()
     {
-        ThreadControlFlags.simulationSpeed = (int)simulationSpeedSlider.getMax()-(int)simulationSpeedSlider.getValue();
+        ThreadControlFlags.getInstance().simulationSpeed = (int)simulationSpeedSlider.getMax()-(int)simulationSpeedSlider.getValue();
         simulationSpeedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 
-            ThreadControlFlags.simulationSpeed = (int)simulationSpeedSlider.getMax()-newValue.intValue();
+            ThreadControlFlags.getInstance().simulationSpeed = (int)simulationSpeedSlider.getMax()-newValue.intValue();
         });
     }
 
     @FXML
     public void nextSimulationTurn(ActionEvent event)
     {
-        MasterData.animalManager.update();
-        MasterData.map.update();
-        MasterData.weatherManager.update();
-        Application.updateSimulationState();
-        Application.shuffleEntities();
+        new Thread(()->{
+            Thread animal = new Thread(()-> {
+                MasterData.animalManager.update();
+            });
+            Thread map = new Thread(()-> {
+                MasterData.map.update();
+            });
+            Thread weather = new Thread(()-> {
+                MasterData.weatherManager.update();
+            });
+            animal.start();
+            map.start();
+            weather.start();
+            try{
+                animal.join();
+                map.join();
+                weather.join();
+            }
+            catch(InterruptedException ignored){}
+            Application.addCallbackFunction(()->{
+                Application.updateSimulationState();
+                Application.shuffleEntities();
+            });
+        }).start();
     }
 
     @FXML

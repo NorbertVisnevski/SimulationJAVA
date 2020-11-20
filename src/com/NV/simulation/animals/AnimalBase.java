@@ -133,7 +133,8 @@ public abstract class AnimalBase implements Animal, Serializable {
         setLocation(location);
     }
 
-    public Point calculateMove()
+    //template method
+    public final Point calculateMove()
     {
         tileOptions = MasterData.map.getTileNeighbours(getLocation());
         List<Point> possibleMoves = new ArrayList<>();
