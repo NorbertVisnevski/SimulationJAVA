@@ -7,13 +7,9 @@ import com.NV.simulation.threads.ThreadControlFlags;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Slider;
 
 public class SimpleActionController {
-
-    @FXML
-    private Button btn1turn;
 
     @FXML
     private Slider simulationSpeedSlider;
