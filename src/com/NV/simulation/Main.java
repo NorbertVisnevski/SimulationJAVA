@@ -15,6 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         // simulation init
+
         for(int i = 0; i< 30; ++i)
         {
             for (int j=0; j< 21; ++j)

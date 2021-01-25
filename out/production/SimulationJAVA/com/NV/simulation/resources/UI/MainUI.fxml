@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="1080.0" minWidth="1920.0" prefHeight="720.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.MainController">
+   <children>
+      <VBox minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
+        <children>
+          <MenuBar VBox.vgrow="NEVER">
+            <menus>
+              <Menu mnemonicParsing="false" text="File">
+                <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onNew" text="New" />
+                  <MenuItem mnemonicParsing="false" onAction="#onOpen" text="Open…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSave" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSaveAs" text="Save As…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="View">
+                <items>
+                        <MenuItem mnemonicParsing="false" onAction="#statWindow" text="Stats" />
+                </items>
+              </Menu>
+            </menus>
+          </MenuBar>
+            <HBox prefWidth="1920.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <ScrollPane minWidth="1000.0" pannable="true" prefHeight="1055.0" prefWidth="1974.0" style="-fx-background: #000000; -fx-background-color: transparent;">
+                     <content>
+                        <Pane fx:id="tilemap" nodeOrientation="LEFT_TO_RIGHT" onMouseDragged="#onMouseMoved" onMouseMoved="#onMouseMoved" style="-fx-background-color: #000000;" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane hbarPolicy="NEVER" minWidth="183.0" prefWidth="190.0" style="-fx-background-color: transparent; -fx-background: #ffffff;">
+                     <content>
+                        <VBox fx:id="actionBar" minWidth="181.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+        </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </VBox>
+   </children>
+</AnchorPane>

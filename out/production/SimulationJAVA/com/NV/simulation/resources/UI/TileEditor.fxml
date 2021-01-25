@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="181.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="181.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.TileEditController">
+   <children>
+      <Group fx:id="mainGroup">
+         <children>
+            <Label layoutX="75.0" layoutY="30.0" text="Terrain type:" />
+            <Pane fx:id="tilePane" layoutX="10.0" layoutY="50.0" prefHeight="64.0" prefWidth="64.0" />
+            <ChoiceBox fx:id="terrainType" layoutX="75.0" layoutY="48.0" prefHeight="28.0" prefWidth="98.0" />
+            <CheckBox fx:id="impassible" layoutX="76.0" layoutY="82.0" mnemonicParsing="false" text="Impassible" />
+            <TextField fx:id="travelDifficulty" layoutX="74.0" layoutY="116.0" prefHeight="26.0" prefWidth="101.0" />
+            <Text layoutX="10.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel Difficulty" wrappingWidth="63.6328125" />
+            <Text layoutX="10.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nutrition Content" wrappingWidth="63.6328125" />
+            <TextField fx:id="nutritionContent" layoutX="74.0" layoutY="152.0" prefHeight="26.0" prefWidth="101.0" />
+            <Button layoutX="105.0" layoutY="187.0" mnemonicParsing="false" onAction="#onApply" prefHeight="25.0" prefWidth="72.0" text="Apply" />
+         </children>
+      </Group>
+      <Label layoutX="9.0" layoutY="6.0" text="Tile Editor">
+         <font>
+            <Font name="SansSerif Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

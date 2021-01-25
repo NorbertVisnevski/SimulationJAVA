@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="181.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.NV.simulation.controllers.AddAnimalController">
+   <children>
+      <Label layoutX="9.0" layoutY="6.0" text="Add Animal">
+         <font>
+            <Font name="SansSerif Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="33.0" text="Animal type:">
+         <font>
+            <Font name="Serif Regular" size="12.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d2d8dd" height="66.0" layoutX="14.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="66.0" />
+      <Rectangle fx:id="animalTextureSpace" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="64.0" layoutX="15.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="64.0" />
+      <ChoiceBox fx:id="animalTypeChoiceBox" layoutX="92.0" layoutY="52.0" onAction="#onTypeChange" prefHeight="31.0" prefWidth="78.0" >
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Rabbit" />
+            <String fx:value="Fox" />
+            <String fx:value="Wolf" />
+            <String fx:value="Deer" />
+            <String fx:value="Coyote" />
+            <String fx:value="Dog" />
+         </FXCollections>
+      </items>
+      </ChoiceBox>
+      <VBox layoutX="7.0" layoutY="100.0" prefHeight="200.0" prefWidth="168.0" spacing="10.0">
+         <children>
+            <HBox prefHeight="24.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="239.0" text="Speed" wrapText="true" />
+                  <TextField fx:id="speedTextField" maxWidth="100.0" minHeight="25.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="1.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="85.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="180.0" text="Sensing range" wrapText="true" />
+                  <TextField fx:id="sensingRangeTextField" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="90.0" text="1.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="238.0" text="Mutation Rate" wrapText="true" />
+                  <TextField fx:id="mutationRateTextField" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="0.1" />
+               </children>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="143.0" text="Hunger" wrapText="true" />
+                  <TextField fx:id="hungerTextField" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="0.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="154.0" text="Survival Drive" wrapText="true" />
+                  <TextField fx:id="survivalDriveTextField" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="1.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="159.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="159.0" text="Reproduction Drive" wrapText="true" />
+                  <TextField fx:id="reproductionDriveTextField" maxHeight="25.0" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" text="1.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="92.0" layoutY="309.0" mnemonicParsing="false" onAction="#onApply" prefHeight="25.0" prefWidth="78.0" text="Apply" />
+   </children>
+</AnchorPane>

@@ -103,3 +103,6 @@ java.util.ConcurrentModificationException
 
 19/11/2020 16:04:19 : Animal manager error
 java.util.ConcurrentModificationException
+
+26/11/2020 10:22:02 : Animal manager error
+java.util.ConcurrentModificationException
